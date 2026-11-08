@@ -1,0 +1,60 @@
+{
+  "title": "성 아래 닷새",
+  "subtitle": "나고야 여행 가이드북 · 2026.11.28–12.02",
+  "series": "여행 가이드북 03",
+  "kicker": "名古屋 · 城下町",
+  "published": "2026-11-20",
+  "webUrl": "https://mskim5383.github.io/2026-11-nagoya-guide/",
+  "output": {
+    "html": "index.html",
+    "pdf": "nagoya-guide-a5.pdf",
+    "booklet": "nagoya-guide-booklet-a4.pdf"
+  },
+  "vars": {
+    "masthead": "NAGOYA",
+    "mastheadJa": "名古屋",
+    "dates": "2026.11.28–12.02",
+    "surveyed": "2026-11-08"
+  },
+  "pages": { "target": 80, "max": 80, "multiple": 4 },
+  "tailMemo": {
+    "parts": ["11-day1.html", "12-day2.html", "13-day3.html", "14-day4.html", "15-day5.html"],
+    "lines": 10,
+    "min": 4
+  },
+  "serifKinds": ["letter", "feature", "further"],
+  "sequence": [
+    { "front": "cover.html" },
+    { "front": "colophon.html" },
+    { "front": "toc.html" },
+
+    { "group": "letter", "run": "편집장의 말", "parts": ["01-editor-letter.html"] },
+    { "group": "overview", "run": "닷새 한눈에", "parts": ["02-overview.html"] },
+
+    { "group": "day1", "nav": "D1", "run": "DAY 1 · 11.28 토", "start": "recto", "parts": ["11-day1.html"] },
+    { "group": "day2", "nav": "D2", "run": "DAY 2 · 11.29 일", "parts": ["12-day2.html"] },
+    { "group": "day3", "nav": "D3", "run": "DAY 3 · 11.30 월", "parts": ["13-day3.html"] },
+    { "group": "day4", "nav": "D4", "run": "DAY 4 · 12.1 화", "parts": ["14-day4.html"] },
+    { "group": "day5", "nav": "D5", "run": "DAY 5 · 12.2 수", "parts": ["15-day5.html"] },
+
+    { "group": "read", "label": "읽을거리", "title": "성 아래 마을에서 히다까지", "run": "읽을거리",
+      "parts": ["21-feature-castle-town.html", "22-feature-atsuta.html", "23-feature-hida.html"] },
+
+    { "group": "food", "label": "먹고 마시기", "title": "장어, 이자카야, 사케, 알러지, 디렉터리", "nav": "먹기",
+      "navTo": "35-directory.html", "run": "먹고 마시기",
+      "parts": ["31-food-unagi.html", "32-food-daijin.html", "33-food-sake.html", "34-food-fowl.html", "35-directory.html"] },
+
+    { "group": "practical", "label": "실용", "title": "교통, 캘린더, 돈, 체크리스트", "nav": "실용", "run": "실용 정보",
+      "parts": ["41-practical-transport.html", "42-practical-calendar.html", "43-practical-money.html", "44-practical-checklist.html"] },
+
+    { "group": "further", "run": "더 알아볼 것", "parts": ["51-further.html"] },
+    { "group": "credits", "run": "사진과 참고 자료", "parts": ["61-credits.html"] },
+
+    { "group": "cards", "label": "보여 주는 일본어", "title": "알러지 카드, 보여 주는 카드, 짧은 회화", "nav": "카드",
+      "run": "보여 주는 일본어", "start": "recto",
+      "parts": ["71-allergy-card.html", "72-show-cards.html", "73-phrases.html"] },
+
+    { "filler": "end" },
+    { "front": "back-cover.html" }
+  ]
+}

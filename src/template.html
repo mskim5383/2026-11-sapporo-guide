@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23285c50'/%3E%3Cpath d='M3 29.5h26' stroke='%23c8a24a' stroke-width='2'/%3E%3Cg transform='translate(5.5 3) scale(.24)'%3E%3Cpath fill='%23c8a24a' d='M14 84C14 76 20 69 27 66C31 57 33 46 38 34C40 28 42 24 44 20L26 6L47 12L52 0L58 13L74 4L58 23C61 33 66 45 68 58C70 69 67 81 59 89C52 95 40 96 31 93C25 91 19 89 14 84Z'/%3E%3C/g%3E%3C/svg%3E">
+<title>{{title}} · 나고야 여행 가이드북</title>
+<meta name="description" content="{{subtitle}} · {{series}}">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+<!-- 빌드가 원고별 러닝헤드·여백 탭·오프너 쪽(@page 이름 붙은 페이지)을 채운다 -->
+<style id="page-rules"></style>
+</head>
+<body>
+<a class="skip web-only" href="#book">본문으로 건너뛰기</a>
+<header class="topbar web-only">
+  <div class="topbar-in">
+    <a class="brand" href="#top"><span class="brand-mh">{{masthead}}</span><span class="brand-t">{{title}}</span></a>
+    <nav class="days" data-day-nav aria-label="바로가기: Day 1~5, 먹기, 실용, 카드"></nav>
+    <details class="toc-pop">
+      <summary>목차</summary>
+      <div class="toc-pop-panel">
+        <nav data-web-toc aria-label="목차"></nav>
+        <p class="toc-pop-dl"><a href="{{pdf}}">A5 PDF</a> · <a href="{{booklet}}">A4 중철 인쇄용 PDF</a></p>
+      </div>
+    </details>
+    <a class="pdf-btn" href="{{pdf}}" download>PDF</a>
+  </div>
+</header>
+<aside class="side-toc web-only" aria-label="차례">
+  <p class="side-toc-h">차례</p>
+  <nav data-web-toc></nav>
+</aside>
+<main id="book" class="book">
+{{content}}
+</main>
+<footer class="web-foot web-only">
+  <p>{{title}} · {{series}} · 비매품, 개인 여행용</p>
+  <p><a href="{{pdf}}">A5 PDF 내려받기</a> · <a href="{{booklet}}">A4 중철 인쇄용 PDF</a></p>
+</footer>
+<div class="card-zoom web-only" role="dialog" aria-modal="true" aria-label="크게 보기" hidden>
+  <div class="card-zoom-bar"><span class="card-zoom-hint">화면을 누르면 닫힙니다</span><button type="button" class="card-zoom-close">닫기</button></div>
+  <div class="card-zoom-body"></div>
+</div>
+<script>
+(function () {
+  // 목차 팝오버: 링크를 누르거나 Esc 로 닫기
+  var pop = document.querySelector('.toc-pop');
+  if (pop) {
+    pop.addEventListener('click', function (e) { if (e.target.closest('a')) pop.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') pop.open = false; });
+    document.addEventListener('click', function (e) { if (pop.open && !pop.contains(e.target)) pop.open = false; });
+  }
+
+  // 체크리스트: 누르면 체크, 이 브라우저에만 기억
+  var KEY = 'nagoya-guide-2026-11:checks';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  var store = function () { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} };
+  document.querySelectorAll('ul.check').forEach(function (ul, i) {
+    var sec = ul.closest('section');
+    Array.prototype.forEach.call(ul.children, function (li, j) {
+      if (li.tagName !== 'LI') return;
+      var k = (sec ? sec.id : 's') + ':' + i + ':' + j;
+      var on = !!saved[k];
+      li.setAttribute('role', 'checkbox');
+      li.tabIndex = 0;
+      var paint = function () { li.classList.toggle('done', on); li.setAttribute('aria-checked', on ? 'true' : 'false'); };
+      var flip = function () { on = !on; saved[k] = on; paint(); store(); };
+      paint();
+      li.addEventListener('click', function (e) { if (!e.target.closest('a')) flip(); });
+      li.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flip(); } });
+    });
+  });
+
+  // 표 안의 체크 칸(☐): 체크리스트처럼 누르면 체크, 이 브라우저에만 기억
+  document.querySelectorAll('table.data td').forEach(function (td, i) {
+    if (td.textContent.trim() !== '☐') return;
+    var sec = td.closest('section');
+    var k = (sec ? sec.id : 's') + ':td:' + i;
+    var on = !!saved[k];
+    td.classList.add('cell-check');
+    td.setAttribute('role', 'checkbox');
+    td.tabIndex = 0;
+    var paint = function () { td.textContent = on ? '☑' : '☐'; td.classList.toggle('done', on); td.setAttribute('aria-checked', on ? 'true' : 'false'); };
+    var flip = function () { on = !on; saved[k] = on; paint(); store(); };
+    paint();
+    td.addEventListener('click', flip);
+    td.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flip(); } });
+  });
+
+  // 알러지 카드 안의 긴 일본어(예약 요청란 문장 등): 웹에서 「복사」 단추. 카드 확대와 따로 동작한다.
+  document.querySelectorAll('.cut-card [lang="ja"]').forEach(function (el) {
+    var text = el.textContent.replace(/\s+/g, ' ').trim();
+    if (text.length < 60 || (el.parentElement && el.parentElement.closest('[data-copy]'))) return;
+    el.setAttribute('data-copy', '');
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'copy-btn';
+    b.textContent = '일본어 복사';
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var done = function () { b.textContent = '복사했습니다'; setTimeout(function () { b.textContent = '일본어 복사'; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () {});
+      else { var t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (x) {} t.remove(); }
+    });
+    el.insertAdjacentElement('afterend', b);
+  });
+
+  // 보여 주는 카드·알러지 카드: 누르면 화면 가득(흰 바탕, 일본어 최대 크기), 다시 누르면 닫힘.
+  // 휴대폰의 뒤로 가기로도 닫히게 history 에 한 칸 넣는다.
+  var zoom = document.querySelector('.card-zoom');
+  if (zoom) {
+    var body = zoom.querySelector('.card-zoom-body');
+    var opened = false;
+    var close = function (fromPop) {
+      if (!opened) return;
+      opened = false;
+      zoom.hidden = true;
+      body.innerHTML = '';
+      document.body.classList.remove('zooming');
+      if (!fromPop && history.state && history.state.cardZoom) history.back();
+    };
+    var open = function (card) {
+      var c = card.cloneNode(true);
+      c.removeAttribute('id');
+      c.querySelectorAll('[id]').forEach(function (x) { x.removeAttribute('id'); });
+      body.innerHTML = '';
+      body.appendChild(c);
+      zoom.hidden = false;
+      zoom.scrollTop = 0;
+      opened = true;
+      document.body.classList.add('zooming');
+      try { history.pushState({ cardZoom: 1 }, ''); } catch (e) {}
+      zoom.querySelector('.card-zoom-close').focus({ preventScroll: true });
+    };
+    document.querySelectorAll('.show-card, .cut-card').forEach(function (card) {
+      card.setAttribute('role', 'button');
+      card.tabIndex = 0;
+      card.setAttribute('aria-label', '크게 보기: ' + (card.querySelector('.sc-when, .cc-head') || card).textContent.trim().slice(0, 40));
+      card.addEventListener('click', function (e) { if (!e.target.closest('a')) open(card); });
+      card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card); } });
+    });
+    zoom.addEventListener('click', function () { close(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(false); });
+    window.addEventListener('popstate', function () { close(true); });
+  }
+
+  // 지금 읽는 곳 표시 (상단 칩, 옆 차례)
+  if (!('IntersectionObserver' in window)) return;
+  var links = document.querySelectorAll('.days a, .side-toc a');
+  var byId = {};
+  links.forEach(function (a) { var id = a.getAttribute('href').slice(1); (byId[id] = byId[id] || []).push(a); });
+  var groupOf = {};
+  document.querySelectorAll('section.part').forEach(function (s) { groupOf[s.id] = s.getAttribute('data-group'); });
+  var chips = document.querySelectorAll('.days a');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var id = en.target.id;
+      document.querySelectorAll('.side-toc a.on').forEach(function (a) { a.classList.remove('on'); });
+      (byId[id] || []).forEach(function (a) { if (a.closest('.side-toc')) a.classList.add('on'); });
+      chips.forEach(function (c) {
+        var cid = c.getAttribute('href').slice(1);
+        var on = groupOf[cid] && groupOf[cid] === groupOf[id];
+        c.classList.toggle('on', !!on);
+        if (on && c.scrollIntoView && c.parentNode.scrollWidth > c.parentNode.clientWidth) {
+          var p = c.parentNode; var x = c.offsetLeft - (p.clientWidth - c.offsetWidth) / 2;
+          p.scrollTo({ left: Math.max(0, x), behavior: 'smooth' });
+        }
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section.part').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>
