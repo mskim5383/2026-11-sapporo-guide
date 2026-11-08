@@ -1,7 +1,8 @@
 {
-  "builtAt": "2026-11-08T11:34:13.923Z",
+  "builtAt": "2026-11-08T12:24:08.952Z",
   "partsDir": "src/parts",
   "parts": {
+    "letter": "01-editor-letter.html",
     "overview": "02-overview.html",
     "feat-wine": "11-feature-wine.html",
     "feat-sake": "12-feature-sake.html",
@@ -18,46 +19,11 @@
     "prac-tax": "42-tax.html",
     "prac-transport": "43-transport.html",
     "prac-checklist": "44-checklist.html",
+    "credits": "51-credits.html",
     "show-cards": "61-show-cards.html",
     "phrases": "62-phrases.html"
   },
-  "warnings": [
-    "원고 없음: src/parts/01-editor-letter.html",
-    "원고 없음: src/parts/51-credits.html",
-    "사진 없음 → figure 제외: cover-sapporo (manifest 에 없음)",
-    "사진 없음 → figure 제외: yoichi-vineyard (manifest 에 없음)",
-    "사진 없음 → figure 제외: pinot-noir (manifest 에 없음)",
-    "사진 없음 → figure 제외: sorachi (manifest 에 없음)",
-    "사진 없음 → figure 제외: sugidama (manifest 에 없음)",
-    "사진 없음 → figure 제외: hokkaido-rice (manifest 에 없음)",
-    "사진 없음 → figure 제외: sake-glass (manifest 에 없음)",
-    "사진 없음 → figure 제외: soup-curry (manifest 에 없음)",
-    "사진 없음 → figure 제외: kaisendon (manifest 에 없음)",
-    "사진 없음 → figure 제외: yakitori (manifest 에 없음)",
-    "사진 없음 → figure 제외: susukino-night (manifest 에 없음)",
-    "사진 없음 → figure 제외: chitosetsuru (manifest 에 없음)",
-    "사진 없음 → figure 제외: wine-shelf (manifest 에 없음)",
-    "사진 없음 → figure 제외: odori-xmas (manifest 에 없음)",
-    "사진 없음 → figure 제외: nakajima-park (manifest 에 없음)",
-    "사진 없음 → figure 제외: beer-museum (manifest 에 없음)",
-    "사진 없음 → figure 제외: cts-terminal (manifest 에 없음)",
-    "사진 없음 → figure 제외: ke-b777 (manifest 에 없음)",
-    "사진 없음 → figure 제외: icn-t2 (manifest 에 없음)",
-    "사진 없음 → figure 제외: snow-street (manifest 에 없음)",
-    "도판 없음 → figure 제외: map-wine-regions",
-    "도판 없음 → figure 제외: chart-lineage",
-    "도판 없음 → figure 제외: chart-takahiko-price",
-    "도판 없음 → figure 제외: chart-sakamai",
-    "도판 없음 → figure 제외: chart-sake-calendar",
-    "도판 없음 → figure 제외: map-sake-breweries",
-    "도판 없음 → figure 제외: chart-queue",
-    "도판 없음 → figure 제외: chart-baggage",
-    "도판 없음 → figure 제외: chart-icn-morning",
-    "도판 없음 → figure 제외: chart-tax-rate",
-    "도판 없음 → figure 제외: chart-tax-scenarios",
-    "도판 없음 → figure 제외: chart-declare-flow",
-    "총 80쪽이 최대 64쪽을 넘습니다"
-  ],
+  "warnings": [],
   "qr": [
     {
       "part": "table-lunch",
@@ -241,18 +207,6 @@
     },
     {
       "part": "day1",
-      "version": 4,
-      "ec": "M",
-      "url": "https://maps.google.com/?q=%E7%94%B1%E7%B8%81+%E6%9C%AD%E5%B9%8C"
-    },
-    {
-      "part": "day1",
-      "version": 3,
-      "ec": "M",
-      "url": "https://www.uds-hotels.com/yuen/sapporo/"
-    },
-    {
-      "part": "day1",
       "version": 6,
       "ec": "L",
       "url": "https://maps.google.com/?q=%E3%83%9F%E3%83%A5%E3%83%B3%E3%83%98%E3%83%B3%E3%83%BB%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E5%B8%82+%E5%A4%A7%E9%80%9A%E5%85%AC%E5%9C%92"
@@ -262,6 +216,18 @@
       "version": 4,
       "ec": "M",
       "url": "https://www.sapporo.travel/white-illumination/event/munich/"
+    },
+    {
+      "part": "day1",
+      "version": 4,
+      "ec": "M",
+      "url": "https://maps.google.com/?q=%E7%94%B1%E7%B8%81+%E6%9C%AD%E5%B9%8C"
+    },
+    {
+      "part": "day1",
+      "version": 3,
+      "ec": "M",
+      "url": "https://www.uds-hotels.com/yuen/sapporo/"
     },
     {
       "part": "day2",
@@ -307,104 +273,102 @@
     }
   ],
   "pages": {
-    "total": 80,
-    "target": 64,
-    "max": 64,
+    "total": 72,
+    "target": 72,
+    "max": 80,
     "start": {
-      "overview": 4,
-      "feat-wine": 10,
-      "feat-sake": 15,
-      "drink-ten": 18,
-      "table-lunch": 21,
-      "table-dinner": 25,
-      "bars": 30,
-      "bottles": 35,
-      "day1": 39,
-      "day2": 45,
-      "day3": 50,
-      "day4": 54,
-      "prac-prestige": 57,
-      "prac-tax": 59,
-      "prac-transport": 62,
-      "prac-checklist": 66,
-      "show-cards": 67,
-      "phrases": 76
+      "letter": 4,
+      "overview": 5,
+      "feat-wine": 9,
+      "feat-sake": 16,
+      "drink-ten": 21,
+      "table-lunch": 23,
+      "table-dinner": 27,
+      "bars": 32,
+      "bottles": 36,
+      "day1": 40,
+      "day2": 44,
+      "day3": 48,
+      "day4": 52,
+      "prac-prestige": 55,
+      "prac-tax": 57,
+      "prac-transport": 60,
+      "prac-checklist": 62,
+      "credits": 63,
+      "show-cards": 64,
+      "phrases": 70
     },
     "refs": {
-      "overview-bookings": 6,
-      "overview-rules": 8,
-      "pr-takahiko": 11,
-      "pr-nakazawa": 12,
-      "pr-mon": 13,
-      "pr-nobori": 13,
-      "pr-montille": 13,
-      "sake-calendar": 15,
-      "sake-breweries": 16,
-      "sake-label": 17,
-      "w1": 18,
-      "s1": 19,
-      "rv-saera": 21,
-      "rv-kitaro": 22,
-      "rv-shoki": 23,
-      "rv-suage": 24,
-      "rv-sushidon": 25,
-      "rv-gyoza": 26,
-      "rv-gyosai": 27,
-      "rv-keito": 28,
-      "rv-kakatojo": 29,
-      "bars-table": 30,
-      "bar-morohaku": 31,
-      "bar-bannachu": 32,
-      "bar-femto": 32,
-      "bar-gould": 33,
-      "bars-more": 34,
-      "shop-sakuramoto": 35,
-      "shop-ito": 35,
-      "shop-chitosetsuru": 36,
-      "shop-fujii": 36,
-      "bottles-priority": 37,
+      "overview-rules": 7,
+      "overview-bookings": 8,
+      "pr-takahiko": 12,
+      "pr-nakazawa": 13,
+      "pr-mon": 14,
+      "pr-nobori": 14,
+      "pr-montille": 14,
+      "sake-calendar": 18,
+      "sake-breweries": 19,
+      "sake-label": 20,
+      "w1": 21,
+      "s1": 21,
+      "rv-saera": 23,
+      "rv-kitaro": 24,
+      "rv-shoki": 25,
+      "rv-suage": 26,
+      "rv-sushidon": 27,
+      "rv-gyoza": 28,
+      "rv-gyosai": 29,
+      "rv-keito": 30,
+      "rv-kakatojo": 31,
+      "dinner-alt": 31,
+      "bars-table": 32,
+      "bar-bannachu": 34,
+      "bar-femto": 34,
+      "bar-gould": 35,
+      "bars-more": 35,
+      "shop-ito": 36,
+      "shop-chitosetsuru": 37,
+      "bottles-priority": 38,
       "bottles-packing": 38,
-      "place-xmas": 43,
-      "place-akarenga": 49,
-      "day3-taxfree": 52,
-      "day4-airport": 55,
-      "prestige-icn": 57,
-      "prestige-royal": 58,
-      "tax-declare": 60,
-      "tax-refund": 61,
-      "sc-call-gyosai": 67,
-      "sc-call-morohaku": 68,
-      "sc-call-open": 68,
-      "sc-front-call": 69,
-      "sc-front-morohaku": 69,
-      "sc-breakfast": 69,
-      "sc-box": 69,
-      "sc-taxi-call": 70,
-      "sc-rsv": 70,
-      "sc-line": 70,
-      "sc-curry": 71,
-      "sc-kikizake": 71,
-      "sc-hokkaido-sake": 71,
-      "sc-glass-wine": 71,
-      "sc-cult": 71,
-      "sc-cork": 72,
-      "sc-dest": 72,
-      "sc-stock": 74,
-      "sc-hiire": 74,
-      "sc-wrap": 75,
-      "sc-styro": 75,
-      "sc-split": 75,
-      "sc-taxfree": 75
+      "place-xmas": 42,
+      "place-akarenga": 46,
+      "day3-taxfree": 50,
+      "day4-airport": 53,
+      "prestige-icn": 55,
+      "prestige-royal": 56,
+      "tax-declare": 58,
+      "tax-refund": 59,
+      "sc-call-gyosai": 64,
+      "sc-call-open": 65,
+      "sc-front-call": 65,
+      "sc-breakfast": 65,
+      "sc-box": 66,
+      "sc-taxi-call": 66,
+      "sc-rsv": 66,
+      "sc-line": 66,
+      "sc-curry": 66,
+      "sc-kikizake": 66,
+      "sc-hokkaido-sake": 67,
+      "sc-glass-wine": 67,
+      "sc-cork": 67,
+      "sc-dest": 67,
+      "sc-cult": 69,
+      "sc-hiire": 69,
+      "sc-wrap": 69,
+      "sc-styro": 69,
+      "sc-taxfree": 69,
+      "sc-split": 69
     },
     "fillersBeforeRecto": {},
-    "endFillers": 2
+    "endFillers": 1
   },
   "memoLines": [
     {
       "file": "31-day1.html",
       "asked": 8,
-      "printed": 6,
-      "tailMemo": true
+      "printed": 0,
+      "tailMemo": true,
+      "dropped": true
     },
     {
       "file": "32-day2.html",
@@ -429,27 +393,9 @@
   ],
   "refCheck": [
     {
-      "id": "sc-front-call",
-      "page": 69,
-      "lead": "11/23체크인,魚",
-      "ok": true
-    },
-    {
-      "id": "sc-call-gyosai",
-      "page": 67,
-      "lead": "11/2416:00",
-      "ok": true
-    },
-    {
-      "id": "sc-call-morohaku",
-      "page": 68,
-      "lead": "11/23,もろはく",
-      "ok": true
-    },
-    {
-      "id": "sc-call-open",
-      "page": 68,
-      "lead": "출발전영업확인·桜本",
+      "id": "overview-rules",
+      "page": 7,
+      "lead": "결정규칙",
       "ok": true
     },
     {
@@ -460,362 +406,350 @@
     },
     {
       "id": "rv-suage",
-      "page": 24,
+      "page": 26,
       "lead": "スープカリースアゲプ",
       "ok": true
     },
     {
       "id": "bars-more",
-      "page": 34,
+      "page": 35,
       "lead": "참고바",
       "ok": true
     },
     {
       "id": "bars-table",
-      "page": 30,
+      "page": 32,
       "lead": "밤마다고르는표",
       "ok": true
     },
     {
+      "id": "sc-front-call",
+      "page": 65,
+      "lead": "11/23체크인,魚",
+      "ok": true
+    },
+    {
+      "id": "sc-call-gyosai",
+      "page": 64,
+      "lead": "11/2416:00",
+      "ok": true
+    },
+    {
+      "id": "sc-call-open",
+      "page": 65,
+      "lead": "출발전영업확인·桜本",
+      "ok": true
+    },
+    {
       "id": "shop-ito",
-      "page": 35,
+      "page": 36,
       "lead": "ワインの店いとう와인",
       "ok": true
     },
     {
       "id": "sc-cult",
-      "page": 71,
+      "page": 69,
       "lead": "와인숍·바,컬트와인",
       "ok": true
     },
     {
       "id": "shop-chitosetsuru",
-      "page": 36,
+      "page": 37,
       "lead": "千歳鶴酒ミュージアム",
       "ok": true
     },
     {
       "id": "pr-takahiko",
-      "page": 11,
+      "page": 12,
       "lead": "DomaineTak",
       "ok": true
     },
     {
       "id": "pr-nakazawa",
-      "page": 12,
+      "page": 13,
       "lead": "NakazawaVi",
       "ok": true
     },
     {
       "id": "pr-mon",
-      "page": 13,
+      "page": 14,
       "lead": "DomaineMon",
       "ok": true
     },
     {
       "id": "pr-nobori",
-      "page": 13,
+      "page": 14,
       "lead": "登醸造(노보리양조)",
       "ok": true
     },
     {
       "id": "sake-calendar",
-      "page": 15,
+      "page": 18,
       "lead": "11월말의새술",
       "ok": true
     },
     {
       "id": "sake-breweries",
-      "page": 16,
+      "page": 19,
       "lead": "양조장요점",
       "ok": true
     },
     {
       "id": "pr-montille",
-      "page": 13,
+      "page": 14,
       "lead": "DeMontille",
       "ok": true
     },
     {
       "id": "sc-line",
-      "page": 70,
+      "page": 66,
       "lead": "줄서는가게最後尾はこ",
       "ok": true
     },
     {
       "id": "sc-curry",
-      "page": 71,
+      "page": 66,
       "lead": "木多郎(기타로),물",
       "ok": true
     },
     {
       "id": "sc-rsv",
-      "page": 70,
+      "page": 66,
       "lead": "예약한가게입구予約し",
       "ok": true
     },
     {
       "id": "sc-kikizake",
-      "page": 71,
+      "page": 66,
       "lead": "魚菜(교사이),니혼",
       "ok": true
     },
     {
       "id": "bottles-priority",
-      "page": 37,
+      "page": 38,
       "lead": "무엇을먼저",
       "ok": true
     },
     {
       "id": "sc-cork",
-      "page": 72,
+      "page": 67,
       "lead": "鷄灯(게이토),와인",
       "ok": true
     },
     {
       "id": "sc-breakfast",
-      "page": 69,
+      "page": 65,
       "lead": "11/23체크인,조",
       "ok": true
     },
     {
       "id": "sc-hokkaido-sake",
-      "page": 71,
-      "lead": "もろはく(모로하쿠)",
+      "page": 67,
+      "lead": "니혼슈바·이자카야北",
       "ok": true
     },
     {
       "id": "sc-glass-wine",
-      "page": 71,
+      "page": 67,
       "lead": "와인바,잔으로北海道",
       "ok": true
     },
     {
+      "id": "dinner-alt",
+      "page": 31,
+      "lead": "魚菜(교사이)가안되",
+      "ok": true
+    },
+    {
       "id": "sc-hiire",
-      "page": 74,
+      "page": 69,
       "lead": "주류점,생주가리기こ",
       "ok": true
     },
     {
-      "id": "sc-stock",
-      "page": 74,
-      "lead": "주류점,재고와입고안",
+      "id": "sc-wrap",
+      "page": 69,
+      "lead": "주류점,포장과와인박",
       "ok": true
     },
     {
       "id": "s1",
-      "page": 19,
+      "page": 21,
       "lead": "S1純米吟醸生酒(순",
       "ok": true
     },
     {
+      "id": "sc-split",
+      "page": 69,
+      "lead": "持って帰る分と、ここ",
+      "ok": true
+    },
+    {
       "id": "w1",
-      "page": 18,
+      "page": 21,
       "lead": "W1Nana-Tsu",
       "ok": true
     },
     {
       "id": "sc-styro",
-      "page": 75,
-      "lead": "주류점,와인박스ワイ",
-      "ok": true
-    },
-    {
-      "id": "sc-wrap",
-      "page": 75,
-      "lead": "주류점,포장海外に持",
-      "ok": true
-    },
-    {
-      "id": "sc-split",
-      "page": 75,
-      "lead": "계산대,영수증나누기",
+      "page": 69,
+      "lead": "ワイン用の発泡スチロ",
       "ok": true
     },
     {
       "id": "prestige-icn",
-      "page": 57,
+      "page": 55,
       "lead": "인천T2,출발아침(",
       "ok": true
     },
     {
       "id": "rv-saera",
-      "page": 21,
+      "page": 23,
       "lead": "さえら사에라大通西2",
       "ok": true
     },
     {
       "id": "place-xmas",
-      "page": 43,
+      "page": 42,
       "lead": "ミュンヘン・クリスマ",
       "ok": true
     },
     {
-      "id": "bar-morohaku",
-      "page": 31,
-      "lead": "もろはく모로하쿠南3",
-      "ok": true
-    },
-    {
       "id": "rv-sushidon",
-      "page": 25,
+      "page": 27,
       "lead": "札幌海鮮丼専門店すし",
       "ok": true
     },
     {
       "id": "rv-gyoza",
-      "page": 26,
+      "page": 28,
       "lead": "SAPPORO餃子製",
       "ok": true
     },
     {
       "id": "bar-gould",
-      "page": 33,
+      "page": 35,
       "lead": "thebarnano",
       "ok": true
     },
     {
-      "id": "sc-front-morohaku",
-      "page": 69,
-      "lead": "11/2314:40",
-      "ok": true
-    },
-    {
       "id": "sc-box",
-      "page": 69,
+      "page": 66,
       "lead": "프런트,냉장고와포장",
       "ok": true
     },
     {
       "id": "rv-kakatojo",
-      "page": 29,
+      "page": 31,
       "lead": "夏下冬上가카토조北1",
       "ok": true
     },
     {
-      "id": "overview-rules",
-      "page": 8,
-      "lead": "결정규칙",
-      "ok": true
-    },
-    {
-      "id": "shop-fujii",
-      "page": 36,
-      "lead": "ワインショップフジヰ",
-      "ok": true
-    },
-    {
       "id": "place-akarenga",
-      "page": 49,
+      "page": 46,
       "lead": "北海道庁旧本庁舎홋카",
       "ok": true
     },
     {
       "id": "rv-kitaro",
-      "page": 22,
+      "page": 24,
       "lead": "木多郎澄川本店기타로",
       "ok": true
     },
     {
-      "id": "shop-sakuramoto",
-      "page": 35,
-      "lead": "丸市桜本商店마루이치",
-      "ok": true
-    },
-    {
       "id": "rv-gyosai",
-      "page": 27,
+      "page": 29,
       "lead": "魚菜교사이南3西5(",
       "ok": true
     },
     {
       "id": "bar-bannachu",
-      "page": 32,
+      "page": 34,
       "lead": "ばんなちゅ반나추南4",
       "ok": true
     },
     {
       "id": "rv-shoki",
-      "page": 23,
+      "page": 25,
       "lead": "麺鍾馗本店멘쇼키본점",
       "ok": true
     },
     {
       "id": "day3-taxfree",
-      "page": 52,
+      "page": 50,
       "lead": "아기용품면세로사기",
       "ok": true
     },
     {
       "id": "rv-keito",
-      "page": 28,
+      "page": 30,
       "lead": "鷄灯게이토南1東2(",
       "ok": true
     },
     {
       "id": "bar-femto",
-      "page": 32,
+      "page": 34,
       "lead": "thebarnano",
       "ok": true
     },
     {
       "id": "sc-taxfree",
-      "page": 75,
+      "page": 69,
       "lead": "계산대,면세(여권과",
       "ok": true
     },
     {
       "id": "day4-airport",
-      "page": 55,
+      "page": 53,
       "lead": "공항에내리면이순서",
       "ok": true
     },
     {
       "id": "tax-refund",
-      "page": 61,
+      "page": 59,
       "lead": "일본면세환급(202",
       "ok": true
     },
     {
       "id": "sc-taxi-call",
-      "page": 70,
+      "page": 66,
       "lead": "11/25밤,다음날",
       "ok": true
     },
     {
       "id": "tax-declare",
-      "page": 60,
+      "page": 58,
       "lead": "인천에서신고하는순서",
       "ok": true
     },
     {
       "id": "prestige-royal",
-      "page": 58,
+      "page": 56,
       "lead": "ロイヤルラウンジ로열",
       "ok": true
     },
     {
       "id": "sc-dest",
-      "page": 72,
-      "lead": "택시기사에게ここまで",
+      "page": 67,
+      "lead": "택시기사에게,목적지",
       "ok": true
     },
     {
       "id": "overview-bookings",
-      "page": 6,
+      "page": 8,
       "lead": "예약·확인",
       "ok": true
     },
     {
       "id": "sake-label",
-      "page": 17,
-      "lead": "라벨읽기純米(순미)",
+      "page": 20,
+      "lead": "라벨읽기원어한국식소",
       "ok": true
     }
   ],
   "imposition": {
     "ok": true,
-    "sheets": 20,
+    "sheets": 18,
     "errors": []
   }
 }

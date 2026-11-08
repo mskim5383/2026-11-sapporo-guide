@@ -1,69 +1,75 @@
 {
-  "checkedAt": "2026-11-08T11:34:52.235Z",
+  "checkedAt": "2026-11-08T12:25:16.851Z",
   "rule": "한자·일본어 옆에는 항상 한글 독음(또는 한국식 한자음)",
   "files": {
+    "src/parts/01-editor-letter.html": {
+      "total": 6,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
     "src/parts/02-overview.html": {
-      "total": 74,
+      "total": 63,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/11-feature-wine.html": {
-      "total": 67,
+      "total": 71,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/12-feature-sake.html": {
-      "total": 73,
+      "total": 79,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/13-drink-ten.html": {
-      "total": 46,
+      "total": 44,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/21-table-lunch.html": {
-      "total": 51,
+      "total": 52,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/22-table-dinner.html": {
-      "total": 66,
+      "total": 64,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/23-bars.html": {
-      "total": 36,
+      "total": 34,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/24-bottles.html": {
-      "total": 45,
+      "total": 42,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/31-day1.html": {
-      "total": 73,
+      "total": 59,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/32-day2.html": {
-      "total": 75,
+      "total": 67,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/33-day3.html": {
-      "total": 52,
+      "total": 53,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -87,25 +93,31 @@
       "misses": []
     },
     "src/parts/43-transport.html": {
-      "total": 39,
+      "total": 23,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/44-checklist.html": {
-      "total": 10,
+      "total": 11,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/51-credits.html": {
+      "total": 14,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/61-show-cards.html": {
-      "total": 106,
+      "total": 81,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/62-phrases.html": {
-      "total": 25,
+      "total": 19,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -142,8 +154,8 @@
     }
   },
   "summary": {
-    "files": 23,
-    "japaneseRuns": 873,
+    "files": 25,
+    "japaneseRuns": 817,
     "missing": 0
   }
 }

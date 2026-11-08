@@ -14,3 +14,4 @@
 2026-11-08 21:11 · 지도·인포그래픽 작가(map) · R2 수정 완료 · M-01~M-07 + chart-tax-rate(㊹·㊺) · SVG 6개 고침(map-city 1000×850, map-day1 1000×700, map-day3 1000×450, chart-sake-calendar, map-sake-breweries, chart-tax-rate) + _sources.md · tmp/map 빌드 도판 경고 0, 인쇄 최소 7.92pt, 독음 0
 2026-11-08 21:21 · 일정 데스크(schedule) · R2 완료(fix-plan S-01~S-41, 29건) · 파일 5개(02, 31~34) · tmp 전체 빌드(21:20 CSS, 사진·도판 전부, 72쪽): 02 4/4, D1 4/4, D2 4/4, D3 4/4, D4 3/3 · 독음 0 · 자기 파일 경고 0 · map-day1·map-day3·akarenga·tv-tower·ario-sapporo 는 web-only · Day 1·2 는 상한에 딱 맞아 끝 메모가 빠짐(A-10)
 2026-11-08 21:23 · 아트 디렉터(ad) · R1 수정 완료(A-01~A-10, 정식 빌드는 요청 대기) · 파일: src/style.css, build/lib/assemble.mjs, README.md · tmp 전체 빌드(21:20 원고) 72쪽(목표 72·최대 80), 원고별 전부 새 상한 이하, 61 = 6쪽, 쪽 참조 59/59, 중철 PASS, 웹 넘침 0, 독음 0. 기록 qa/fix-log-r1.md 「아트 디렉터」
+2026-11-08 21:26 · 아트 디렉터(ad) · R2 정식 빌드 완료 · 커밋 53a5c00 기준 72쪽(목표 72·최대 80), 경고 0, 쪽 참조 59/59, 중철 PASS, QR 41/41, 웹 넘침 0, 독음 0, 표지·판권·뒤표지 쪽 안내 실제와 일치 · qa/layout-log-r2.md

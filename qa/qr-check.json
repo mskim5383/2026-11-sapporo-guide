@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-11-08T11:35:04.520Z",
+  "checkedAt": "2026-11-08T12:25:16.705Z",
   "dpi": 300,
   "renderer": "PDFKit",
   "expected": 41,
   "decoded": 41,
   "ok": true,
   "sizeMm": {
-    "min": 16.8,
-    "max": 17.6
+    "min": 15.9,
+    "max": 16.4
   },
   "missing": [],
   "small": [],
@@ -17,287 +17,287 @@
       "page": 2,
       "version": "v4",
       "ec": "M",
-      "mm": 16.8,
+      "mm": 15.9,
       "url": "https://mskim5383.github.io/2026-11-sapporo-guide/"
     },
     {
-      "page": 21,
+      "page": 23,
       "version": "v4",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://maps.google.com/?q=%E3%81%95%E3%81%88%E3%82%89+%E5%A4%A7%E9%80%9A"
     },
     {
-      "page": 21,
+      "page": 23,
       "version": "v4",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://tabelog.com/hokkaido/A0101/A010102/1000026/"
     },
     {
-      "page": 22,
+      "page": 24,
       "version": "v5",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E6%9C%A8%E5%A4%9A%E9%83%8E+%E6%BE%84%E5%B7%9D%E6%9C%AC%E5%BA%97"
     },
     {
-      "page": 22,
+      "page": 24,
       "version": "v4",
       "ec": "M",
-      "mm": 17.3,
+      "mm": 16.1,
       "url": "https://tabelog.com/hokkaido/A0101/A010305/1000174/"
     },
     {
-      "page": 23,
+      "page": 25,
       "version": "v5",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E9%BA%BA+%E9%8D%BE%E9%A6%97+%E6%9C%AC%E5%BA%97+%E5%8C%9726%E6%9D%A1"
     },
     {
-      "page": 23,
+      "page": 25,
       "version": "v4",
       "ec": "M",
-      "mm": 17.5,
+      "mm": 16.2,
       "url": "https://tabelog.com/hokkaido/A0101/A010202/1070261/"
     },
     {
-      "page": 24,
+      "page": 26,
       "version": "v6",
       "ec": "M",
-      "mm": 17.6,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E3%82%B9%E3%83%BC%E3%83%97%E3%82%AB%E3%83%AA%E3%83%BC+%E3%82%B9%E3%82%A2%E3%82%B2+%E3%83%97%E3%83%A9%E3%82%B9"
     },
     {
-      "page": 24,
+      "page": 26,
       "version": "v3",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 15.9,
       "url": "https://suage.info/stores/suage-plus/"
     },
     {
-      "page": 25,
+      "page": 27,
       "version": "v6",
       "ec": "M",
-      "mm": 17.6,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E3%81%99%E3%81%97%E3%81%A9%E3%82%93%E3%81%B6%E3%82%8A+%E3%81%99%E3%81%99%E3%81%8D%E3%81%AE%E5%BA%97"
     },
     {
-      "page": 25,
+      "page": 27,
       "version": "v4",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://tabelog.com/hokkaido/A0101/A010103/1084194/"
     },
     {
-      "page": 26,
+      "page": 28,
       "version": "v6",
       "ec": "M",
-      "mm": 17.6,
+      "mm": 16.4,
       "url": "https://maps.google.com/?q=SAPPORO%E9%A4%83%E5%AD%90%E8%A3%BD%E9%80%A0%E6%89%80+%E7%8B%B8%E5%B0%8F%E8%B7%AF%E5%BA%97"
     },
     {
-      "page": 26,
+      "page": 28,
       "version": "v4",
       "ec": "M",
-      "mm": 17.3,
+      "mm": 16.1,
       "url": "https://tabelog.com/hokkaido/A0101/A010103/1064089/"
     },
     {
-      "page": 27,
+      "page": 29,
       "version": "v5",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E9%AD%9A%E8%8F%9C+%E6%9C%AD%E5%B9%8C+%E5%8D%973%E6%9D%A1"
     },
     {
-      "page": 27,
+      "page": 29,
       "version": "v4",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://tabelog.com/hokkaido/A0101/A010103/1000426/"
     },
     {
-      "page": 28,
+      "page": 30,
       "version": "v5",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.2,
       "url": "https://maps.google.com/?q=%E9%B7%84%E7%81%AF+%E6%9C%AD%E5%B9%8C+%E5%8D%971%E6%9D%A1%E6%9D%B12"
     },
     {
-      "page": 28,
+      "page": 30,
       "version": "v4",
       "ec": "M",
-      "mm": 17.5,
+      "mm": 16.1,
       "url": "https://tabelog.com/hokkaido/A0101/A010102/1081334/"
     },
     {
-      "page": 29,
+      "page": 31,
       "version": "v4",
       "ec": "M",
-      "mm": 17.5,
+      "mm": 16.1,
       "url": "https://maps.google.com/?q=%E7%94%B1%E7%B8%81+%E6%9C%AD%E5%B9%8C"
     },
     {
-      "page": 29,
+      "page": 31,
       "version": "v3",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://www.uds-hotels.com/yuen/sapporo/"
     },
     {
-      "page": 31,
+      "page": 33,
       "version": "v5",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E3%82%82%E3%82%8D%E3%81%AF%E3%81%8F+%E6%9C%AD%E5%B9%8C"
     },
     {
-      "page": 31,
+      "page": 33,
       "version": "v2",
       "ec": "M",
-      "mm": 16.9,
+      "mm": 16,
       "url": "http://morohaku.jp/"
     },
     {
-      "page": 32,
+      "page": 34,
       "version": "v5",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.2,
       "url": "https://maps.google.com/?q=%E3%81%B0%E3%82%93%E3%81%AA%E3%81%A1%E3%82%85+%E6%9C%AD%E5%B9%8C"
     },
     {
-      "page": 32,
+      "page": 34,
       "version": "v4",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.1,
       "url": "https://tabelog.com/hokkaido/A0101/A010103/1071654/"
     },
     {
-      "page": 32,
+      "page": 34,
       "version": "v4",
       "ec": "M",
-      "mm": 17.3,
+      "mm": 16.1,
       "url": "https://maps.google.com/?q=the+bar+nano.femto.+%E6%9C%AD%E5%B9%8C"
     },
     {
-      "page": 32,
+      "page": 34,
       "version": "v3",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.1,
       "url": "http://nano.sapporo-bar.net/"
     },
     {
-      "page": 33,
+      "page": 35,
       "version": "v4",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://maps.google.com/?q=the+bar+nano+gould.+%E6%9C%AD%E5%B9%8C"
     },
     {
-      "page": 33,
+      "page": 35,
       "version": "v3",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 15.9,
       "url": "http://nano.sapporo-bar.net/"
     },
     {
-      "page": 35,
+      "page": 36,
       "version": "v4",
       "ec": "M",
-      "mm": 17.5,
+      "mm": 16.1,
       "url": "https://www.navitime.co.jp/poi?spot=00011-010004172"
     },
     {
-      "page": 35,
+      "page": 36,
       "version": "v3",
       "ec": "M",
-      "mm": 17.5,
+      "mm": 16.2,
       "url": "https://maps.app.goo.gl/NCxDEPMobmMg4Xqx9"
     },
     {
-      "page": 36,
+      "page": 37,
       "version": "v4",
       "ec": "M",
-      "mm": 17.4,
+      "mm": 16.1,
       "url": "https://www.sapporo.travel/find/foods/chitosetsuru/?lang=ja"
     },
     {
-      "page": 36,
+      "page": 37,
       "version": "v3",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://wineshop-fujii.com/"
     },
     {
       "page": 42,
-      "version": "v4",
-      "ec": "M",
-      "mm": 17.2,
-      "url": "https://maps.google.com/?q=%E7%94%B1%E7%B8%81+%E6%9C%AD%E5%B9%8C"
-    },
-    {
-      "page": 42,
-      "version": "v3",
-      "ec": "M",
-      "mm": 17.2,
-      "url": "https://www.uds-hotels.com/yuen/sapporo/"
-    },
-    {
-      "page": 43,
       "version": "v6",
       "ec": "L",
-      "mm": 17.6,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E3%83%9F%E3%83%A5%E3%83%B3%E3%83%98%E3%83%B3%E3%83%BB%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E5%B8%82+%E5%A4%A7%E9%80%9A%E5%85%AC%E5%9C%92"
     },
     {
-      "page": 43,
+      "page": 42,
       "version": "v4",
       "ec": "M",
-      "mm": 17.6,
+      "mm": 16.2,
       "url": "https://www.sapporo.travel/white-illumination/event/munich/"
     },
     {
-      "page": 49,
+      "page": 43,
+      "version": "v4",
+      "ec": "M",
+      "mm": 16.1,
+      "url": "https://maps.google.com/?q=%E7%94%B1%E7%B8%81+%E6%9C%AD%E5%B9%8C"
+    },
+    {
+      "page": 43,
+      "version": "v3",
+      "ec": "M",
+      "mm": 16.1,
+      "url": "https://www.uds-hotels.com/yuen/sapporo/"
+    },
+    {
+      "page": 46,
       "version": "v5",
       "ec": "M",
-      "mm": 17.6,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E5%8C%97%E6%B5%B7%E9%81%93%E5%BA%81%E6%97%A7%E6%9C%AC%E5%BA%81%E8%88%8E"
     },
     {
-      "page": 49,
+      "page": 46,
       "version": "v3",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.2,
       "url": "https://www.hokkaido-redbrick.jp/"
     },
     {
-      "page": 52,
+      "page": 50,
       "version": "v6",
       "ec": "M",
-      "mm": 17.5,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E3%82%B5%E3%83%83%E3%83%9D%E3%83%AD%E3%83%93%E3%83%BC%E3%83%AB%E5%8D%9A%E7%89%A9%E9%A4%A8"
     },
     {
-      "page": 53,
+      "page": 51,
       "version": "v6",
       "ec": "L",
-      "mm": 17.6,
+      "mm": 16.3,
       "url": "https://maps.google.com/?q=%E3%82%A2%E3%82%AB%E3%83%81%E3%83%A3%E3%83%B3%E3%83%9B%E3%83%B3%E3%83%9D+%E3%82%A2%E3%83%AA%E3%82%AA%E6%9C%AD%E5%B9%8C%E5%BA%97"
     },
     {
-      "page": 53,
+      "page": 51,
       "version": "v3",
       "ec": "M",
-      "mm": 17.2,
+      "mm": 16.1,
       "url": "https://stores.akachan.jp/185"
     },
     {
-      "page": 80,
+      "page": 72,
       "version": "v4",
       "ec": "M",
-      "mm": 17.1,
+      "mm": 15.9,
       "url": "https://mskim5383.github.io/2026-11-sapporo-guide/"
     }
   ]
