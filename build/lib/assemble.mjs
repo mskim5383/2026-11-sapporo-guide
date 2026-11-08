@@ -739,6 +739,21 @@ export async function assemble(cfg, state, log) {
     if (n >= 240 || inner.length || pl.classList.contains('review')) pl.classList.add('place-long');
   }
 
+  // 장소·리뷰·바 카드의 사실 목록: 머리말(dt)과 내용(dd)을 한 행(div.fr)으로 묶는다(HTML 은 dl 안 div 묶음을 허용).
+  // 인쇄에서 행 단위로만 쪽을 넘기고(검수 r3 #10: 「영업」 머리말만 앞 쪽 끝에 남음), 긴 머리말은 내용을 오른쪽으로 민다
+  // (검수 r3 #7: 「De Montille」 머리말이 고정 폭을 넘어 내용과 겹침).
+  for (const dl of document.querySelectorAll('.place dl.facts')) {
+    let row = null;
+    for (const el of [...dl.children]) {
+      if (el.tagName === 'DT' && (!row || row.lastElementChild?.tagName === 'DD')) {
+        row = document.createElement('div');
+        row.className = 'fr';
+        dl.insertBefore(row, el);
+      }
+      if (row && (el.tagName === 'DT' || el.tagName === 'DD')) row.appendChild(el);
+    }
+  }
+
   // 시간표 시각 「08:40~09:10」: 좁은 시각 칸에서 물결 뒤에서만 줄을 바꾼다
   for (const t of document.querySelectorAll('ol.timeline .t')) {
     if (t.children.length || !t.textContent.includes('~')) continue;
@@ -893,6 +908,15 @@ export async function assemble(cfg, state, log) {
   // --- 쪽 찾기 앵커(인쇄 패스에서만) -------------------------------------------------------
   const clipChecks = [];
   if (state.markers) {
+    // 인쇄 배율 표식: 10pt 글자. PDF 에서 이 글자 크기가 10pt 가 아니면 Chrome 이 문서 전체를 줄이거나 키운 것이다
+    // (판면보다 넓은 요소가 있으면 쪽 폭에 맞춰 통째로 줄인다. R2 정식 빌드가 0.93배로 인쇄됐다).
+    if (parts[0]) {
+      const probe = document.createElement('span');
+      probe.className = 'pdf-anchor-scale';
+      probe.setAttribute('aria-hidden', 'true');
+      probe.textContent = 'ZZS[10]ZZ';
+      parts[0].appendChild(probe);
+    }
     for (const s of parts) {
       const span = document.createElement('span');
       span.className = 'pdf-anchor';

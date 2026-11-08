@@ -17,7 +17,7 @@
     "dates": "2026.11.23–11.26",
     "surveyed": "2026-11-08"
   },
-  "pages": { "target": 72, "max": 80, "multiple": 4 },
+  "pages": { "target": 76, "max": 80, "multiple": 4 },
   "tailMemo": {
     "parts": ["31-day1.html", "32-day2.html", "33-day3.html", "34-day4.html"],
     "lines": 8,

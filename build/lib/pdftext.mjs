@@ -13,7 +13,7 @@ const base = path.join(ROOT, 'node_modules', 'pdfjs-dist');
 const dirUrl = (d) => pathToFileURL(path.join(base, d) + path.sep).href;
 
 /**
- * @returns {Promise<Array<{num:number,width:number,height:number,text:string,items:Array<{str:string,x:number,y:number,w:number,h:number,rot:number}>}>>}
+ * @returns {Promise<Array<{num:number,width:number,height:number,text:string,items:Array<{str:string,x:number,y:number,w:number,h:number,rot:number,size:number}>}>>}
  */
 export async function readPdfText(bytes) {
   const { getDocument } = await lib();
@@ -30,10 +30,11 @@ export async function readPdfText(bytes) {
     const [x0, y0, x1, y1] = page.view;
     const tc = await page.getTextContent();
     const items = tc.items.filter((it) => typeof it.str === 'string').map((it) => {
-      const [a, b, , , e, f] = it.transform;
+      const [a, b, c, d, e, f] = it.transform;
       return {
         str: it.str, x: e, y: f, w: it.width, h: it.height,
         rot: Math.round((Math.atan2(b, a) * 180) / Math.PI),
+        size: Math.hypot(c, d),   // 글자 크기(pt). 인쇄 배율 검사(build.mjs)에 쓴다
       };
     });
     pages.push({ num: i, width: x1 - x0, height: y1 - y0, text: items.map((t) => t.str).join(''), items });
