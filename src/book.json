@@ -1,0 +1,61 @@
+{
+  "title": "북쪽의 잔",
+  "subtitle": "삿포로 푸드·드링크 가이드북 · 2026.11.23–11.26",
+  "series": "여행 가이드북 04",
+  "kicker": "札幌(삿포로) · 新酒(신주)",
+  "published": "2026-11-18",
+  "webUrl": "https://mskim5383.github.io/2026-11-sapporo-guide/",
+  "output": {
+    "html": "index.html",
+    "pdf": "sapporo-guide-a5.pdf",
+    "booklet": "sapporo-guide-booklet-a4.pdf"
+  },
+  "vars": {
+    "masthead": "SAPPORO",
+    "mastheadJa": "札幌",
+    "mastheadKo": "삿포로",
+    "dates": "2026.11.23–11.26",
+    "surveyed": "2026-11-08"
+  },
+  "pages": { "target": 64, "max": 64, "multiple": 4 },
+  "tailMemo": {
+    "parts": ["31-day1.html", "32-day2.html", "33-day3.html", "34-day4.html"],
+    "lines": 8,
+    "min": 4
+  },
+  "serifKinds": ["letter", "feature", "review"],
+  "sequence": [
+    { "front": "cover.html" },
+    { "front": "colophon.html" },
+    { "front": "toc.html" },
+
+    { "group": "letter", "run": "편집장의 말", "parts": ["01-editor-letter.html"] },
+    { "group": "overview", "run": "나흘 한눈에", "parts": ["02-overview.html"] },
+
+    { "group": "drink", "label": "특집", "title": "홋카이도 와인, 홋카이도 사케, 마셔 볼 것 10", "nav": "술",
+      "run": "특집 · 홋카이도의 술",
+      "parts": ["11-feature-wine.html", "12-feature-sake.html", "13-drink-ten.html"] },
+
+    { "group": "guide", "label": "가게", "title": "낮의 식탁, 밤의 식탁, 바, 술 쇼핑", "nav": "가게", "tab": "가게",
+      "run": "가게",
+      "parts": ["21-table-lunch.html", "22-table-dinner.html", "23-bars.html", "24-bottles.html"] },
+
+    { "group": "day1", "nav": "D1", "run": "DAY 1 · 11.23 월·공휴일", "parts": ["31-day1.html"] },
+    { "group": "day2", "nav": "D2", "run": "DAY 2 · 11.24 화", "parts": ["32-day2.html"] },
+    { "group": "day3", "nav": "D3", "run": "DAY 3 · 11.25 수", "parts": ["33-day3.html"] },
+    { "group": "day4", "nav": "D4", "run": "DAY 4 · 11.26 목", "parts": ["34-day4.html"] },
+
+    { "group": "practical", "label": "실용", "title": "프레스티지, 술과 세금, 교통과 날씨, 체크리스트", "nav": "실용",
+      "run": "실용 정보",
+      "parts": ["41-prestige.html", "42-tax.html", "43-transport.html", "44-checklist.html"] },
+
+    { "group": "credits", "run": "사진과 참고 자료", "parts": ["51-credits.html"] },
+
+    { "group": "cards", "label": "보여 주는 일본어", "title": "보여 주는 카드, 술자리 일본어", "nav": "카드",
+      "run": "보여 주는 일본어",
+      "parts": ["61-show-cards.html", "62-phrases.html"] },
+
+    { "filler": "end" },
+    { "front": "back-cover.html" }
+  ]
+}

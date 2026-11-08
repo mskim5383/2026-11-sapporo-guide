@@ -20,7 +20,7 @@ const partsDir = opt('--parts', 'src/parts');
 const frontDir = opt('--front', 'src/front');
 const outFile = opt('--out', 'qa/reading-check.json');
 
-const JA = /[぀-ヿ㐀-䶿一-鿿豈-﫿々〆ヶヵ]+(?:[぀-ヿ㐀-䶿一-鿿豈-﫿々〆ヶヵー・]*[぀-ヿ㐀-䶿一-鿿豈-﫿々〆ヶヵー])?/g;
+const JA = /[぀-ヿ㐀-䶿一-鿿豈-﫿々〆ヶヵ]+(?:[぀-ヿ㐀-䶿一-鿿豈-﫿々〆ヶヵー・0-9０-９\-]*[぀-ヿ㐀-䶿一-鿿豈-﫿々〆ヶヵー])?[0-9０-９\-]*/g;
 const HANGUL = /[가-힣]/;
 const BLOCK = 'p,li,td,th,dd,dt,h1,h2,h3,h4,h5,h6,figcaption,blockquote,caption,summary,.what b,.what .sub,.sc-ja,.sc-ko,.cc-ja,.cc-ko,.kicker,.dek,.byline,span.sub,b,strong,a';
 const READING_CLS = ['reading', 'pron', 'sc-pron', 'cc-pron'];
@@ -44,7 +44,7 @@ function paired(s, i, j) {
   const m1 = after.match(/^[\s]*[(（]([^)）]*)[)）]/);
   if (m1 && HANGUL.test(m1[1])) return true;
   // 1b) 원어 여러 개가 띄어쓰기로 이어진 뒤 한 괄호로 함께 읽은 경우(例: 岐阜県 羽島市(기후현 하시마시))
-  const m1b = after.match(/^[\s·・\u3040-\u30ff\u3400-\u9fff々ー]*[(（]([^)）]*)[)）]/);
+  const m1b = after.match(/^[\s·・0-9０-９A-Za-z\-\u3040-\u30ff\u3400-\u9fff々ー]*[(（]([^)）]*)[)）]/);
   if (m1b && HANGUL.test(m1b[1])) return true;
   // 같은 괄호 묶음 안에서 다음 일본어 뒤에 한글 괄호가 오는 경우(例: 名鉄名古屋駅 (메이테쓰나고야역)) 는 1)로 처리됨
   // 2) 한글( … 原語 … )
@@ -88,7 +88,11 @@ function checkFile(file) {
       if (near === true) continue;
       const p = paired(s, m.index, m.index + m[0].length);
       if (p === true) continue;
-      if (p === 'weak') { weak++; continue; }
+      if (p === 'weak') {
+        // 「원어 + 공백 + 한글 낱말」은 조사·문장 이어짐과 구분이 안 돼 독음으로 치지 않는다(--loose 로만 허용)
+        weak++;
+        if (args.includes('--loose')) continue;
+      }
       const ctx = s.slice(Math.max(0, m.index - 12), Math.min(s.length, m.index + m[0].length + 14));
       const key = m[0] + '|' + ctx;
       if (seen.has(key)) continue;
