@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-08T13:38:46.575Z",
+  "webUrl": "https://mskim5383.github.io/2026-11-sapporo-guide/",
+  "ok": true,
+  "results": [
+    {
+      "url": "https://mskim5383.github.io/2026-11-sapporo-guide/",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://mskim5383.github.io/2026-11-sapporo-guide/sapporo-guide-a5.pdf",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://mskim5383.github.io/2026-11-sapporo-guide/sapporo-guide-booklet-a4.pdf",
+      "status": 200,
+      "ok": true
+    }
+  ]
+}
