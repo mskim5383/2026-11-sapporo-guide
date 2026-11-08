@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" role="img" aria-labelledby="ctr-t ctr-d" font-family="'Noto Sans KR','Noto Sans JP',sans-serif" lang="ko">
+<title id="ctr-t">술 세금 구성</title>
+<desc id="ctr-d">구매가 100 에 붙는 한국 세금(와인 기준). 관세 15, 주세 34.5, 교육세 3.45, 부가세 15.3, 합 약 68.2. 자진신고하면 관세 30% 경감으로 약 63.7(높은 쪽 계산, 약 61.7 일 수도 있다), 미신고 적발 시 가산세 40% 로 약 95.5. 주세·교육세율은 법령 확인, 관세 15% 는 추정. 사케는 와인과 같다고 가정(추정).</desc>
+<rect width="1000" height="620" fill="#ffffff"/>
+<text x="30" y="38" font-size="28" font-weight="700" fill="#6b1d33">구매가 100 에 붙는 한국 세금(와인 기준)</text>
+<text x="182" y="134" font-size="26" font-weight="700" fill="#16191d" text-anchor="end">세목별</text>
+<rect x="200" y="92" width="300" height="64" fill="#f4f6f8" stroke="#b9bec5" stroke-width="2"/>
+<text x="350" y="134" font-size="24" fill="#2b3036" text-anchor="middle">구매가 100</text>
+<rect x="500" y="92" width="45" height="64" fill="#6b1d33"/>
+<rect x="545" y="92" width="103.5" height="64" fill="#8d3a52"/>
+<text x="596.8" y="120" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">주세</text>
+<text x="596.8" y="148" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">34.5</text>
+<rect x="648.5" y="92" width="10.4" height="64" fill="#b06b7f"/>
+<rect x="658.9" y="92" width="45.9" height="64" fill="#c995a4"/>
+<text x="718.8" y="136" font-size="28" font-weight="700" fill="#16191d">약 68.2</text>
+<text x="182" y="332" font-size="26" font-weight="700" fill="#16191d" text-anchor="end">자진신고</text>
+<rect x="200" y="290" width="300" height="64" fill="#f4f6f8" stroke="#b9bec5" stroke-width="2"/>
+<text x="350" y="332" font-size="24" fill="#2b3036" text-anchor="middle">구매가 100</text>
+<rect x="500" y="290" width="191.1" height="64" fill="#1f4a3f"/>
+<text x="595.5" y="318" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">관세 30% 경감</text>
+<text x="595.5" y="346" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">63.7</text>
+<text x="705.1" y="334" font-size="28" font-weight="700" fill="#16191d">약 63.7</text>
+<text x="182" y="456" font-size="26" font-weight="700" fill="#16191d" text-anchor="end">미신고 적발</text>
+<rect x="200" y="414" width="300" height="64" fill="#f4f6f8" stroke="#b9bec5" stroke-width="2"/>
+<text x="350" y="456" font-size="24" fill="#2b3036" text-anchor="middle">구매가 100</text>
+<rect x="500" y="414" width="286.5" height="64" fill="#b3261e"/>
+<text x="643.2" y="442" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">가산세 40%</text>
+<text x="643.2" y="470" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">95.5</text>
+<text x="800.5" y="458" font-size="28" font-weight="700" fill="#16191d">약 95.5</text>
+<rect x="200" y="180" width="24" height="24" fill="#6b1d33"/>
+<text x="232" y="200" font-size="24" fill="#16191d">관세 15</text>
+<rect x="341.1" y="180" width="24" height="24" fill="#8d3a52"/>
+<text x="373.1" y="200" font-size="24" font-weight="700" fill="#16191d">주세 34.5</text>
+<rect x="508.6" y="180" width="24" height="24" fill="#b06b7f"/>
+<text x="540.6" y="200" font-size="24" fill="#16191d">교육세 3.45</text>
+<rect x="700.2" y="180" width="24" height="24" fill="#c995a4"/>
+<text x="732.2" y="200" font-size="24" fill="#16191d">부가세 15.3</text>
+<text x="200" y="236" font-size="24" fill="#2b3036">순서대로 붙고 앞 세금이 다음 세금의 기준에 들어간다</text>
+<text x="30" y="516" font-size="24" fill="#4a5058">관세 15% → 주세 30%(과세가격+관세) → 교육세(주세의 10%) → 부가세 10%</text>
+<text x="30" y="548" font-size="24" fill="#4a5058">주세·교육세율은 법령 확인, 관세 15% 는 확인 필요(추정). 사케는 같다고 가정(추정).</text>
+<text x="30" y="580" font-size="24" fill="#4a5058">자진신고는 높은 쪽으로 계산(약 61.7 일 수도 있다). 미신고 = 68.2 × 1.4</text>
+</svg>

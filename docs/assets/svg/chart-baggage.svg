@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="1000" height="580" role="img" aria-labelledby="cbg-t cbg-d" font-family="'Noto Sans KR','Noto Sans JP',sans-serif" lang="ko">
+<title id="cbg-t">위탁 수하물 배분</title>
+<desc id="cbg-d">위탁 수하물 배분(B안). 프레스티지 1인 2개, 각 32kg 이하, 가방·사람끼리 합산 불가. 사람 1: 캐리어 1(옷 + 와인 4병, 프로텍터, 30kg 이하), 박스 1(6병용 와인 쉬퍼, 와인 6병, 약 9~10kg). 사람 2: 캐리어 2(옷 + 아기용품 + 사케 720ml 3병, 30kg 이하), 박스 2(일승병 1 + 남는 병 또는 아기용품 큰 상자, 32kg 이하). B안 술만 약 19.6kg(추정).</desc>
+<rect width="1000" height="580" fill="#ffffff"/>
+<text x="30" y="38" font-size="28" font-weight="700" fill="#16191d">위탁 수하물 · 프레스티지 1인 2개, 각 32kg 이하</text>
+<text x="30" y="72" font-size="24" font-weight="700" fill="#b3261e">가방끼리·사람끼리 무게를 나눠 쓸 수 없다(합산 불가). B안 기준, 술만 약 19.6kg(추정).</text>
+<rect x="40" y="120" width="200" height="260" rx="8" fill="#ffffff" stroke="#16191d" stroke-width="3"/>
+<rect x="43" y="136.2" width="194" height="240.8" rx="5" fill="#f6ecee"/>
+<line x1="40" y1="136.2" x2="240" y2="136.2" stroke="#6b1d33" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text x="140" y="166.2" font-size="24" font-weight="700" fill="#6b1d33" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">30kg 이하</text>
+<text x="140" y="288" font-size="24" fill="#16191d" text-anchor="middle">옷</text>
+<text x="140" y="316" font-size="24" fill="#16191d" text-anchor="middle">와인 4병</text>
+<text x="140" y="344" font-size="24" fill="#16191d" text-anchor="middle">(프로텍터)</text>
+<text x="140" y="416" font-size="26" font-weight="700" fill="#16191d" text-anchor="middle">캐리어 1</text>
+<text x="140" y="446" font-size="24" fill="#2b3036" text-anchor="middle">사람 1</text>
+<rect x="280" y="120" width="200" height="260" rx="8" fill="#ffffff" stroke="#16191d" stroke-width="3"/>
+<rect x="283" y="298.8" width="194" height="78.2" rx="5" fill="#f6ecee"/>
+<line x1="280" y1="298.8" x2="480" y2="298.8" stroke="#6b1d33" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text x="380" y="288.8" font-size="24" font-weight="700" fill="#6b1d33" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">약 9~10kg</text>
+<text x="380" y="180" font-size="24" fill="#16191d" text-anchor="middle">6병용</text>
+<text x="380" y="208" font-size="24" fill="#16191d" text-anchor="middle">와인 쉬퍼</text>
+<text x="380" y="236" font-size="24" fill="#16191d" text-anchor="middle">(와인 6병)</text>
+<text x="380" y="416" font-size="26" font-weight="700" fill="#16191d" text-anchor="middle">박스 1</text>
+<text x="380" y="446" font-size="24" fill="#2b3036" text-anchor="middle">사람 1</text>
+<rect x="520" y="120" width="200" height="260" rx="8" fill="#ffffff" stroke="#16191d" stroke-width="3"/>
+<rect x="523" y="136.2" width="194" height="240.8" rx="5" fill="#f6ecee"/>
+<line x1="520" y1="136.2" x2="720" y2="136.2" stroke="#6b1d33" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text x="620" y="166.2" font-size="24" font-weight="700" fill="#6b1d33" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">30kg 이하</text>
+<text x="620" y="288" font-size="24" fill="#16191d" text-anchor="middle">옷 · 아기용품</text>
+<text x="620" y="316" font-size="24" fill="#16191d" text-anchor="middle">사케 720ml</text>
+<text x="620" y="344" font-size="24" fill="#16191d" text-anchor="middle">3병</text>
+<text x="620" y="416" font-size="26" font-weight="700" fill="#16191d" text-anchor="middle">캐리어 2</text>
+<text x="620" y="446" font-size="24" fill="#2b3036" text-anchor="middle">사람 2</text>
+<rect x="760" y="120" width="200" height="260" rx="8" fill="#ffffff" stroke="#16191d" stroke-width="3"/>
+<rect x="763" y="120" width="194" height="257" rx="5" fill="#f6ecee"/>
+<line x1="760" y1="120" x2="960" y2="120" stroke="#6b1d33" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 6"/>
+<text x="860" y="150" font-size="24" font-weight="700" fill="#6b1d33" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">32kg 이하</text>
+<text x="860" y="288" font-size="24" fill="#16191d" text-anchor="middle">일승병 1 +</text>
+<text x="860" y="316" font-size="24" fill="#16191d" text-anchor="middle">남는 병, 또는</text>
+<text x="860" y="344" font-size="24" fill="#16191d" text-anchor="middle">아기용품 큰 상자</text>
+<text x="860" y="416" font-size="26" font-weight="700" fill="#16191d" text-anchor="middle">박스 2</text>
+<text x="860" y="446" font-size="24" fill="#2b3036" text-anchor="middle">사람 2</text>
+<line x1="30" y1="120" x2="970" y2="120" stroke="#b3261e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 6"/>
+<text x="970" y="110" font-size="24" font-weight="700" fill="#b3261e" text-anchor="end">32kg 상한</text>
+<line x1="40" y1="468" x2="480" y2="468" stroke="#2b3036" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="520" y1="468" x2="960" y2="468" stroke="#2b3036" stroke-width="2.5" stroke-linecap="round"/>
+<text x="30" y="560" font-size="24" fill="#4a5058">무게 목표는 가방 하나씩. 박스 2개를 다 술에 써도 술 약 30kg 안팎이 현실적 한계(추정).</text>
+</svg>

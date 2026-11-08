@@ -1,0 +1,1489 @@
+/* =====================================================================
+   북쪽의 잔 · 삿포로 푸드·드링크 가이드북 (여행 가이드북 04)
+   웹(모바일 우선) + 인쇄(A5 중철) 공용 스타일 · 「겨울 와인 리스트」 디자인 시스템
+
+   구성
+     1. 토큰: 팔레트(눈·먹·포도·가문비·얼음·술쌀·朱), 서체, 크기 기준(화면 px / 인쇄 pt), 무늬
+     2. 기본 글꼴·문단
+     3. 원고 컴포넌트 (BRIEF 4장 규약)
+     4. 앞뒤 페이지 (표지·판권·차례·메모·뒤표지)
+     5. 웹 화면 (상단 바, 목차, 카드 크게 보기)
+     6. 인쇄 (@page, 러닝헤드·쪽번호·여백 탭, 오프너)
+
+   원칙(BRIEF 7장)
+     - 쪽마다 시선이 갈 곳 하나. 여백은 넉넉히, 괘선은 가늘게. 와인 리스트의 정렬된 리듬(이름 ……… 가격).
+     - 모티프: 바둑판 격자와 좌표(条·丁目), 스기다마의 둥근 원(사케 지면), 와인 리스트의 괘선과 점선 리더.
+     - 글자색은 흰 바탕 대비 7:1 이상만 쓴다(가장 옅은 것이 --mut 8.14:1). 틴트 바탕 위 글자는 6.4:1 이상.
+       술쌀색 --rice(2.42:1)는 괘선·밑줄·확률 막대 같은 장식에만. 색만으로 뜻을 전하지 않는다(글자 O/X·확률·태그).
+     - 괄호 속 한글 소리는 본문과 같은 크기·같은 색(작게 하거나 회색으로 빼지 않는다).
+
+   크기는 1장의 변수로 쓴다. 화면 값은 1장, 인쇄 값은 6장에서 다시 정한다.
+   인쇄: 읽을거리 9.5pt(줄 간격 1.65) · 개조식·표·시간표·dl.facts·b-spec 9pt · 시각 9.5pt 굵게 ·
+         캡션·라벨·태그·러닝헤드 7.5pt · 장 제목 20pt · 오프너 제목 28pt · 카드 일본어 15pt.
+   웹:   본문 16px(읽을거리 17px) · 표·시간표 15px · 캡션 13px · 카드 일본어 24px · 누르는 곳 44px 이상.
+   ===================================================================== */
+
+/* 1. 토큰 ------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* 눈(종이)과 먹 */
+  --paper: #ffffff;   --paper-web: #fafbfc;   --tint: #f4f6f8;   --line: #d5d8dc;  --line-2: #e7eaed;
+  --ink: #16191d;     /* 17.6:1 */
+  --ink-2: #2b3036;   /* 13.3:1 */
+  --mut: #4a5058;     /* 8.1:1, 이보다 옅은 글자 금지 */
+  /* 피노 누아의 포도색: 와인 기사·가게·강조·병 카드(wine) */
+  --wine: #6b1d33;    /* 11.4:1 */  --wine-tint: #f6ecee;  --wine-line: #d8b9c2;
+  /* 蝦夷松(에조마쓰)의 가문비 녹색: 사케 기사·스기다마·병 카드(sake) */
+  --spruce: #1f4a3f;  /* 9.9:1 */   --spruce-tint: #e8f0ec; --spruce-line: #b7cdc3;
+  /* 초겨울 하늘의 청회색: 일정·교통·시각·Day 탭 */
+  --ice: #2f5470;     /* 8.0:1 */   --ice-tint: #eaf0f5;   --ice-line: #b9c9d6;
+  /* 술쌀·호박색: 장식만(괘선·숫자 밑줄·확률 막대), 글자는 --rice-deep */
+  --rice: #c9a227;    /* 2.4:1 장식만 */  --rice-deep: #6b4a00; /* 8.1:1 */  --rice-tint: #f7f2e6;
+  /* 경고·X·고정 시각 / 영업 O */
+  --shu: #a3221b;     /* 7.5:1 */   --shu-tint: #fbeceb;
+  --ok: #185c31;      /* 8.0:1 */   --ok-tint: #e6f2ea;
+
+  /* 원고 종류별 강조색(키커·괘선·번호). 3장에서 data-kind 로 바꾼다 */
+  --acc: var(--ink); --acc-tint: var(--tint); --acc-line: var(--line);
+
+  --serif: "Noto Serif KR", "Noto Serif JP", serif;
+  --serif-ja: "Noto Serif JP", "Noto Serif KR", serif;
+  --sans: "Noto Sans KR", "Noto Sans JP", system-ui, sans-serif;
+  --sans-ja: "Noto Sans JP", "Noto Sans KR", sans-serif;
+
+  /* 크기: 화면(웹) */
+  --fs-body: 16px;   --fs-read: 17px;  --fs-lede: 18.5px; --fs-dek: 17px;
+  --fs-table: 15px;  --fs-cap: 13px;   --fs-label: 13px;  --fs-t: 15.5px; --fs-small: 14px;
+  --fs-h1: clamp(28px, 7.4vw, 38px);   --fs-opener: clamp(32px, 8.6vw, 46px);
+  --fs-h2: 21px;     --fs-h3: 17.5px;  --fs-h4: 16px;
+  --fs-stat: 34px;   --fs-glance: 15px; --fs-step-n: 15px; --fs-place: 19px; --fs-pull: 22px;
+  --fs-card-ja: 24px; --fs-card-pron: 16px; --fs-card-ko: 15px; --fs-phrase-ja: 20px;
+  --fs-bno: 34px;    --fs-bname: 18.5px; --fs-kicker: 13px;
+  --lh-sans: 1.62;   --lh-serif: 1.8;
+
+  /* 무늬: 바둑판 격자(오프너 대체 띠·표지·메모 쪽), 장 머리 눈금자, 스기다마 동심원, 필기선, 점 격자 */
+  --grid-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 .5H24M.5 0V24' stroke='%23d5d8dc' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  --ruler: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M.5 0V8' stroke='%23b5bac0' stroke-width='1'/%3E%3Cpath d='M12.5 4V8' stroke='%23d5d8dc' stroke-width='1'/%3E%3C/svg%3E");
+  --sugidama: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%231f4a3f' stroke-width='1.6' opacity='.22'%3E%3Ccircle cx='50' cy='50' r='47'/%3E%3Ccircle cx='50' cy='50' r='38'/%3E%3Ccircle cx='50' cy='50' r='29'/%3E%3Ccircle cx='50' cy='50' r='20'/%3E%3Ccircle cx='50' cy='50' r='11'/%3E%3C/g%3E%3C/svg%3E");
+  --rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='40' viewBox='0 0 10 40' preserveAspectRatio='none'%3E%3Crect y='38.8' width='10' height='1.2' fill='%23a3a9b0'/%3E%3C/svg%3E");
+  --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='1.2' cy='1.2' r='1.2' fill='%23b5bac0'/%3E%3C/svg%3E");
+  --gridmark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M0 3.5H10M0 6.5H10M3.5 0V10M6.5 0V10' stroke='%232f5470' stroke-width='1.1' fill='none'/%3E%3C/svg%3E");
+}
+
+/* 2. 기본 --------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper-web);
+  color: var(--ink);
+  font-family: var(--sans);
+  --ja: var(--sans-ja);
+  font-size: var(--fs-body);
+  line-height: var(--lh-sans);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-break: strict;
+  font-kerning: normal;
+  font-variant-numeric: lining-nums;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; }
+a { color: var(--ice); text-decoration-thickness: 1px; text-underline-offset: .18em; overflow-wrap: anywhere; }
+b, strong { font-weight: 700; }
+small { font-size: .9em; }
+p { margin: 0 0 .8em; }
+ul, ol { margin: 0 0 1em; padding-left: 1.3em; }
+li { margin: 0 0 .3em; }
+ul > li::marker { color: var(--acc); }
+ol > li::marker { color: var(--acc); font-weight: 700; font-variant-numeric: tabular-nums; }
+hr { border: 0; height: 8px; background: var(--ruler) repeat-x left bottom / 24px 8px; margin: 2em 0; }
+
+/* 일본어: 항상 <span class="ja" lang="ja"> */
+.ja, [lang="ja"] { font-family: var(--ja); word-break: normal; line-break: strict; }
+/* 일본어는 구(文節) 단위로 줄을 바꾼다(Chrome 119+). 한 구가 줄보다 길면 body 의 overflow-wrap 이 끊는다. */
+@supports (word-break: auto-phrase) {
+  .ja, [lang="ja"] { word-break: auto-phrase; }
+}
+.nobr { white-space: nowrap; }   /* 빌드가 전화번호를 감싼다 */
+
+/* 글꼴 문맥: 읽을거리(letter·feature·review)는 세리프, 나머지는 산세리프 (build 가 k-serif/k-sans 를 붙인다) */
+.k-serif { font-family: var(--serif); --ja: var(--serif-ja); line-height: var(--lh-serif); }
+.k-sans { font-family: var(--sans); --ja: var(--sans-ja); line-height: var(--lh-sans); }
+.k-serif > p, .k-serif > ul, .k-serif > ol, .producer > p { font-size: var(--fs-read); }
+
+/* 세리프 문맥 안의 실용 블록은 산세리프로 */
+.kicker, .byline, .box, .sidenote, .timeline, .place, .facts, .tags, .tag, figcaption, table.data, .glance, .stats, .steps,
+.phrases, .check, .verify, .qr, .toc, .legend, .colophon, .show-card, dl.fill, .bottle, .odds, .pr-meta, .grid, .nights {
+  font-family: var(--sans);
+  --ja: var(--sans-ja);
+}
+
+/* 원고 종류별 강조색 */
+.part[data-kind="letter"], .part[data-kind="feature"], .part[data-kind="list"], .part[data-kind="review"] {
+  --acc: var(--wine); --acc-tint: var(--wine-tint); --acc-line: var(--wine-line);
+}
+.part#feat-sake { --acc: var(--spruce); --acc-tint: var(--spruce-tint); --acc-line: var(--spruce-line); }
+.part[data-kind="overview"], .part[data-kind="day"], .part[data-kind="practical"] {
+  --acc: var(--ice); --acc-tint: var(--ice-tint); --acc-line: var(--ice-line);
+}
+.part[data-kind="cards"] { --acc: var(--ink); --acc-tint: var(--tint); --acc-line: var(--line); }
+.part[data-kind="credits"] { --acc: var(--ink-2); }
+
+/* 3. 컴포넌트 ------------------------------------------------------------- */
+
+/* 원고 하나 = 하나의 블록 서식 맥락: 떠 있는 사진·곁글이 다음 원고로 새지 않게 */
+.part, .front { position: relative; display: flow-root; }
+/* 떠 있는 요소(곁글·반쪽 사진) 옆에 끼면 안 되는 블록은 아래로 내린다 */
+.part-head, .part h2, figure.map, figure.chart, figure.photo.wide, figure.photo.full, .place, .table-wrap,
+ol.timeline, ol.steps, aside.box, blockquote.pull, dl.phrases, .stats, .show-card, .sc-grid, .bottle-grid, .bottle,
+.producer, .memo-lines { clear: both; }
+
+/* 3-1. 장 머리: 눈금자 띠 → 키커 → 제목 → dek → 바이라인 */
+.part-head { position: relative; margin: 0 0 1.6em; padding: 22px 0 0; }
+.part-head::before {   /* 눈금자: 가는 괘선 + 바둑판 칸 눈금(条·丁目 모티프) */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px;
+  border-top: 1px solid var(--ink);
+  background: var(--ruler) repeat-x left top / 24px 8px;
+}
+.kicker {
+  margin: 0 0 .7em;
+  font-size: var(--fs-kicker); font-weight: 700; line-height: 1.3;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--acc);
+}
+.part-title {
+  margin: 0 0 .4em;
+  font-family: var(--serif); --ja: var(--serif-ja);
+  font-weight: 700; font-size: var(--fs-h1); line-height: 1.24; letter-spacing: -.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.dek { margin: 0 0 .5em; max-width: 34em; font-size: var(--fs-dek); line-height: 1.6; color: var(--ink-2); }
+.k-serif .dek { font-family: var(--serif); --ja: var(--serif-ja); }
+.byline {
+  display: flex; align-items: center; gap: .7em;
+  margin: 1em 0 0; font-size: var(--fs-label); font-weight: 500; line-height: 1.4; letter-spacing: .06em; color: var(--mut);
+}
+.byline::before { content: ""; width: 1.8em; height: 1px; background: var(--acc); }
+
+.lede {
+  margin: 0 0 1.3em;
+  font-family: var(--serif); --ja: var(--serif-ja);
+  font-size: var(--fs-lede); line-height: 1.72; color: var(--ink);
+}
+.k-sans .lede { font-family: var(--sans); --ja: var(--sans-ja); font-size: var(--fs-body); font-weight: 500; line-height: 1.65; }
+
+h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; text-wrap: balance; }
+.part h2 {
+  position: relative;
+  margin: 2em 0 .7em; padding: .55em 0 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--sans); --ja: var(--sans-ja);
+  font-weight: 700; font-size: var(--fs-h2); line-height: 1.35; letter-spacing: -.01em;
+  color: var(--ink);
+}
+.part h2::before {   /* 좌표 눈금: 괘선 위 강조색 짧은 막대 */
+  content: ""; position: absolute; left: 0; top: -2px; width: 2.4em; height: 3px; background: var(--acc);
+}
+.k-serif h2 { font-family: var(--serif); --ja: var(--serif-ja); }
+.part h3 {
+  margin: 1.5em 0 .45em;
+  font-family: var(--sans); --ja: var(--sans-ja);
+  font-weight: 700; font-size: var(--fs-h3); line-height: 1.45; color: var(--acc);
+}
+.k-serif h3 { font-family: var(--serif); --ja: var(--serif-ja); color: var(--ink); }
+.part h4 { margin: 1.2em 0 .35em; font-family: var(--sans); --ja: var(--sans-ja); font-size: var(--fs-h4); font-weight: 700; line-height: 1.45; }
+.part-head + h2, .lede + h2, .stats + h2 { margin-top: 1.4em; }
+/* 오프너가 아닌 머리 안 사진(23 「바 가이드」 머리 위 susukino-night wide): 사진이 맨 위, 그 아래 눈금자 없이 키커 */
+.part-head:not(.opener):has(> figure.photo:first-child) { padding-top: 0; }
+.part-head:not(.opener):has(> figure.photo:first-child)::before { display: none; }
+.part-head:not(.opener) > figure.photo:first-child { margin: 0 0 1em; padding-bottom: .9em; border-bottom: 1px solid var(--ink); }
+
+/* 3-2. 오프너(Day 1~4, 특집 11·12): 큰 사진 + 키커·제목·dek + 「한눈에」(Day) / 바이라인(특집) */
+.part-head.opener { padding-top: 0; }
+.part-head.opener::before { display: none; }
+.opener > figure.photo.full { margin: 0 0 1.2em; }
+.opener > figure.photo.full img { border-radius: 0; }
+.opener .part-title { font-size: var(--fs-opener); line-height: 1.16; letter-spacing: -.025em; }
+.opener .kicker { font-size: calc(var(--fs-kicker) * 1.08); }
+
+/* 사진이 없을 때의 타이포그래피 대체 띠(빌드가 넣는다): 가는 바둑판 격자 위에 큰 키커 */
+.opener-art {
+  position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 1em;
+  min-height: 200px; margin: 0 0 1.2em; padding: 18px 18px 16px;
+  background: var(--grid-fine) left top / 24px 24px, var(--acc-tint);
+  border-top: 1px solid var(--ink); border-bottom: 1px solid var(--acc);
+  color: var(--ink);
+}
+.oa-plate {
+  display: grid; grid-template-columns: auto auto; align-items: end; column-gap: .45em;
+  padding: .5em .9em .45em .8em; background: #fff; border-left: 3px solid var(--acc);
+}
+.oa-label { grid-column: 1 / -1; font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: .34em; line-height: 1; color: var(--acc); }
+.oa-num { font-family: var(--serif); font-weight: 700; font-size: 112px; line-height: .86; letter-spacing: -.04em; color: var(--ink); font-variant-numeric: lining-nums; }
+.oa-sub { padding-bottom: .5em; font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: .16em; color: var(--ink-2); }
+.oa-word { grid-column: 1 / -1; padding: .3em 0 .1em; font-family: var(--serif); font-weight: 700; font-size: 34px; line-height: 1.05; letter-spacing: .06em; color: var(--ink); }
+.oa-fig { display: flex; flex-direction: column; align-items: flex-end; text-align: right; max-width: 13em; padding: .4em .7em .35em; background: #fff; }
+.oa-fig b { font-family: var(--serif); font-weight: 700; font-size: 64px; line-height: .9; letter-spacing: -.03em; color: var(--acc); font-variant-numeric: lining-nums; }
+.oa-fig small { margin-top: .45em; font-family: var(--sans); font-size: 13px; font-weight: 500; line-height: 1.35; color: var(--ink-2); }
+/* 커버 스토리(11, 사진 없음): 특집 오프너 판형의 타이포그래피 오프너. 격자 위 큰 흰 판에 「HOKKAIDO / WINE」,
+   오른쪽 아래 숫자 하나(1991). 아래 포도색 굵은 괘선 */
+.opener-art.oa-cover {
+  display: block; min-height: 300px; padding: 18px;
+  border-top: 2px solid var(--ink); border-bottom: 4px solid var(--wine);
+}
+.oa-cover .oa-plate { display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; width: 100%; height: 100%; min-height: 264px; padding: 16px 18px 14px; border-left-width: 4px; }
+.oa-cover .oa-label { letter-spacing: .28em; }
+.oa-cover .oa-word { padding: .35em 0 0; font-size: clamp(34px, 9.6vw, 56px); font-weight: 700; line-height: .95; letter-spacing: .03em;
+  max-width: 5.6em; overflow-wrap: normal; word-break: keep-all; }
+.oa-cover .oa-fig { position: absolute; right: 36px; bottom: 32px; max-width: 12em; padding: 0; background: transparent; }
+.oa-cover .oa-fig b { font-size: clamp(48px, 13vw, 76px); }
+
+/* 사케 특집: 스기다마 동심원(장식, 흰 판 뒤) */
+.oa-plate, .oa-fig { position: relative; z-index: 1; }
+.part#feat-sake .opener-art::after {
+  content: ""; position: absolute; z-index: 0; right: 26%; top: 50%; width: 150px; height: 150px; transform: translateY(-50%);
+  background: var(--sugidama) center / contain no-repeat; pointer-events: none;
+}
+
+/* 「한눈에」: 와인 리스트처럼 여섯 줄 */
+aside.glance {
+  margin: 1.2em 0 0; padding: .6em 0 .1em;
+  border-top: 2px solid var(--acc); border-bottom: 1px solid var(--line);
+  font-size: var(--fs-glance); line-height: 1.5;
+}
+aside.glance h4 {
+  margin: 0 0 .35em; font-size: var(--fs-label); font-weight: 700; letter-spacing: .2em; color: var(--acc);
+}
+aside.glance dl { display: grid; grid-template-columns: max-content 1fr; margin: 0; }
+aside.glance dt, aside.glance dd { padding: .34em 0; border-top: 1px solid var(--line-2); }
+aside.glance dt:first-of-type, aside.glance dt:first-of-type + dd { border-top: 0; }
+aside.glance dt { font-weight: 700; color: var(--acc); white-space: nowrap; letter-spacing: .04em; }
+aside.glance dd { margin: 0; min-width: 0; padding-left: 1.1em !important; }
+aside.glance dd b { color: var(--shu); }
+
+/* 3-3. 숫자 강조 */
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(7.2em, 1fr)); gap: 1em 1.4em;
+  margin: 1.3em 0 1.5em;
+}
+.stats .stat { margin: 0; display: flex; flex-direction: column; gap: .35em; min-width: 0; padding-top: .5em; border-top: 1px solid var(--ink); }
+.stats .stat-n {
+  display: block; align-self: flex-start;
+  font-family: var(--sans); font-weight: 700; font-size: var(--fs-stat); line-height: 1.02; letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums lining-nums; color: var(--ink);
+  padding-bottom: .1em; box-shadow: inset 0 -.14em 0 var(--rice);
+  white-space: nowrap;
+}
+.stats .stat-l { display: block; font-size: var(--fs-label); font-weight: 500; line-height: 1.4; color: var(--ink-2); }
+
+/* 3-4. 시간표 + 시킬 것 */
+ol.timeline { list-style: none; margin: 1.1em 0 1.4em; padding: 0; font-size: var(--fs-table); line-height: 1.5; }
+ol.timeline > li {
+  position: relative; display: grid; grid-template-columns: 4.6em 1fr; column-gap: 1.3em;
+  margin: 0; padding: 0 0 .85em; break-inside: avoid;
+}
+ol.timeline > li::before { /* 세로 괘선 */
+  content: ""; position: absolute; left: calc(4.6em + .65em - .5px); top: .9em; bottom: -.15em;
+  width: 1px; background: var(--line);
+}
+ol.timeline > li:last-child::before { display: none; }
+ol.timeline > li::after { /* 점 */
+  content: ""; position: absolute; left: calc(4.6em + .65em - .3em); top: .48em;
+  width: .6em; height: .6em; border-radius: 50%; background: #fff; border: 1.5px solid var(--acc);
+}
+ol.timeline .t {
+  font-size: var(--fs-t); font-weight: 700; line-height: 1.38; color: var(--acc);
+  text-align: right; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -.01em;
+}
+ol.timeline .what { min-width: 0; }
+ol.timeline .what > b { display: block; font-weight: 700; line-height: 1.45; color: var(--ink); }
+ol.timeline .what .sub { display: block; margin-top: .1em; color: var(--mut); }
+ol.timeline .what p { margin: .2em 0 0; }
+/* 시킬 것: 와인 리스트의 한 줄처럼, 포도색 글자 + 술쌀색 짧은 괘선 */
+.dish {
+  display: block; position: relative; margin-top: .28em; padding-left: 1.05em;
+  font-weight: 500; color: var(--wine);
+}
+.dish::before { content: ""; position: absolute; left: 0; top: .72em; width: .62em; height: 1.5px; background: var(--rice); }
+/* 고정 시각: 朱 + 「고정」 글자(색만으로 구분하지 않는다) */
+ol.timeline > li.fixed .t { color: var(--shu); }
+ol.timeline > li.fixed .t::after {
+  content: "고정"; display: block; width: max-content; margin: .25em 0 0 auto; padding: .08em .45em .06em;
+  border: 1px solid var(--shu); border-radius: 2px; color: var(--shu); background: #fff;
+  font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; line-height: 1.3;
+}
+ol.timeline > li.fixed::after { background: var(--shu); border-color: var(--shu); }
+ol.timeline > li.fixed .what > b { color: var(--ink); }
+
+/* 3-5. 장소 카드(div.place), 리뷰 카드(div.place.review), 바 카드(div.place.bar) */
+.place {
+  display: flow-root; position: relative;
+  margin: 1.3em 0; padding: .95em 1.05em .75em;
+  border: 1px solid var(--line); border-top: 2px solid var(--acc); border-radius: 0 0 3px 3px;
+  background: var(--paper);
+  font-size: var(--fs-table); line-height: 1.55;
+  break-inside: avoid;
+}
+.place-name {
+  margin: 0 0 .45em !important;
+  font-family: var(--serif-ja) !important; --ja: var(--serif-ja);
+  font-size: var(--fs-place) !important; font-weight: 600; line-height: 1.32; color: var(--ink) !important;
+  word-break: normal;
+}
+.place-name .ja { font-family: var(--serif-ja); word-break: keep-all; }   /* 이름 가운데서 꺾이지 않게(띄어쓰기에서만, 나고야판 r3 n20) */
+.place-name .reading { display: inline-block; margin-left: .35em; font-family: var(--sans); font-size: .74em; font-weight: 500; letter-spacing: .01em; color: var(--ink-2); }
+.place-name .grid { margin-left: .5em; vertical-align: .14em; }
+/* 좌표 배지(span.grid): 바둑판 칸 기호 + 줄인 주소. 머리 안에만 */
+.grid {
+  display: inline-flex; align-items: center; gap: .35em; white-space: nowrap;
+  padding: .1em .45em .08em .35em; border: 1px solid var(--ice); border-radius: 2px;
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 700; line-height: 1.3; letter-spacing: .01em;
+  color: var(--ice); background: #fff;
+}
+.grid::before { content: ""; flex: none; width: .95em; height: .95em; background: var(--gridmark) center / contain no-repeat; }
+.grid .ja { font-family: var(--sans-ja); font-weight: 700; }
+
+dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: .22em .95em; margin: .45em 0 .55em; font-size: var(--fs-table); line-height: 1.5; }
+dl.facts dt { font-weight: 700; color: var(--acc); white-space: nowrap; }
+dl.facts dd { margin: 0; min-width: 0; }
+/* 장소·리뷰·바 카드의 사실 목록: 격자 대신 머리말(dt)을 왼쪽에 띄운 블록. 격자는 오른쪽 QR(float) 옆에서
+   목록 전체가 좁아졌다(일정 데스크 요청 2, 31 숙소 카드가 거의 한 쪽). 블록이면 QR 아래로 글이 돌아 들어간다 */
+.place dl.facts { display: block; }
+.place dl.facts::after { content: ""; display: block; clear: left; }
+/* 빌드가 dt·dd 를 한 행(div.fr)으로 묶는다. 머리말은 최소 4.4em 칸, 긴 머리말(「De Montille」)은 내용을 오른쪽으로 민다(검수 r3 #7) */
+.place dl.facts > .fr { display: flow-root; }
+.place dl.facts > .fr > dt { float: left; clear: left; min-width: 4.4em; max-width: 10em; padding-right: .5em; }
+.place dl.facts > .fr > dd { display: flow-root; margin: 0 0 .22em; }
+.place p { margin: .4em 0 .45em; }
+.place-qr { float: right; display: flex; gap: .6em; margin: .1em 0 .5em 1em; }
+.qr-tile { display: block; width: 4.6rem; text-align: center; text-decoration: none; color: var(--ink); }
+.qr-tile .qr-svg { display: block; width: 100%; height: auto; aspect-ratio: 1; background: #fff; }
+.qr-label { display: block; margin-top: .25em; font-size: var(--fs-label); font-weight: 700; letter-spacing: .04em; line-height: 1.2; color: var(--ink-2); }
+
+/* 리뷰 카드: 머리 → 「왜 이 가게인가」 → 사실 → 무엇을(메뉴) → 어떻게(순서) → 태그 */
+.place.review { padding-top: 1.05em; border-top-width: 3px; }
+.place.review .place-name { font-size: calc(var(--fs-place) * 1.06) !important; }
+.rv-why {
+  margin: .1em 0 .65em !important; padding: .45em 0 .5em;
+  border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
+  font-size: var(--fs-table); line-height: 1.5; color: var(--ink-2);
+}
+.rv-why::before {
+  content: "WHY"; display: inline-block; margin-right: .6em; padding: 0 .1em;
+  font-size: var(--fs-label); font-weight: 700; letter-spacing: .18em; color: var(--acc);
+}
+/* 카드 안 소제목 「무엇을」 「어떻게」: 와인 리스트의 섹션 머리(글자 + 가는 괘선) */
+.place h4:not(.place-name) {
+  display: flex; align-items: center; gap: .7em;
+  margin: .9em 0 .35em !important;
+  font-size: var(--fs-label) !important; font-weight: 700; letter-spacing: .16em; line-height: 1.3; color: var(--acc);
+}
+.place h4:not(.place-name)::after { content: ""; flex: 1; height: 1px; background: var(--acc-line); }
+
+/* 메뉴(dl.menu): 빌드가 「이름 ……… 가격」으로 고친다(dt = span.mn + span.leader + span.price, dd = 설명) */
+dl.menu { margin: .3em 0 .5em; }
+dl.menu dt { display: flex; align-items: baseline; gap: 0 .4em; margin: .4em 0 0; font-weight: 700; line-height: 1.42; color: var(--ink); }
+dl.menu dt:first-child { margin-top: .2em; }
+dl.menu dt .mn { min-width: 0; }
+dl.menu dt .leader { flex: 1 1 1.5em; min-width: 1.5em; align-self: flex-end; margin-bottom: .32em; border-bottom: 1.5px dotted var(--mut); }
+dl.menu dt .price, dl.menu .price {
+  flex: none; font-weight: 700; font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; color: var(--ink);
+}
+dl.menu dd { margin: .05em 0 0; padding-right: 4.5em; font-size: .94em; line-height: 1.48; color: var(--mut); }
+dl.menu dd.empty { display: none; }
+
+/* 주문·입장 순서(ol.steps.compact): 작은 번호 + 제목 뒤에 설명을 이어 쓴다 */
+ol.steps.compact { margin: .3em 0 .55em; counter-reset: step; }
+ol.steps.compact > li { padding: 0 0 .38em 1.85em; min-height: 0; }
+ol.steps.compact > li::before {
+  width: 1.32em; height: 1.32em; top: .1em; font-size: .82em; font-family: var(--sans);
+  color: #fff; background: var(--acc);
+}
+ol.steps.compact > li::after { display: none; }
+ol.steps.compact > li > b { display: inline; padding: 0; font-size: 1em; }
+ol.steps.compact > li > b::after { content: " "; }
+ol.steps.compact > li > p { display: inline; margin: 0; color: var(--ink-2); }
+
+/* 바 카드: 밤 표시(ul.nights). 글자 O/X/? 가 뜻, 색은 보조. 「이 책의 일정」 밤은 굵은 테두리 */
+.place.bar { border-top-color: var(--ink); }
+ul.nights { list-style: none; display: flex; flex-wrap: wrap; gap: .3em .4em; margin: .1em 0 .55em; padding: 0; }
+ul.nights > li {
+  margin: 0; padding: .14em .55em .1em; border: 1px dashed var(--mut); border-radius: 2px;
+  font-size: var(--fs-label); font-weight: 700; line-height: 1.35; letter-spacing: .02em; white-space: nowrap;
+  color: var(--mut); background: #fff; font-variant-numeric: tabular-nums;
+}
+ul.nights > li.o { border-style: solid; border-color: var(--ok); color: var(--ok); background: var(--ok-tint); }
+ul.nights > li.x { border-style: solid; border-color: var(--shu); color: var(--shu); background: #fff; }
+ul.nights > li.q { color: var(--rice-deep); border-color: var(--rice-deep); background: var(--rice-tint); }
+ul.nights > li.confirmed { border-width: 2px; padding: .08em .5em .04em; box-shadow: inset 0 0 0 1px #fff; }
+
+/* 3-6. 태그: 글자에 뜻이 있고, 색은 보조. 수식 없는 .tag = 그 밖·미확인(점선) */
+.tags { margin: .6em 0 .1em !important; line-height: 2; }
+.tag {
+  display: inline-block; margin: 0 .35em .15em 0; padding: .14em .5em .1em;
+  border: 1px dashed var(--mut); border-radius: 2px;
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 700; line-height: 1.3; letter-spacing: .01em; white-space: nowrap;
+  color: var(--mut); background: #fff; vertical-align: .06em;
+}
+.tag.open    { border-style: solid; border-color: var(--ok); color: var(--ok); background: var(--ok-tint); }
+.tag.closed  { border-style: solid; border-color: var(--shu); color: var(--shu); background: #fff; }
+.tag.cash    { border-style: solid; border-color: var(--rice); color: var(--rice-deep); background: var(--rice-tint); }
+.tag.card    { border-style: solid; border-color: var(--line); color: var(--ink-2); background: var(--tint); }
+.tag.rsv     { border-style: solid; border-color: var(--ice); color: var(--ice); background: #fff; }
+.tag.queue   { border-style: solid; border-color: var(--wine); color: #fff; background: var(--wine); }
+.tag.taxfree { border-style: solid; border-color: var(--spruce); color: var(--spruce); background: var(--spruce-tint); }
+table.data .tag { margin: 0; }
+
+/* 미확인 표시 */
+.verify {
+  padding: 0 .3em; border: 1px dashed var(--shu); border-radius: 2px;
+  font-family: var(--sans); font-size: max(.86em, var(--fs-label)); font-weight: 700; color: var(--shu); background: #fff;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  white-space: nowrap;
+}
+
+/* 단독 QR */
+a.qr {
+  display: inline-flex; align-items: center; gap: .8em; vertical-align: top;
+  margin: .5em 1.2em .6em 0; text-decoration: none; color: var(--ink);
+  break-inside: avoid;
+}
+a.qr .qr-svg { width: 5rem; height: 5rem; flex: none; background: #fff; }
+a.qr .qr-text { display: flex; flex-direction: column; gap: .15em; min-width: 0; }
+a.qr .qr-label { margin: 0; color: var(--ink); }
+a.qr .qr-url { font-size: var(--fs-cap); color: var(--mut); word-break: break-all; }
+/* 상자 안 단독 QR: 빌드가 상자 맨 앞으로 옮기고 qr-float 을 붙인다. 오른쪽에 작은 타일로 띄운다 */
+aside.box > a.qr.qr-float {
+  float: right; display: flex; flex-direction: column; align-items: center; gap: .3em;
+  width: 5.6rem; margin: .05em 0 .5em 1em; text-align: center;
+}
+aside.box > a.qr.qr-float .qr-svg { width: 5rem; height: 5rem; }
+aside.box > a.qr.qr-float .qr-text { align-items: center; }
+aside.box > a.qr.qr-float .qr-label { line-height: 1.3; color: var(--ink-2); }
+aside.box > a.qr.qr-float .qr-url { display: none; }
+aside.box.has-qr-float { display: flow-root; }
+
+/* 3-7. 생산자 프로필(div.producer): 와인 리스트의 한 항목. 이름 → 산지·창업·규모·생산량 → 사실 → 글 → 확률 */
+.producer {
+  position: relative; margin: 1.8em 0; padding: .85em 0 .3em;
+  border-top: 2px solid var(--acc); border-bottom: 1px solid var(--line);
+}
+.producer::before {   /* 와인 리스트의 겹괘선 */
+  content: ""; position: absolute; left: 0; right: 0; top: 3px; height: 1px; background: var(--acc);
+}
+.producer h3 {
+  margin: 0 0 .25em !important;
+  font-family: var(--serif) !important; --ja: var(--serif-ja);
+  font-size: calc(var(--fs-h3) * 1.18) !important; font-weight: 700; line-height: 1.3; letter-spacing: -.005em; color: var(--ink) !important;
+}
+.producer > .pr-meta, .pr-meta {
+  margin: 0 0 .6em !important; font-size: var(--fs-table); text-indent: 0 !important; text-align: left !important; font-weight: 500; line-height: 1.5; letter-spacing: .03em; color: var(--ink-2);
+}
+.producer dl.facts { padding: .45em 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); }
+.producer > p { margin: .5em 0; }
+.producer figure.chart { margin: 1em 0 .6em; }
+
+/* 3-8. 병 카드(div.bottle, 빌드가 잇달아 오면 div.bottle-grid 로 2단) + 확률(p.odds) */
+.bottle-grid { display: grid; grid-template-columns: 1fr; gap: 1em 1.1em; margin: 1.2em 0 1.4em; }
+.bottle {
+  position: relative; display: flow-root;
+  margin: 1.2em 0; padding: .8em .95em .65em;
+  border: 1px solid var(--line); border-top: 3px solid var(--wine); background: #fff;
+  font-size: var(--fs-table); line-height: 1.5;
+  break-inside: avoid; overflow: hidden;   /* 사케 카드의 동심원은 카드 테두리에서 잘린다 */
+  --b-acc: var(--wine); --b-tint: var(--wine-tint); --b-line: var(--wine-line);
+}
+.bottle-grid > .bottle { margin: 0; }
+.bottle > * { position: relative; z-index: 1; }
+.bottle[data-type="sake"] { border-top-color: var(--spruce); --b-acc: var(--spruce); --b-tint: var(--spruce-tint); --b-line: var(--spruce-line); }
+.bottle[data-type="sake"]::after {   /* 스기다마 동심원(장식) */
+  content: ""; position: absolute; right: -1.4em; top: -1.4em; width: 4.4em; height: 4.4em;
+  background: var(--sugidama) center / contain no-repeat; pointer-events: none;
+}
+.b-no {
+  float: left; margin: 0 .55em .1em 0 !important;
+  font-family: var(--serif); font-weight: 700; font-size: var(--fs-bno); line-height: .9; letter-spacing: -.03em;
+  color: var(--b-acc); font-variant-numeric: lining-nums;
+}
+.bottle .b-name {
+  margin: .05em 0 .2em !important;
+  font-family: var(--serif) !important; --ja: var(--serif-ja);
+  font-size: var(--fs-bname) !important; font-weight: 700; line-height: 1.3; color: var(--ink) !important;
+}
+.bottle .b-name .ja { font-family: var(--serif-ja); font-weight: 600; }
+.bottle .b-name, .b-maker { display: flow-root; }   /* 번호(float) 옆 칸에 머문다 */
+.b-maker { margin: 0 0 .5em !important; font-size: var(--fs-label); font-weight: 500; line-height: 1.45; color: var(--ink-2); }
+dl.b-spec {
+  clear: both; display: grid; grid-template-columns: max-content 1fr; gap: .18em .8em;
+  margin: .4em 0 .5em; padding: .45em 0 0; border-top: 1px solid var(--b-line);
+  line-height: 1.45;
+}
+dl.b-spec dt { font-weight: 700; color: var(--b-acc); white-space: nowrap; }
+dl.b-spec dd { margin: 0; min-width: 0; }
+.b-note { margin: .35em 0 0 !important; font-size: var(--fs-label); line-height: 1.45; color: var(--mut); }
+
+/* 만날 확률: 네 칸 막대(빌드가 span.odds-bar 를 넣는다) + 글자 <b>. data-odds 0 거의 없음 ~ 4 확실 */
+p.odds {
+  display: block; text-indent: 0 !important; text-align: left !important;
+  margin: .5em 0 .2em !important; padding: .35em .55em .3em;
+  background: var(--rice-tint); border-left: 2px solid var(--rice);
+  font-size: var(--fs-table); line-height: 1.4; color: var(--ink-2);
+}
+p.odds b { color: var(--ink); }
+.odds-bar { display: inline-flex; gap: 2px; margin-right: .6em; vertical-align: -.02em; }
+.odds-bar i { display: block; width: .95em; height: .62em; border: 1px solid var(--rice-deep); background: #fff; }
+.odds-bar i.on { background: var(--rice-deep); }
+
+/* 3-9. 상자·곁글·인용 */
+aside.box {
+  margin: 1.4em 0; padding: .95em 1.1em .7em;
+  border: 1px solid var(--line); border-radius: 0;
+  background: var(--tint);
+  line-height: 1.6;
+  break-inside: avoid;
+}
+aside.box > :last-child { margin-bottom: .2em; }
+aside.box h4 { display: flex; align-items: center; gap: .6em; margin: 0 0 .5em; font-size: var(--fs-h4); font-weight: 700; color: var(--ink); }
+aside.box h4::before {
+  content: "참고"; flex: none;
+  padding: .2em .5em .16em; border-radius: 1px;
+  font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; line-height: 1.25; color: #fff; background: var(--mut);
+}
+aside.box p { margin: 0 0 .55em; }
+aside.box ul, aside.box ol { margin-bottom: .5em; padding-left: 1.2em; }
+aside.box li { margin-bottom: .25em; }
+aside.box.alt  { background: var(--ice-tint); border-color: var(--ice-line); border-left: 4px solid var(--ice); }
+aside.box.alt h4::before  { content: "대안"; background: var(--ice); }
+aside.box.star { background: var(--rice-tint); border: 1px solid var(--rice); box-shadow: inset 0 3px 0 var(--rice); }
+aside.box.star h4::before { content: "꼭"; background: var(--rice-deep); }
+aside.box.warn { background: var(--shu-tint); border-color: #e6bdb9; border-left: 4px solid var(--shu); }
+aside.box.warn h4::before { content: "주의"; background: var(--shu); }
+aside.box.tip  { background: #fff; border-color: var(--spruce-line); border-top: 2px solid var(--spruce); }
+aside.box.tip h4::before  { content: "요령"; background: var(--spruce); }
+aside.box.note { background: var(--tint); }
+.k-serif aside.box { font-family: var(--sans); --ja: var(--sans-ja); }
+/* 상자 안 표(12 「라벨 읽기」 4열 등): 흰 바탕 위 가는 괘선, 첫 열 원어는 굵게, 소리 칸(.pron)은 얼음색 */
+aside.box .table-wrap { margin: .5em 0 .6em; background: #fff; }
+aside.box table.data { font-size: calc(var(--fs-table) * .96); border-top-width: 1px; }
+aside.box table.data th { font-size: var(--fs-label); letter-spacing: .04em; color: var(--ink-2); white-space: normal; }
+aside.box table.data td:first-child { font-weight: 700; white-space: nowrap; }
+aside.box table.data td:first-child .ja { font-size: 1.06em; }
+aside.box table.data .pron { color: var(--ice); font-weight: 500; white-space: nowrap; }
+aside.box table.data tbody tr:nth-child(even) td { background: var(--tint); }
+aside.box.tip table.data tbody tr:nth-child(even) td { background: var(--spruce-tint); }
+aside.box > p:last-child { font-size: var(--fs-small); color: var(--ink-2); }
+
+aside.sidenote {
+  margin: 1.2em 0; padding: .1em 0 .1em .9em;
+  border-left: 2px solid var(--rice);
+  font-size: var(--fs-table); line-height: 1.55; color: var(--ink-2);
+}
+aside.sidenote p { margin: 0 0 .4em; }
+
+blockquote.pull {
+  margin: 1.7em 0; padding: .75em 0 .7em;
+  border-top: 1px solid var(--acc); border-bottom: 1px solid var(--acc);
+  font-family: var(--serif); --ja: var(--serif-ja);
+  font-weight: 700; font-size: var(--fs-pull); line-height: 1.5; letter-spacing: -.01em;
+  color: var(--acc);
+  break-inside: avoid;
+}
+blockquote.pull p { margin: 0; font-size: inherit; }
+
+/* 3-10. 하우투 단계: 번호를 크게 */
+ol.steps { list-style: none; counter-reset: step; margin: 1.1em 0 1.4em; padding: 0; }
+ol.steps > li {
+  counter-increment: step; position: relative;
+  margin: 0; padding: 0 0 .9em 2.6em; min-height: 2em;
+  break-inside: avoid;
+}
+ol.steps > li::before {
+  content: counter(step); position: absolute; left: 0; top: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: 1.75em; height: 1.75em; border-radius: 50%;
+  font-family: var(--sans); font-size: var(--fs-step-n); font-weight: 700; line-height: 1; color: var(--acc); background: #fff;
+  border: 1.5px solid var(--acc);
+  font-variant-numeric: tabular-nums;
+}
+ol.steps > li::after {   /* 단계 사이 세로선 */
+  content: ""; position: absolute; left: calc(var(--fs-step-n) * .875 - .5px); top: calc(var(--fs-step-n) * 1.75 + 2px); bottom: 2px;
+  width: 1px; background: var(--line);
+}
+ol.steps > li:last-child::after { display: none; }
+ol.steps > li > b { display: block; padding-top: .12em; font-weight: 700; line-height: 1.45; color: var(--ink); }
+ol.steps > li > p { margin: .15em 0 0; }
+.k-serif ol.steps { font-family: var(--sans); --ja: var(--sans-ja); font-size: var(--fs-table); }
+
+/* 3-11. 사진·지도·도해 */
+figure { margin: 1.4em 0; break-inside: avoid; }
+figure img { display: block; width: 100%; height: auto; border-radius: 0; background: var(--tint); }
+figure.photo.wide img, figure.photo.full img { object-fit: cover; }
+figure.photo.half { max-width: 100%; }
+figure.map { padding: .6em; border: 1px solid var(--line); background: #fff; }
+figure.chart { padding: .7em 0 0; border-top: 1px solid var(--ink); }
+figure .fig-svg-wrap { font-family: var(--sans); }  /* SVG 가 글꼴을 지정하지 않았을 때만 물려받는다 */
+figure .fig-svg { display: block; width: 100%; height: auto; }
+figcaption { margin-top: .55em; font-size: var(--fs-cap); line-height: 1.5; color: var(--mut); }
+figcaption .credit { display: block; margin-top: .1em; color: var(--mut); }
+figcaption .fig-open { white-space: nowrap; font-weight: 700; color: var(--ice); }
+figcaption .fig-open::after { content: " ↗"; font-weight: 400; }
+
+/* 크레디트 표 아래 라이선스 원문 주소(빌드가 manifest 의 licenseUrl 로 만든다) */
+.lic-legend { margin: -.4em 0 1.2em; font-size: var(--fs-cap); line-height: 1.6; color: var(--mut); overflow-wrap: anywhere; }
+.lic-legend .lic-head { display: block; margin-bottom: .15em; font-weight: 700; color: var(--ink); }
+.lic-legend .lic-item { display: block; }
+.lic-legend .lic-item b { font-weight: 700; color: var(--ink); }
+.lic-legend a { color: inherit; }
+
+/* 3-12. 표(와인 리스트처럼 가는 괘선), O/X 칸 */
+.table-wrap { margin: 1.1em 0 1.3em; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table.data {
+  width: 100%; border-collapse: collapse;
+  font-size: var(--fs-table); line-height: 1.45; font-variant-numeric: tabular-nums lining-nums;
+  border-top: 1.5px solid var(--ink);
+}
+table.data caption { caption-side: top; text-align: left; margin-bottom: .4em; font-weight: 700; color: var(--ink); }
+table.data th {
+  padding: .45em .55em; text-align: left; vertical-align: bottom;
+  font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--ink); white-space: nowrap;
+}
+table.data td { padding: .45em .55em; vertical-align: top; border-bottom: 1px solid var(--line-2); }
+table.data tbody tr:last-child td, table.data tbody tr:last-child th { border-bottom-color: var(--line); }
+table.data tbody th { color: var(--ink); border-bottom: 1px solid var(--line-2); white-space: normal; vertical-align: top; }
+table.data thead { display: table-header-group; }
+table.data tr { break-inside: avoid; }
+table.data tbody tr.group td {
+  padding-top: .8em; background: transparent; border-bottom: 1px solid var(--acc);
+  font-weight: 700; color: var(--acc); letter-spacing: .06em;
+}
+/* O/X 칸: 글자 그대로 + 옅은 바탕 */
+/* O/X 칸은 줄을 바꿀 수 있다(낱말 단위). nowrap 이던 때 23 「밤마다 고르는 표」의 긴 칸(「X 출장 행사, 일반 영업 없음」)이
+   판면보다 35px 넓어져 Chrome 이 책 전체를 0.93배로 줄여 인쇄했다(R2 정식 빌드, 검수 r3) */
+table.data td.o, table.data td.x, table.data td.q, table.data td.na { text-align: center; font-weight: 700; white-space: normal; word-break: keep-all; }
+table.data td.o  { color: var(--ok); background: var(--ok-tint); }
+table.data td.x  { color: var(--shu); background: var(--shu-tint); }
+table.data td.q  { color: var(--rice-deep); background: var(--rice-tint); }
+table.data td.na { color: var(--mut); font-weight: 400; }
+table.data th.o, table.data th.x, table.data th.q, table.data th.na { text-align: center; }
+/* 열 강조(예: 밤마다 고르는 표의 확정 칸): 청회색 머리칸 + 세로 테두리(색만이 아니라 테두리로) */
+table.data th.hl { background: var(--ice); color: #fff; text-align: center; }
+table.data td.hl { box-shadow: inset 2px 0 0 var(--ice), inset -2px 0 0 var(--ice); }
+table.data tbody tr:last-child td.hl { box-shadow: inset 2px 0 0 var(--ice), inset -2px 0 0 var(--ice), inset 0 -2px 0 var(--ice); }
+
+/* 3-13. 손으로 적는 칸 */
+dl.fill { display: grid; grid-template-columns: max-content 1fr; column-gap: 1em; margin: .8em 0 1em; }
+dl.fill dt { padding: .9em 0 .2em; font-weight: 700; color: var(--ink); white-space: nowrap; align-self: end; }
+dl.fill dd { margin: 0; min-height: 2.4em; border-bottom: 1px solid var(--mut); }
+.blank {
+  display: inline-block; min-width: 5.5em; height: 1.15em; margin: 0 .15em;
+  border-bottom: 1px solid currentColor; vertical-align: -.2em;
+}
+.blank.wide { display: block; width: 100%; min-width: 0; height: 1.9em; margin: 0; }
+
+/* 3-14. 보여 주는 카드 / 전화 카드 / 택시 목적지 */
+.show-card {
+  position: relative; margin: 1.1em 0; padding: .85em 1.05em .8em;
+  border: 1.5px solid var(--ink); border-radius: 4px; background: #fff;
+  break-inside: avoid;
+}
+.show-card .sc-when {
+  display: inline-block; margin: 0 0 .55em; padding: .1em .55em;
+  border-radius: 1px; background: var(--ink); color: #fff;
+  font-size: var(--fs-label); font-weight: 700; letter-spacing: .03em; line-height: 1.45;
+}
+.show-card .sc-ja {
+  margin: 0 0 .45em; font-family: var(--sans-ja); font-weight: 700; font-size: var(--fs-card-ja); line-height: 1.45;
+  color: var(--ink); letter-spacing: .01em;
+}
+.show-card .sc-pron { margin: 0 0 .15em; padding-top: .45em; border-top: 1px dotted var(--mut); font-size: var(--fs-card-pron); font-weight: 500; line-height: 1.45; color: var(--ice); }
+.show-card .sc-ko { margin: 0; font-size: var(--fs-card-ko); line-height: 1.5; color: var(--ink-2); }
+.show-card .sc-ja .blank { min-width: 3.2em; }
+/* 합친 카드(문장 둘, 둘째 문장 p.sc-ja 에 옛 id): 둘째 문장 앞에 가는 괘선 */
+.show-card > .sc-ko + .sc-ja { margin-top: .65em; padding-top: .6em; border-top: 1px solid var(--ink); }
+.sc-ja.ja-list { word-break: keep-all; line-break: strict; }   /* ・ 뒤에서만 줄바꿈 */
+/* 짧은 카드 묶음(빌드가 dest-list 없는 카드가 잇달아 오면 감싼다): 인쇄·넓은 화면에서 2단 */
+.sc-grid { display: grid; grid-template-columns: 1fr; gap: 0 1em; }
+.sc-grid > .show-card { margin: 0 0 1.1em; }
+/* 전화 카드: 「전화」 표시 + 줄마다 번호(①②…), 일본어·발음·뜻 */
+.show-card.call { border-width: 2px; }
+.show-card.call .sc-when { background: var(--shu); }
+ol.call-lines { list-style: none; counter-reset: cl; margin: 0; padding: 0; }
+ol.call-lines > li {
+  counter-increment: cl; position: relative; margin: 0; padding: .55em 0 .5em 2em;
+  border-top: 1px solid var(--line); break-inside: avoid;
+}
+ol.call-lines > li:first-child { border-top: 0; padding-top: .1em; }
+ol.call-lines > li::before {
+  content: counter(cl); position: absolute; left: 0; top: .6em;
+  display: flex; align-items: center; justify-content: center; width: 1.45em; height: 1.45em; border-radius: 50%;
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 700; color: #fff; background: var(--ink);
+}
+ol.call-lines > li:first-child::before { top: .15em; }
+ol.call-lines .sc-ja { margin-bottom: .25em; }
+ol.call-lines .sc-pron { padding-top: 0; border-top: 0; }
+/* 택시 목적지 목록 */
+dl.dest-list { display: grid; grid-template-columns: max-content 1fr; column-gap: 1em; margin: .7em 0 0; border-top: 1.5px solid var(--ink); }
+dl.dest-list dt, dl.dest-list dd { padding: .45em 0; border-bottom: 1px solid var(--line); }
+dl.dest-list dt { font-size: var(--fs-card-ko); font-weight: 700; line-height: 1.4; color: var(--ink-2); align-self: stretch; }
+dl.dest-list dd { margin: 0; font-family: var(--sans-ja); font-size: var(--fs-card-ja); font-weight: 700; line-height: 1.35; color: var(--ink); min-width: 0; }
+dl.dest-list dd .blank.wide { height: 1.3em; border-bottom-style: dotted; }
+
+/* 3-15. 회화, 체크, 필기선 */
+dl.phrases { margin: 1em 0; }
+dl.phrases dt { margin: .9em 0 .1em; font-weight: 700; color: var(--ink-2); break-after: avoid; }
+dl.phrases dd { margin: 0; padding: 0 0 .6em; border-bottom: 1px solid var(--line-2); break-inside: avoid; }
+dl.phrases dd .ja { display: block; font-size: var(--fs-phrase-ja); font-weight: 700; line-height: 1.45; color: var(--ink); }
+dl.phrases dd .pron { display: block; color: var(--ice); }
+
+ul.check { list-style: none; margin: .8em 0 1.1em; padding: 0; }
+ul.check > li { position: relative; margin: 0 0 .45em; padding-left: 1.75em; break-inside: avoid; }
+ul.check > li::before {
+  content: ""; position: absolute; left: 0; top: .24em;
+  width: 1.1em; height: 1.1em; border: 1.5px solid var(--ink); border-radius: 1px; background: #fff;
+}
+ul.check > li.done { color: var(--mut); }
+ul.check > li.done::before { background: var(--ice); border-color: var(--ice); box-shadow: inset 0 0 0 2px #fff; }
+
+/* 필기선 (인쇄 전용). 빌드가 data-lines 만큼 줄(.ml)을 넣고, 쪽 끝에서 넘친 줄은 인쇄 패스가 덜어 낸다 */
+.memo-lines { --gap: 2.35rem; margin: 1em 0; }
+.memo-lines > .ml { display: block; height: var(--gap); background: var(--rule) no-repeat left bottom / 100% 100%; break-inside: avoid; }
+.memo-lines:not(:has(.ml)) { height: calc(var(--lines, 8) * var(--gap)); background: var(--rule) repeat left top / 100% var(--gap); }
+/* 원고 끝 메모(빌드가 book.json tailMemo 로 Day 원고 끝에 붙인다): 「그날 메모」 */
+.tail-memo { margin-top: 5mm; padding-top: 2.4mm; border-top: 1px solid var(--ink); }
+.tail-memo::before { content: "그날 메모 · NOTES"; display: block; font-family: var(--sans); font-size: var(--fs-label); font-weight: 700; letter-spacing: .16em; line-height: 1; color: var(--acc); }
+.tail-memo-dropped { display: none; }
+
+/* 빌드가 넣는 쪽 찾기 앵커(인쇄 패스에서만 존재) */
+.pdf-anchor { display: block; height: 3pt; margin: 0 0 -3pt; padding: 0; overflow: hidden; font: 2pt/3pt sans-serif; color: #fff; white-space: nowrap; pointer-events: none; }
+.pdf-anchor-end { position: absolute; left: 0; bottom: 0; margin: 0; }
+.opener > .pdf-anchor:not(.pdf-anchor-clip, .pdf-anchor-floor) { position: absolute; left: 0; top: 0; margin: 0; }
+.pdf-anchor-clip { flex: none; }
+.pdf-anchor-floor { position: absolute !important; left: 0; bottom: 0; margin: 0 !important; }
+.has-memo-mark { position: relative; }
+/* 인쇄 배율 표식(빌드가 인쇄 패스에서만 넣는다): 10pt 글자. PDF 에서 크기를 재 배율이 1인지 본다 */
+.pdf-anchor-scale { position: absolute; left: 0; top: 0; font: 10pt/1 sans-serif; color: #fff; white-space: nowrap; pointer-events: none; }
+/* 쪽 참조 대상 앵커: 대상 첫 글자 앞의 폭·높이 0 인라인 상자(줄바꿈·줄 높이를 바꾸지 않고 첫 줄과 같이 움직인다. 나고야판 r3 M7) */
+.pdf-anchor-ref {
+  display: inline-block; width: 0; height: 0; overflow: visible; vertical-align: baseline;
+  font: 2pt/0 sans-serif; letter-spacing: 0; color: #fff; white-space: nowrap; pointer-events: none;
+}
+
+/* 4. 앞뒤 페이지 ----------------------------------------------------------- */
+
+/* 표지(1쪽): 사진 폴라로이드 위 스티커·말풍선 콜라주(사용자 선택 시안 B). 제목 스티커 「뽀롱 뽀롱 삿뽀롱」은 표지에만.
+   일러스트는 src/front/cover.html 안의 SVG 심벌(직접 그림). 스티커·제목은 SVG(viewBox 600×560)라 웹·인쇄에서 같이 줄고 는다 */
+.cover { position: relative; display: flex; flex-direction: column; background: #fff8ec; }
+.cv-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.cvb-top { display: flex; justify-content: space-between; align-items: center; gap: 1em; padding-bottom: .5em; border-bottom: 2px solid var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .1em; }
+.cvb-mast { display: inline-flex; align-items: baseline; gap: .5em; }
+.cvb-en { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: .26em; color: var(--ink); }
+.cvb-ja { font-family: var(--serif-ja); font-weight: 600; font-size: 13px; letter-spacing: .1em; }
+.cvb-hero { position: relative; margin: .8em 0 0; aspect-ratio: 600 / 560; }
+figure.cvb-photo { position: absolute; left: 13%; right: 13%; top: 6%; bottom: 10%; margin: 0; padding: 2.2% 2.2% 6%; background: #fff; transform: rotate(-2.5deg);
+  box-shadow: 0 6px 16px rgba(43, 37, 48, .28); display: flex; flex-direction: column; }
+figure.cvb-photo img { flex: 1 1 0; min-height: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+figure.cvb-photo figcaption { margin: .3em 0 0; font-size: 11px; text-align: center; color: var(--mut); }
+figure.cvb-photo figcaption .credit { display: inline; }
+.cvb-over { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.cvb-lines { list-style: none; margin: .9em 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: .45em; }
+.cvb-lines li { display: flex; align-items: last baseline; gap: .5em; margin: 0; padding: .35em .7em; border: 2px solid var(--ink); border-radius: 999px; background: #fff; font-size: 14px; font-weight: 500; line-height: 1.35; }
+.cvb-lines .cl-t { min-width: 0; }
+.cvb-lines .cl-k { display: inline-block; margin-right: .4em; padding: 0 .5em; border-radius: 999px; background: var(--wine); color: #fff; font-size: 12px; font-weight: 700; }
+.cvb-lines .cl-pg { margin-left: auto; display: inline-flex; align-items: center; justify-content: center; min-width: 1.9em; height: 1.9em; border-radius: 50%; background: #2f74b5; color: #fff; font-weight: 700; font-size: .9em; }
+.cvb-sub { margin: .8em 0 0; text-align: center; font-weight: 700; font-size: 16px; letter-spacing: .06em; color: var(--wine); }
+
+/* 판권(2쪽): 이 책의 표시(범례) + 판권 */
+.colophon-page { display: flex; flex-direction: column; }
+.legend { margin: 0 0 1.4em; padding: 0; break-inside: avoid; }
+.legend-h {
+  margin: 0 0 .5em !important; padding-top: .5em; border-top: 1px solid var(--ink);
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 700; letter-spacing: .2em; color: var(--ink);
+}
+.legend ul { list-style: none; margin: 0; padding: 0; }
+.legend li { display: grid; grid-template-columns: minmax(0, 45%) 1fr; gap: .2em .9em; align-items: baseline; margin: 0; padding: .36em 0; border-bottom: 1px solid var(--line-2); line-height: 1.45; }
+.legend .lg-k { display: flex; flex-wrap: wrap; gap: .25em .3em; align-items: center; }
+.legend .lg-k .tag, .legend .lg-k .verify, .legend .lg-k .grid { margin: 0; }
+.legend .lg-v { color: var(--ink-2); }
+.legend .lg-fixed { display: inline-flex; align-items: center; gap: .4em; font-weight: 700; color: var(--shu); font-variant-numeric: tabular-nums; }
+.legend .lg-fixed i { font-style: normal; padding: .02em .4em; border: 1px solid var(--shu); border-radius: 2px; font-size: var(--fs-label); letter-spacing: .08em; }
+.legend .lg-tab { display: inline-flex; align-items: center; justify-content: center; min-width: 1.9em; height: 1.6em; padding: 0 .3em; background: var(--ice); color: #fff; font-weight: 700; font-size: var(--fs-label); }
+.legend .lg-tab.wine { background: var(--wine); }
+.legend .lg-tab.ink { background: var(--ink); }
+.legend .lg-box { font-size: 1.2em; line-height: 1; }
+.legend .lg-bno { font-family: var(--serif); font-weight: 700; font-size: 1.3em; line-height: 1; letter-spacing: -.02em; color: var(--wine); }
+.legend .lg-bno.sake { color: var(--spruce); }
+.legend p.odds { margin: 0 !important; padding: .1em .45em; font-size: var(--fs-label); }
+.colophon { margin-top: auto; padding-top: 1em; border-top: 1px solid var(--ink); font-size: var(--fs-table); line-height: 1.55; color: var(--ink-2); }
+.co-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1em; margin: 0 0 .7em; }
+.co-title { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 1.4em; line-height: 1.25; color: var(--ink); }
+.co-sub { margin: .15em 0 0; color: var(--ink-2); }
+.co-list { display: grid; grid-template-columns: max-content 1fr; gap: .2em 1.1em; margin: 0 0 .8em; }
+.co-list dt { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.co-list dd { margin: 0; overflow-wrap: anywhere; }
+.co-note { margin: .5em 0 0; font-weight: 700; letter-spacing: .08em; color: var(--ink); }
+.colophon a.qr { margin: 0; }
+.colophon a.qr .qr-url { display: none; }   /* 주소는 아래 목록 「웹판」 줄에 있다 */
+
+/* 차례(인쇄 3쪽): 잡지형 「이번 호」. 두 단, 쪽번호를 크게 앞에. 묶음은 머리에 첫 쪽번호, 아래로 원고 */
+.toc-head { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 1em; margin: 0 0 1.1em; padding: 18px 0 .55em; border-bottom: 1px solid var(--ink); }
+.toc-head::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; border-top: 1px solid var(--ink); background: var(--ruler) repeat-x left top / 24px 8px; }
+.toc-head .kicker { margin: 0; color: var(--wine); }
+.toc-title { margin: 0; font-family: var(--serif); font-weight: 700; font-size: var(--fs-h1); line-height: 1.15; color: var(--ink); }
+.toc-list, .toc-list ol { list-style: none; margin: 0; padding: 0; }
+.toc-list li { margin: 0; }
+.toc-list > li { break-inside: avoid; border-top: 1px solid var(--line); }
+.toc-entry a, .toc-group-head { display: grid; grid-template-columns: 2.1em 1fr; column-gap: .7em; align-items: baseline; padding: .42em 0; line-height: 1.35; color: var(--ink); text-decoration: none; }
+.toc-pg {
+  font-family: var(--sans); font-weight: 700; font-size: 1.32em; line-height: 1.05; text-align: right; color: var(--ink);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.toc-t { font-weight: 700; }
+.toc-s { display: block; margin-top: .1em; font-size: .9em; color: var(--mut); }
+.toc-group-label { display: block; font-weight: 700; color: var(--wine); letter-spacing: .06em; }
+.toc-group-title { display: block; margin-top: .1em; font-size: .9em; color: var(--mut); }
+.toc-list > .toc-entry a[href^="#day"] .toc-t { color: var(--ice); letter-spacing: .02em; }
+.toc-sub { margin: -.15em 0 0 calc(2.1em * 1.32 + .7em) !important; padding: 0 0 .5em !important; }
+.toc-sub .toc-entry a { grid-template-columns: 1.7em 1fr; column-gap: .5em; padding: .18em 0; }
+.toc-sub .toc-pg { font-size: 1em; color: var(--wine); text-align: left; }
+.toc-sub .toc-t { font-weight: 500; }
+.toc-sub .toc-s { display: none; }
+
+/* 메모 쪽 (인쇄 전용, 4의 배수 맞춤): 점 격자 */
+.memo-page-in { display: flex; flex-direction: column; }
+.memo-head { display: flex; align-items: baseline; justify-content: space-between; gap: .8em; margin: 0 0 .9em; padding: .5em 0 .5em; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
+.memo-head .kicker { margin: 0; color: var(--mut); }
+.memo-title { margin: 0; font-family: var(--serif); font-weight: 700; font-size: var(--fs-h3); color: var(--ink); }
+.memo-fill { flex: 1; min-height: 4rem; background: var(--dots) repeat left top / 5mm 5mm; }
+
+/* 뒤표지 */
+.back-cover { display: flex; flex-direction: column; background: var(--paper); }
+.bc-top { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: .5em; border-bottom: 1px solid var(--ink); font-size: var(--fs-label); font-weight: 700; letter-spacing: .14em; color: var(--ink); }
+.bc-mark { display: flex; flex-direction: column; align-items: center; margin: auto 0 1.2em; text-align: center; }
+.bc-grid { width: 44%; max-width: 220px; height: auto; margin-bottom: .9em; }
+.bc-mh { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 34px; letter-spacing: .2em; color: var(--ink); margin-right: -.2em; }
+.bc-title { margin: .25em 0 0; font-family: var(--serif); font-weight: 700; font-size: 18px; color: var(--wine); }
+.bc-contents { margin: 0 0 1em; padding: .8em 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.6; color: var(--ink-2); text-align: center; }
+.bc-cards { margin: 0 0 auto; display: flex; justify-content: center; gap: .6em 1.4em; flex-wrap: wrap; font-size: var(--fs-body); font-weight: 700; }
+.bc-cards > span { display: inline-flex; align-items: center; gap: .45em; }
+.bc-cards i { font-style: normal; display: inline-block; padding: .1em .45em; border-radius: 1px; background: var(--ink); color: #fff; font-size: var(--fs-label); letter-spacing: .06em; }
+.bc-foot { margin-top: 1.5em; display: flex; justify-content: space-between; align-items: flex-end; gap: 1em; padding-top: 1em; border-top: 1px solid var(--ink); }
+.bc-foot a.qr { margin: 0; }
+.bc-note { margin: 0; text-align: right; font-size: var(--fs-table); line-height: 1.6; color: var(--ink-2); }
+.bc-note b { color: var(--ink); letter-spacing: .08em; }
+
+/* 5. 웹 화면 ------------------------------------------------------------- */
+@media screen {
+  html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+  .print-only { display: none !important; }
+  .pageref-wrap { display: none !important; }   /* 「(60쪽)」 같은 쪽 참조는 인쇄에만 */
+  td.cell-check { cursor: pointer; text-align: center; font-size: 1.2em; user-select: none; min-width: 44px; height: 44px; vertical-align: middle; }
+  ul.check > li { min-height: 44px; padding-top: 10px; padding-bottom: 6px; margin: 0; border-bottom: 1px solid var(--line-2); cursor: pointer; }
+  ul.check > li::before { top: 12px; }
+  td.cell-check.done { color: var(--ice); }
+  .skip { position: absolute; left: -9999px; top: 0; }
+  .skip:focus { left: 8px; top: 8px; z-index: 50; padding: 6px 10px; background: #fff; border: 1px solid var(--line); }
+
+  /* 상단 고정 바: 제호 · 술·가게·D1~D4·실용·카드 · 목차 · PDF */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255, 255, 255, .96); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ink);
+  }
+  .topbar-in { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; max-width: 1120px; margin: 0 auto; padding: 6px 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 44px; margin-right: auto; text-decoration: none; color: var(--ink); }
+  .brand-mh { font-family: var(--serif); font-weight: 600; font-size: 18px; letter-spacing: .2em; white-space: nowrap; }
+  .brand-t { font-family: var(--serif); font-weight: 700; font-size: 15px; color: var(--wine); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .days { display: flex; gap: 6px; order: 3; flex: 1 1 100%; overflow-x: auto; scrollbar-width: none; padding: 0 0 4px; }
+  .days::-webkit-scrollbar { display: none; }
+  .chip, .toc-pop > summary, .pdf-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; min-width: 44px; padding: 0 13px; border-radius: 3px;
+    font-family: var(--sans); font-size: 15px; font-weight: 700; letter-spacing: .02em; line-height: 1;
+    text-decoration: none; white-space: nowrap; cursor: pointer;
+  }
+  .chip { flex: none; color: var(--ink); border: 1px solid var(--line); background: #fff; }
+  .chip[href^="#day"] { color: var(--ice); border-color: var(--ice-line); }
+  .chip.on { color: #fff; background: var(--wine); border-color: var(--wine); }
+  .chip[href^="#day"].on { background: var(--ice); border-color: var(--ice); }
+  /* 현지에서 가장 급한 「카드」 칩: 먹 바탕으로 눈에 띄게(순서는 BRIEF 7장 「술·가게·D1~D4·실용·카드」 그대로) */
+  .chip.chip-cards { color: #fff; background: var(--ink); border-color: var(--ink); }
+  .chip.chip-cards.on { color: #fff; background: var(--wine); border-color: var(--wine); }
+  .toc-pop { position: relative; }
+  .toc-pop > summary { list-style: none; color: var(--ink); border: 1px solid var(--line); background: #fff; }
+  .toc-pop > summary::-webkit-details-marker { display: none; }
+  .toc-pop[open] > summary { background: var(--tint); }
+  .toc-pop-panel {
+    position: absolute; right: 0; top: 50px; width: min(380px, calc(100vw - 32px)); max-height: 72vh; overflow: auto;
+    padding: 14px 16px; border: 1px solid var(--ink); border-radius: 3px; background: #fff;
+    box-shadow: 0 12px 32px rgba(22, 25, 29, .14);
+  }
+  .toc-pop-dl { margin: 12px 0 0; padding-top: 10px; border-top: 1px solid var(--line-2); font-size: 15px; }
+  .pdf-btn { color: #fff; background: var(--wine); }
+
+  /* 웹 목차 */
+  .wtoc, .wtoc ol { list-style: none; margin: 0; padding: 0; }
+  .wtoc li { margin: 0; }
+  .wtoc a { display: block; padding: 8px 0; color: var(--ink); text-decoration: none; font-size: 16px; line-height: 1.4; }
+  .wtoc a small { display: block; font-size: 14px; color: var(--mut); }
+  .wtoc a:hover, .wtoc a.on { color: var(--wine); }
+  .wtoc-group { margin: 8px 0 4px; padding-top: 8px; border-top: 1px solid var(--line-2); }
+  .wtoc-label { display: block; font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--wine); }
+  .wtoc-label small { letter-spacing: 0; font-weight: 500; color: var(--mut); }
+  .wtoc-group ol a { padding-left: 10px; }
+
+  .side-toc { display: none; }
+  @media (min-width: 1240px) {
+    .side-toc {
+      display: block; position: fixed; top: 76px; left: max(24px, calc(50% - 600px)); width: 220px;
+      max-height: calc(100vh - 100px); overflow: auto; padding-right: 8px;
+    }
+    .side-toc-h { margin: 0 0 6px; font-size: 13px; font-weight: 700; letter-spacing: .16em; color: var(--mut); }
+    .side-toc .wtoc a { font-size: 14px; padding: 4px 0; }
+    .side-toc .wtoc a small, .side-toc .wtoc-label small { display: none; }
+  }
+
+  /* 본문 칼럼 */
+  .book { display: flex; flex-direction: column; max-width: 700px; margin: 0 auto; padding: 0 16px 48px; }
+  .book > section { min-width: 0; }
+  .book > section.part { padding: 64px 0 8px; }
+  .colophon-page { order: 90; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--ink); }
+  .web-foot { max-width: 700px; margin: 0 auto; padding: 24px 16px 56px; font-size: 15px; color: var(--mut); border-top: 1px solid var(--line); }
+  .web-foot p { margin: 0 0 6px; }
+  .memo-lines { display: none; }
+
+  /* 오프너(웹): 사진·대체 띠는 화면 끝까지 */
+  .opener > figure.photo.full, .opener > .opener-art { margin-left: -16px; margin-right: -16px; }
+  .opener > figure.photo.full img { aspect-ratio: 3 / 2; max-height: 70vh; }
+  .opener > figure.photo.full figcaption { padding: 0 16px; }
+  .opener aside.glance { padding: .7em 1em .2em; background: #fff; border: 1px solid var(--line); border-top: 2px solid var(--acc); }
+
+  /* 표지(웹: 히어로). 크림색 바탕을 화면 끝까지 */
+  .cover { margin: 0 -16px; padding: 22px 16px 12px; }
+  .cover .web-toc { margin-top: 28px; padding: 18px 18px 10px; border: 1px solid var(--line); border-top: 2px solid var(--wine); background: #fff; }
+  .cover .web-toc-h { margin: 0 0 4px; font-size: 13px; font-weight: 700; letter-spacing: .16em; color: var(--mut); }
+  .cover .web-dl { margin: 14px 0 0; font-size: 15px; }
+
+  .place, .bottle { box-shadow: 0 1px 0 rgba(22, 25, 29, .04); }
+  figure.photo.half { width: 100%; }
+  .colophon { margin-top: 1.5em; }
+
+  /* 보여 주는 카드: 누르면 화면 가득(template 스크립트). 누를 수 있다는 표시 */
+  .show-card { cursor: zoom-in; }
+  .show-card::before {   /* 떠 있는 안내: 긴 sc-when 과 겹치지 않게 float */
+    content: "누르면 크게"; float: right; margin: 0 0 6px 10px;
+    padding: 3px 9px; border: 1px solid var(--line); border-radius: 2px; background: #fff; color: var(--ink-2);
+    font-family: var(--sans); font-size: 13px; font-weight: 700; line-height: 1.3;
+  }
+  .card-zoom {
+    position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column;
+    background: #fff; overflow: auto; -webkit-overflow-scrolling: touch; cursor: zoom-out;
+    padding: max(16px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom));
+  }
+  .card-zoom[hidden] { display: none; }
+  .card-zoom-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 12px; }
+  .card-zoom-hint { font-size: 15px; color: var(--mut); }
+  .card-zoom-close { min-height: 48px; min-width: 88px; padding: 0 16px; border: 1.5px solid var(--ink); border-radius: 3px; background: #fff; color: var(--ink); font: 700 17px var(--sans); cursor: pointer; }
+  .card-zoom-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .card-zoom.is-call .card-zoom-body { justify-content: flex-start; }
+  .card-zoom .show-card { margin: 0; padding: 0; border: 0; box-shadow: none; cursor: inherit; }
+  .card-zoom .show-card::before { display: none; }
+  .card-zoom .sc-ja { font-size: clamp(30px, 8.4vw, 64px); line-height: 1.4; }
+  .card-zoom ol.call-lines .sc-ja { font-size: clamp(26px, 7.2vw, 52px); }
+  .card-zoom dl.dest-list dd { font-size: clamp(26px, 7vw, 52px); }
+  .card-zoom .sc-pron, .card-zoom .sc-ko { font-size: clamp(17px, 4.6vw, 26px); }
+  .card-zoom ol.call-lines > li { padding-left: 2.4em; }
+  .card-zoom ol.call-lines > li::before { font-size: 17px; }
+  body.zooming { overflow: hidden; }
+
+  /* 좁은 화면 */
+  @media (max-width: 720px) {
+    /* 지도·도해: 좁은 화면에서는 620px 폭으로 그려 옆으로 밀어 본다. 원본은 「크게 보기」 */
+    figure.map .fig-svg-wrap, figure.chart .fig-svg-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+    figure.map .fig-svg, figure.chart .fig-svg { width: 620px; max-width: none; }
+    .place { display: flex; flex-direction: column; }
+    .place > .place-qr { float: none; display: flex; flex-wrap: wrap; gap: 8px; margin: .7em 0 .1em; order: 99; }
+    .qr-tile { width: auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid var(--ink); border-radius: 3px; background: #fff; }
+    .qr-tile .qr-svg { display: none; }
+    .qr-tile .qr-label { margin: 0; font-size: 15px; color: var(--ink); }
+    .qr-tile .qr-label::after { content: " 열기"; font-weight: 500; }
+    a.qr .qr-svg { width: 64px; height: 64px; }
+    dl.menu dd { padding-right: 0; }
+  }
+  @media (max-width: 520px) {
+    .oa-num { font-size: 92px; }
+    .opener-art { min-height: 170px; padding: 14px; flex-wrap: wrap; align-content: flex-end; gap: .6em; }
+    .oa-word { font-size: 27px; }
+    .oa-fig { flex-direction: row; align-items: baseline; gap: .6em; max-width: none; text-align: left; }
+    .oa-fig b { font-size: 40px; }
+    .oa-fig small { margin-top: 0; }
+    .oa-cover .oa-fig { flex-direction: column; align-items: flex-end; text-align: right; right: 28px; bottom: 26px; max-width: 10em; }
+    .oa-cover .oa-fig small { margin-top: .3em; }
+    .part#feat-sake .opener-art::after { right: 50%; width: 120px; height: 120px; }
+    .brand-t { display: none; }
+    .topbar-in { position: relative; padding: 6px 12px; gap: 6px; }
+    /* 목차 패널을 상단 바 기준으로 펼쳐 화면 안에 둔다 */
+    .toc-pop { position: static; }
+    .toc-pop-panel { left: 12px; right: 12px; top: calc(100% + 4px); width: auto; }
+    table.data td { overflow-wrap: anywhere; }
+    table.data th { white-space: normal; word-break: keep-all; overflow-wrap: normal; }
+    table.data td, table.data th { padding-left: .4em; padding-right: .4em; }
+    table.data td.o, table.data td.x, table.data td.q, table.data td.na { padding-left: .2em; padding-right: .2em; }
+    table.data tbody td:first-child { min-width: 5em; }   /* 날짜 칸이 많은 표에서 첫 칸(가게 이름)이 한 글자씩 꺾이지 않게 */
+    .chip, .toc-pop > summary, .pdf-btn { padding: 0 11px; }
+    /* 칩 8개(44px 이상)가 한 줄에 다 들지 않는다. 현지에서 가장 급한 「카드」만 맨 앞으로(나머지는 옆으로 밀어 본다) */
+    .chip.chip-cards { order: -1; }
+    ol.timeline > li { grid-template-columns: 4.1em 1fr; column-gap: 1.1em; }
+    ol.timeline > li::before { left: calc(4.1em + .55em - .5px); }
+    ol.timeline > li::after { left: calc(4.1em + .55em - .3em); }
+    aside.box { padding: .9em .9em .6em; }
+    .show-card { padding-left: .9em; padding-right: .9em; }
+    .place { padding-left: .9em; padding-right: .9em; }
+    dl.dest-list { grid-template-columns: 1fr; }
+    dl.dest-list dt { padding-bottom: 0; border-bottom: 0; }
+    dl.dest-list dd { padding-top: .1em; }
+    .legend li { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 721px) {
+    .topbar-in { flex-wrap: nowrap; }
+    .days { order: 0; flex: 0 1 auto; padding: 0; }
+    figure.photo.half { float: right; width: 48%; margin: .3em 0 1em 1.4em; }
+    aside.sidenote { float: right; width: 34%; margin: .3em 0 1em 1.4em; }
+    .stats { grid-template-columns: repeat(auto-fit, minmax(9em, 1fr)); }
+    .sc-grid, .bottle-grid { grid-template-columns: 1fr 1fr; }
+    .cvb-lines { grid-template-columns: 1fr 1fr; }
+    /* 반쪽 사진·곁글 뒤에 감아 돌 본문이 없으면 띄우지 않는다. 사진 왼쪽, 캡션 오른쪽 아래 */
+    figure.photo.half:not(:has(+ p + p)) {
+      float: none; clear: both; width: auto; margin: 1.6em 0;
+      display: grid; grid-template-columns: 58% 1fr; column-gap: 1.2em; align-items: end;
+    }
+    /* 곁글은 뒤에 문단이 둘 이상 이어질 때만 띄운다(감아 돌 본문이 짧으면 곁글만 쪽 끝에 남는다) */
+    aside.sidenote:not(:has(+ p + p)) {
+      float: none; clear: both; width: auto; margin: 1.4em 0;
+    }
+  }
+}
+
+/* 6. 인쇄 ----------------------------------------------------------------- */
+/* A5 판면: 위 15mm(러닝헤드 포함) · 아래 14mm(쪽번호) · 안쪽 15mm · 바깥 12mm → 판면 121 × 181mm.
+   오른쪽(홀수) 쪽은 왼쪽이 안쪽, 왼쪽(짝수) 쪽은 오른쪽이 안쪽. */
+@page {
+  size: A5;
+  margin: 15mm 12mm 14mm 15mm;
+}
+@page :left {
+  margin-left: 12mm; margin-right: 15mm;   /* 중철 안쪽(오른쪽) 여백 */
+  @top-left {
+    content: "북쪽의 잔";
+    font-family: "Noto Sans KR", sans-serif; font-size: 7.5pt; font-weight: 700; letter-spacing: .1em;
+    color: #4a5058; vertical-align: bottom; padding-bottom: 5mm;
+  }
+  @bottom-left {
+    content: counter(page);
+    font-family: "Noto Sans KR", sans-serif; font-size: 8.5pt; font-weight: 700;
+    color: #16191d; vertical-align: top; padding-top: 4.6mm;
+  }
+  /* 쪽 바깥 여백 탭(빌드가 묶음마다 글자·세로 위치·색을 넣는다). 가장자리 4mm 안쪽, 폭 6mm */
+  @left-top {
+    width: 6mm; height: 19mm; margin-left: 4mm; margin-right: 2mm;
+    background: #2f5470; color: #ffffff;
+    font-family: "Noto Sans KR", sans-serif; font-size: 8pt; font-weight: 700; line-height: 1.12;
+    text-align: center; vertical-align: middle; white-space: pre;
+  }
+}
+@page :right {
+  margin-left: 15mm; margin-right: 12mm;   /* 중철 안쪽(왼쪽) 여백 */
+  @top-right {
+    content: "북쪽의 잔";
+    font-family: "Noto Sans KR", sans-serif; font-size: 7.5pt; font-weight: 500; letter-spacing: .04em;
+    color: #4a5058; vertical-align: bottom; padding-bottom: 5mm;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: "Noto Sans KR", sans-serif; font-size: 8.5pt; font-weight: 700;
+    color: #16191d; vertical-align: top; padding-top: 4.6mm;
+  }
+  @right-top {
+    width: 6mm; height: 19mm; margin-right: 4mm; margin-left: 2mm;
+    background: #2f5470; color: #ffffff;
+    font-family: "Noto Sans KR", sans-serif; font-size: 8pt; font-weight: 700; line-height: 1.12;
+    text-align: center; vertical-align: middle; white-space: pre;
+  }
+}
+/* 표지·뒤표지: 여백 없음, 머리·쪽번호 없음 */
+@page cover {
+  margin: 0;
+  @top-left { content: none; } @top-right { content: none; }
+  @bottom-left { content: none; } @bottom-right { content: none; }
+}
+/* 판권·차례: 머리·쪽번호 없음 */
+@page front {
+  @top-left { content: none; } @top-right { content: none; }
+  @bottom-left { content: none; } @bottom-right { content: none; }
+}
+@page memo:left { @top-left { content: "메모"; } }
+@page memo:right { @top-right { content: "메모"; } }
+
+@media print {
+  :root {
+    /* 크기: 인쇄(A5). BRIEF 7장 최소값 이상 */
+    --fs-body: 9pt;     --fs-read: 9.5pt;  --fs-lede: 10.5pt; --fs-dek: 10pt;
+    --fs-table: 9pt;    --fs-cap: 7.5pt;   --fs-label: 7.5pt; --fs-t: 9.5pt; --fs-small: 8.5pt;
+    --fs-h1: 20pt;      --fs-opener: 28pt;
+    --fs-h2: 12.5pt;    --fs-h3: 10.5pt;   --fs-h4: 9.5pt;
+    --fs-stat: 20pt;    --fs-glance: 8.5pt; --fs-step-n: 9pt; --fs-place: 12pt; --fs-pull: 13.5pt;
+    --fs-card-ja: 15pt; --fs-card-pron: 10pt; --fs-card-ko: 9pt; --fs-phrase-ja: 12pt;
+    --fs-bno: 24pt;     --fs-bname: 12.5pt; --fs-kicker: 8pt;
+    --lh-sans: 1.55;    --lh-serif: 1.65;
+  }
+  html { font-size: 9pt; }
+  body { background: #fff; orphans: 2; widows: 2; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .web-only, .topbar, .side-toc, .web-foot, .skip, .card-zoom { display: none !important; }
+  a { color: inherit; text-decoration: none; }
+
+  .book > section { break-before: page; }
+  .book > section:first-child { break-before: auto; }
+
+  /* 장 머리(오프너 아닌 것): 눈금자 띠 2.4mm */
+  section.part > .part-head:not(.opener) { padding-top: 6.2mm; margin-bottom: 5mm; }
+  section.part > .part-head:not(.opener)::before { height: 2.4mm; border-top-width: .7pt; background-size: 6mm 2.4mm; }
+  section.part > .part-head:not(.opener):has(> figure.photo:first-child) { padding-top: 0; }
+  .part-head:not(.opener) > figure.photo:first-child { margin: 0 0 3.4mm; padding-bottom: 2.6mm; border-bottom-width: .7pt; break-after: avoid; }
+  .kicker { margin-bottom: .55em; letter-spacing: .16em; }
+  .part-title { margin-bottom: .32em; }
+  .dek { line-height: 1.55; margin-bottom: .3em; }
+  .byline { margin-top: .7em; }
+  .byline::before { height: .6pt; }
+  .lede { line-height: 1.66; margin-bottom: .9em; }
+
+  /* 읽는 글: 양끝 맞춤 + 들여쓰기 */
+  /* 양끝 맞춤은 낱말 사이로만 벌린다(inter-character 는 긴 라틴 이름 앞 줄의 글자 사이를 크게 벌렸다) */
+  .k-serif > p, .producer > p { text-align: justify; text-justify: inter-word; margin: 0; }
+  .k-serif > p .ja, .k-serif > p [lang="ja"] { word-break: keep-all; line-break: strict; }   /* 이름이 글자 사이에서 갈리지 않게(나고야판 r3 n20) */
+  .k-serif > p + p, .producer > p + p { text-indent: 1em; }
+  .k-serif > figure.photo.half + p { text-align: left; }
+  .k-serif > p + :not(p, .pdf-anchor) { margin-top: .9em; }
+  .k-serif > .lede { text-align: left; margin-bottom: .8em; }
+  .producer > p { margin: .35em 0; }
+
+  /* 소제목 */
+  .part h2 { margin-top: 1.35em; margin-bottom: .5em; padding-top: 1.6mm; border-top-width: .5pt; }
+  .part h2::before { top: -.9pt; width: 7mm; height: 1.6pt; }
+  .part h3 { margin-top: 1.1em; }
+  .part-head + h2, .lede + h2, .stats + h2 { margin-top: 1em; }
+
+  aside.box {
+    padding: 2.6mm 3.2mm 1.8mm; margin: 3.5mm 0;
+    break-inside: auto; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  aside.box.alt, aside.box.warn { border-left-width: 1.1mm; }
+  aside.box.star { box-shadow: inset 0 .9mm 0 var(--rice); }
+  aside.box.tip { border-top-width: .9pt; }
+  aside.box h4 { margin-bottom: .4em; }
+  .place { padding: 2.5mm 3mm 1.8mm; margin: 3.4mm 0; border-top-width: 1pt; line-height: 1.5; }
+  .place.review { border-top-width: 1.6pt; padding-top: 2.8mm; }
+  /* 긴 장소 카드(빌드가 place-long): 머리 + dl.facts 는 붙이고, 그 뒤는 쪽 사이에서 나뉜다. 테두리는 양쪽에.
+     태그 줄은 혼자 넘어가지 않게 앞 줄과 붙인다. 리뷰 카드는 「왜 이 가게」까지 머리와 붙인다 */
+  .place.place-long { break-inside: auto; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .place-name { break-inside: avoid; }   /* 이름과 독음이 쪽 사이에서 갈리지 않게(시험 빌드: 아카렌가 카드) */
+  .place.place-long .place-name { break-after: avoid; }
+  .place.place-long ul.nights { break-before: avoid; break-after: avoid; }
+  ul.nights { break-inside: avoid; }   /* 밤 표시는 한 덩어리(R3 tmp: 「11/25 X」만 다음 쪽으로 넘어갔다) */
+  .place.place-long .rv-why { break-after: avoid; break-inside: avoid; }
+  /* 사실 목록은 행(머리말 + 내용) 사이에서만 쪽을 넘긴다(검수 r3 #10: 「영업」 머리말만 앞 쪽 끝에 남았다) */
+  .place dl.facts > .fr { break-inside: avoid; }
+  /* QR 타일은 그림과 라벨을 함께(검수 r3 #10: 맥주 박물관 QR 과 「지도」 라벨이 갈렸다). 태그 줄은 앞 내용과 붙인다 */
+  .place-qr, .qr-tile, a.qr { break-inside: avoid; }
+  .place .tags { break-before: avoid; break-inside: avoid; }
+  .place > :has(+ .tags) { break-after: avoid; }
+  /* 반쪽 사진이 카드 뒤에 오면 앞 카드 쪽에 붙이고 다음 카드와는 띄운다(검수 r3 #9) */
+  .place + figure.photo.half { margin-top: 2mm; }
+  figure.photo.half:has(+ .place) { margin-bottom: 7mm; }
+  .place.place-long > p { orphans: 3; widows: 3; }
+  .place.place-long .tags { break-before: avoid; break-inside: avoid; }
+  .place h4:not(.place-name) { break-after: avoid; }
+  dl.menu dt { break-after: avoid; }
+  dl.menu dd { break-inside: avoid; }
+  ol.steps.compact > li { break-inside: avoid; }
+  .place-qr { gap: 2mm; margin: 0 0 1.2mm 3mm; }
+  /* QR: 판독기(macOS Vision)가 재는 코드 크기가 15mm 이상이 되게 타일 18.4mm(나고야판 실측: Vision 은
+     이론값의 89~93%). 칸이 많으면 모듈 0.384mm 를 지키도록 키운다 */
+  .qr-tile { width: max(18.4mm, calc(var(--qr-mods, 31) * .384mm)); }
+  .place-qr > .qr-tile { width: max(18.4mm, calc(var(--qr-box-mods, var(--qr-mods, 31)) * .384mm)); }
+  ol.timeline { margin: 3mm 0 3.5mm; }
+  ol.timeline > li { grid-template-columns: 14.5mm 1fr; column-gap: 5mm; padding-bottom: .6em; }
+  ol.timeline > li::before { left: calc(14.5mm + 2.5mm - .25pt); width: .5pt; }
+  ol.timeline > li::after { left: calc(14.5mm + 2.5mm - .95mm); top: .5em; width: 1.9mm; height: 1.9mm; border-width: .8pt; }
+  ol.timeline .what .sub { font-size: 8.5pt; }
+  .dish { font-size: 8.5pt; }
+  .dish::before { top: .7em; height: .9pt; }
+  ol.timeline > li.fixed .t::after { border-width: .6pt; padding: .02em .4em 0; }
+  ol.steps > li { padding-left: 8mm; padding-bottom: .7em; min-height: 6mm; }
+  ol.steps > li::before { width: 5.4mm; height: 5.4mm; border-width: .8pt; }
+  ol.steps > li::after { left: calc(2.7mm - .25pt); top: 6mm; width: .5pt; }
+  ol.steps.compact > li { padding-left: 5.4mm; padding-bottom: .3em; }
+  ol.steps.compact > li::before { width: 3.9mm; height: 3.9mm; top: .25mm; font-size: 6.8pt; border: 0; }
+  .stats { margin: 3mm 0 4.2mm; gap: 2.5mm 4mm; grid-template-columns: repeat(auto-fit, minmax(22mm, 1fr)); }
+  .stats .stat { border-top-width: .6pt; padding-top: 1.6mm; }
+  .stats .stat-n { box-shadow: inset 0 -1mm 0 var(--rice); }
+  blockquote.pull { margin: 4.2mm 0; border-top-width: .6pt; border-bottom-width: .6pt; }
+  a.qr .qr-svg { width: max(18mm, calc(var(--qr-mods, 31) * .384mm)); height: auto; aspect-ratio: 1; }
+  a.qr:has(+ a.qr) .qr-text, a.qr + a.qr .qr-text { width: 33mm; }
+  a.qr:has(+ a.qr) { margin-right: 4mm; }
+  aside.box > a.qr { display: flex; width: fit-content; break-before: avoid; }
+  aside.box > a.qr.qr-float { display: flex; width: auto; margin: 0 0 1.2mm 3mm; break-before: auto; }
+  aside.box > a.qr.qr-float .qr-svg { width: max(18.4mm, calc(var(--qr-mods, 31) * .384mm)); height: auto; aspect-ratio: 1; }
+  aside.box > a.qr.qr-float .qr-text { width: auto; max-width: 22mm; }
+  aside.box.has-qr-float { break-inside: avoid; margin-top: 2.5mm; }
+  aside.box.has-qr-float h4 { margin-bottom: .35em; }
+  aside.box.has-qr-float li { margin-bottom: .15em; }
+
+  /* 생산자·병 카드·확률 */
+  .producer { margin: 5mm 0; padding: 2.6mm 0 1mm; border-top-width: 1.2pt; border-bottom-width: .5pt; break-inside: auto; }
+  .producer::before { top: 2.1pt; height: .5pt; }
+  .producer h3, .producer .pr-meta, .producer dl.facts { break-after: avoid; }
+  .producer dl.facts { break-inside: avoid; padding: 1.4mm 0; }
+  .producer > p.odds { break-before: avoid; }
+  /* 병 카드: 2단 한 행이 약 0.27쪽 안쪽이 되게(BRIEF 3-0 「열 장 + 머리 + 목록 = 2쪽」, 와인·사케 기자 요청 1) */
+  .bottle-grid { grid-template-columns: 1fr 1fr; gap: 2.4mm 2.8mm; margin: 3mm 0 3.5mm; }
+  .bottle { padding: 1.9mm 2.4mm 1.5mm; margin: 2.6mm 0; border-width: .5pt; border-top-width: 1.6pt; line-height: 1.38; }
+  .b-no { font-size: 20pt; margin: .2mm 1.6mm 0 0 !important; }
+  .bottle .b-name { font-size: 12pt !important; line-height: 1.22; margin: 0 0 .6mm !important; }
+  .b-maker { margin-bottom: 0 !important; line-height: 1.32; }
+  .b-note { margin-top: .6mm !important; line-height: 1.3; }
+  .bottle p.odds { margin: 1mm 0 0 !important; padding: .6mm 1.6mm .5mm; font-size: 8pt; }
+  .bottle[data-type="sake"]::after { right: -4.2mm; top: -4.2mm; width: 12.5mm; height: 12.5mm; }
+  /* 사양 칸: 2단 카드 폭(약 59mm)에서는 머리말을 글 앞에 붙여 쓴다(가운뎃 칸을 비우지 않는다) */
+  dl.b-spec { display: block; padding-top: 1mm; margin: 1mm 0 0; border-top-width: .5pt; font-size: 8.5pt; line-height: 1.36; }
+  dl.b-spec dt { display: inline; margin-right: 1.4mm; }
+  dl.b-spec dd { display: inline; }
+  dl.b-spec dd::after { content: ""; display: block; height: .2mm; }
+  p.odds { padding: 1mm 1.8mm .9mm; border-left-width: .8mm; font-size: 8.5pt; }
+  .odds-bar { gap: .5mm; margin-right: 1.8mm; }
+  .odds-bar i { width: 2.9mm; height: 1.7mm; border-width: .5pt; }
+
+  /* 바 카드 밤 표시 */
+  ul.nights { gap: 1mm 1.2mm; margin-bottom: 1.6mm; }
+  ul.nights > li { border-width: .6pt; padding: .2mm 1.6mm 0; }
+  ul.nights > li.confirmed { border-width: 1.3pt; }
+  .grid { border-width: .6pt; padding: 0 1.2mm 0 1mm; }
+  .tag { border-width: .6pt; padding: .2mm 1.4mm 0; }
+  .rv-why { padding: 1.3mm 0 1.4mm; }
+
+  figure { margin: 4mm 0; }
+  figure.photo.wide img { max-height: 64mm; }
+  figure.photo.full img { max-height: 100mm; }
+  figure.photo.half { float: right; width: 46%; margin: 1mm 0 3mm 4mm; }
+  figure.photo.half img { max-height: 70mm; object-fit: cover; }
+  /* 반쪽 사진은 뒤에 문단이 둘 이상 이어질 때만 오른쪽에 띄운다. 그 밖(제목·카드·상자·표, 짧은 한 문단, 원고 끝)에는
+     사진은 왼쪽 반, 캡션은 오른쪽 아래(띄운 사진이 쪽 끝에 안 들어가 사진만 다음 쪽으로 넘어가지 않게) */
+  figure.photo.half:not(:has(+ p + p)):not(aside.sidenote + *) {
+    float: none; clear: both; width: auto; margin: 4mm 0;
+    display: grid; grid-template-columns: 52% 1fr; column-gap: 4mm; align-items: end;
+  }
+  figure.photo.half:not(:has(+ p + p)):not(aside.sidenote + *) img { max-height: 50mm; }
+  figure.photo.half:not(:has(+ p + p)):not(aside.sidenote + *) figcaption { margin: 0; padding-top: 1.6mm; border-top: .6pt solid var(--ink); }
+  aside.sidenote + figure.photo.half:not(:has(~ :not(.pdf-anchor))) { float: none; width: 62%; margin: 4mm 0 0; }
+  figure.map .fig-svg, figure.chart .fig-svg { max-height: 125mm; }
+  figure.map.short .fig-svg, figure.chart.short .fig-svg { max-height: 100mm; }
+  figure.map.shorter .fig-svg, figure.chart.shorter .fig-svg { max-height: 85mm; }
+  figure.map { padding: 2mm; border-width: .5pt; }
+  figure.chart { padding-top: 2mm; border-top-width: .6pt; }
+  aside.sidenote { float: right; clear: right; width: 38mm; margin: 1mm 0 3mm 4mm; padding: 1.4mm 0 0; border-left: 0; border-top: 1pt solid var(--rice); }
+  /* 곁글은 뒤에 문단이 둘 이상 이어질 때만 바깥쪽에 띄운다. R1 검수 빌드에서 24 끝 곁글이 짧은 한 문단 옆에 떠 있다가
+     쪽 끝에 안 들어가 곁글만 다음 쪽으로 넘어갔다(24 가 한 쪽 늘었다). 그 밖에는 판면 폭, 왼쪽 술쌀색 괘선 */
+  aside.sidenote:not(:has(+ p + p)) {
+    float: none; clear: both; width: auto; margin: 3mm 0 3.5mm; padding: .4mm 0 .4mm 3mm; border-top: 0; border-left: 1pt solid var(--rice);
+  }
+  .table-wrap { overflow: visible; margin: 3mm 0 3.5mm; }
+  table.data { line-height: 1.4; border-top-width: 1pt; }
+  table.data th { border-bottom-width: .6pt; }
+  table.data td { border-bottom-width: .4pt; }
+  table.data th, table.data td { padding: 1.1mm 1.5mm; }
+  .lic-legend { line-height: 1.5; }
+  .lic-legend .lic-head { display: inline; margin: 0 .5em 0 0; }
+  .lic-legend .lic-item { display: inline; margin-right: .9em; white-space: nowrap; }
+  .lic-legend a { text-decoration: none; }
+  .table-wrap.keep, aside.box:has(table) { break-inside: avoid; }
+  /* 크레디트: 크레디트 글자 크기(7.5pt)로 한 행 한 줄. 작가·라이선스 칸은 줄바꿈 없이 */
+  .part[data-kind="credits"] table.data { font-size: 7.5pt; line-height: 1.3; }
+  .part[data-kind="credits"] table.data th, .part[data-kind="credits"] table.data td { padding: .55mm 1.2mm; }
+  .part[data-kind="credits"] table.data td:nth-child(n+3) { white-space: nowrap; }
+  .part[data-kind="credits"] .table-wrap { margin: 2mm 0 2.5mm; }
+  .part[data-kind="credits"] > p { font-size: 8.5pt; line-height: 1.5; }
+  aside.box .table-wrap { margin: 1.5mm 0 1.8mm; }
+  aside.box table.data th, aside.box table.data td { padding: .75mm 1.4mm; }
+  aside.box table.data { font-size: 8.5pt; line-height: 1.32; }
+  aside.box > p:last-child { font-size: 8.5pt; line-height: 1.45; }
+  table.data td.nw { white-space: nowrap; }
+  table.data tr.group { break-after: avoid; }
+  table.data tbody.grp { break-inside: avoid; }
+  .memo-lines { --gap: 7mm; }
+  dl.fill dd { min-height: 8.5mm; border-bottom-width: .6pt; }
+  dl.fill dt { padding-top: 3.2mm; }
+
+  /* 외톨이 줄 줄이기(검수 r3 #11): 문단·칸·카드 문장의 마지막 줄이 한두 글자만 남지 않게 */
+  p, li, dd, td, figcaption, .sc-ja, .sc-pron, .sc-ko { text-wrap: pretty; }
+
+  /* 쪽 나눔 다듬기(나고야판 r3 검수 반영을 옮김) */
+  .stats { break-inside: avoid; }                                          /* 숫자와 설명이 쪽 사이에서 갈리지 않게 */
+  ol.timeline > li:last-child, ol.steps > li:last-child { break-before: avoid; }   /* 마지막 한 항목만 다음 쪽 맨 위에 남지 않게 */
+  .part ul > li { break-inside: avoid; }                                    /* 목록 항목 끝 한 줄만 넘어가지 않게 */
+  .part :is(h2, h3) + p:has(+ .table-wrap) { break-after: avoid; }          /* 머리 + 안내 한 줄만 쪽 끝에 남지 않게 */
+  table.data tbody tr:first-child { break-after: avoid; }                   /* 표 머리 + 첫 행만 쪽 끝에 남지 않게 */
+  table.data td { min-width: 4.2em; }                                       /* 좁은 칸이 한두 글자씩 꺾이지 않게 */
+  table.data td:last-child:not(.o, .x, .q, .na) { min-width: 5.6em; }
+  table.data td:is(.o, .x, .q, .na) { min-width: 0; }
+  /* 반쪽 사진을 감아 도는 문단(뒤로 셋까지)은 왼쪽 맞춤. 좁은 단의 양끝 맞춤이 글자 사이를 벌린다 */
+  .k-serif > figure.photo.half + p + p, .k-serif > figure.photo.half + p + p + p,
+  .k-serif > figure.photo.half + h3 + p, .k-serif > figure.photo.half + p + h3 + p { text-align: left; }
+
+  /* 조판 힌트(원고에 붙이는 클래스) */
+  .keep { break-inside: avoid; }
+  .break-before { break-before: page; }
+
+  /* 회화: 왼쪽 뜻, 오른쪽 일본어+발음 두 칸 */
+  dl.phrases { display: grid; grid-template-columns: 34% 1fr; column-gap: 4mm; margin: 2mm 0; border-top: .6pt solid var(--ink); }
+  dl.phrases dt, dl.phrases dd { padding: 1.3mm 0 1.35mm; border-bottom: .4pt solid var(--line); }
+  dl.phrases dt { margin: 0; line-height: 1.4; break-after: auto; }   /* 격자 행 경계에 avoid 가 번지면 통째로 다음 쪽으로 밀린다 */
+  dl.phrases dd { margin: 0; }
+  /* 일본어 뒤에 발음을 이어 쓴다(짧은 문장은 한 줄) */
+  dl.phrases dd .ja { display: inline; font-size: 11.5pt; line-height: 1.35; margin-right: .7em; }
+  dl.phrases dd .pron { display: inline-block; line-height: 1.35; }
+
+  /* 보여 주는 카드: 인쇄에서는 일본어를 글자 단위로 꺾어(금칙은 지킨다) 줄을 끝까지 채운다.
+     구(文節) 단위로 꺾으면 2단 카드가 두 배로 길어졌다(시험 빌드 61: 12쪽). 화면·확대 화면은 구 단위 그대로 */
+  .show-card .sc-ja, dl.dest-list dd { word-break: normal; line-break: strict; }
+  .show-card .sc-ja.ja-list { word-break: keep-all; }
+  .show-card { margin: 0 0 2.6mm; padding: 2mm 2.8mm 1.8mm; border-width: .9pt; border-radius: 1.2mm; }
+  /* 전화 카드: 줄(①②…) 단위로는 가르지 않고, 카드는 줄 사이에서 쪽을 넘길 수 있다 */
+  .show-card.call { border-width: 1.4pt; break-inside: auto; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .show-card.call .sc-when { break-after: avoid; }
+  /* 짧은 카드 묶음: 2단 행 격자. (2단 다단 column 도 시험했으나 Chrome 인쇄가 쪽마다 단을 반쯤만 채워 더 길어졌다) */
+  .sc-grid { grid-template-columns: 1fr 1fr; column-gap: 2.6mm; }
+  .sc-grid > .show-card { margin-bottom: 2.2mm; }
+  /* 택시 목적지 카드는 한 쪽을 넘을 수 있다: 목록 칸 사이에서만 쪽을 넘기고 주소 한 칸은 가르지 않는다.
+     (카드 전체에 avoid 가 걸린 채 한 쪽을 넘으면 Chrome 이 안쪽 avoid 까지 무시해 주소 가운데서 갈랐다) */
+  .show-card.dest { padding-bottom: 1.4mm; break-inside: auto; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  /* 카드 머리(문장들)는 목적지 첫 칸과 같이 넘어간다(검수 r3 #10: 머리만 앞 쪽에 남고 빈 틀) */
+  .show-card.dest > :is(.sc-when, .sc-ja, .sc-pron, .sc-ko) { break-after: avoid; }
+  .show-card .sc-when { margin-bottom: 1.2mm; padding: .2mm 1.6mm 0; }
+  .show-card .sc-ja { margin-bottom: .9mm; line-height: 1.3; }
+  .show-card .sc-pron { padding-top: .9mm; border-top-width: .6pt; line-height: 1.32; margin-bottom: .3mm; }
+  .show-card .sc-ko { line-height: 1.36; }
+  .show-card > .sc-ko + .sc-ja { margin-top: 1.6mm; padding-top: 1.5mm; border-top-width: .6pt; }
+  ol.call-lines > li { padding: 1.6mm 0 1.4mm 6mm; border-top-width: .4pt; }
+  ol.call-lines > li::before { width: 4mm; height: 4mm; top: 2.1mm; }
+  ol.call-lines > li:first-child { padding-top: .3mm; }
+  ol.call-lines > li:first-child::before { top: .8mm; }
+  /* 목적지 목록: 인쇄에서는 블록 흐름. 격자·flex 는 Chrome 인쇄가 한 덩어리로 보고 쪽 끝에서 주소를 잘랐다.
+     이름(dt)은 높이 0 블록으로 주소 칸(dd)의 왼쪽 여백 위에 겹쳐 놓고 break-after: avoid 로 주소와 함께 넘긴다 */
+  dl.dest-list { display: block; border-top-width: .9pt; margin-top: 2mm; }
+  dl.dest-list dt { position: relative; z-index: 1; top: 1.6mm; width: 27mm; height: 0; padding: 0 !important; border: 0 !important; overflow: visible; line-height: 1.3; break-after: avoid; }
+  dl.dest-list dd { padding: 1.1mm 0 1.1mm 30mm !important; min-height: 9mm; }
+  dl.dest-list dt, dl.dest-list dd { padding: 1.1mm 0; border-bottom-width: .4pt; }
+  dl.dest-list dd { font-size: 15pt; line-height: 1.28; break-inside: avoid; }
+  dl.dest-list dt { break-inside: avoid; break-after: avoid; }
+  dl.dest-list dd .blank.wide { height: 7mm; }
+  .part[data-kind="cards"] h2 { margin-top: .6em; margin-bottom: .4em; }
+
+  /* ---- 오프너: 사진(Day 62mm·특집 78mm, 판면 폭) + 키커·제목·dek + 「한눈에」 뒤로 본문이 같은 쪽에서 이어진다.
+     러닝헤드·여백 탭은 다른 쪽과 같다. 「한눈에」는 쪽 사이에서 가르지 않는다. ---- */
+  .part-head.opener { margin: 0 0 5mm; padding: 0; }
+  .opener > figure.photo.full { margin: 0 0 3.6mm; break-after: avoid; }
+  .opener > figure.photo.full img { height: 62mm; max-height: none; object-fit: cover; }
+  .part[data-kind="feature"] .opener > figure.photo.full img { height: 78mm; }
+  .opener > figure.photo.full figcaption { margin-top: 1.2mm; text-align: right; }
+  .opener > figure.photo.full figcaption .credit { display: inline; margin-left: .6em; }
+  /* 사진이 빠졌을 때: Day 26mm · 특집 40mm 띠(바둑판 격자 + 흰 판의 큰 키커, 특집은 숫자 하나) */
+  .opener-art {
+    height: 26mm; min-height: 0; margin: 0 0 3.6mm; padding: 0 3.2mm 2.6mm 3mm; align-items: flex-end;
+    background-size: 5mm 5mm, auto; border-top-width: .7pt; border-bottom-width: .7pt; break-after: avoid;
+  }
+  .opener-art.oa-feature { height: 40mm; }
+  .opener-art.oa-cover { display: block; height: 74mm; min-height: 0; padding: 4mm; border-top-width: 1pt; border-bottom-width: 1.6mm; }
+  .oa-cover .oa-plate { display: flex; height: 100%; min-height: 0; padding: 4mm 5mm 3.4mm; border-left-width: 1.2mm; }
+  .oa-cover .oa-label { font-size: 8pt; }
+  .oa-cover .oa-word { font-size: 40pt; line-height: .94; padding: 3mm 0 0; }
+  .oa-cover .oa-fig { right: 9mm; bottom: 7.4mm; max-width: 50mm; padding: 0; }
+  .oa-cover .oa-fig b { font-size: 46pt; }
+  .oa-cover .oa-fig small { font-size: 8pt; margin-top: 1.4mm; }
+  .oa-plate { display: flex; align-items: baseline; gap: 0 2.2mm; border-left-width: 1mm; padding: 1.4mm 3.6mm .6mm 2.6mm; }
+  .oa-label { font-size: 8.5pt; letter-spacing: .3em; }
+  .oa-num { font-size: 36pt; line-height: .9; }
+  .oa-sub { font-size: 8.5pt; padding-bottom: 0; }
+  .oa-feature .oa-plate { display: grid; padding: 2mm 4mm 1.6mm 3mm; }
+  .oa-word { font-size: 20pt; padding: .8mm 0 0; }
+  .oa-fig { padding: 1.6mm 2.6mm 1.4mm; max-width: 44mm; }
+  .oa-fig b { font-size: 30pt; }
+  .oa-fig small { font-size: 7.5pt; margin-top: 1mm; }
+  .part#feat-sake .opener-art::after { width: 30mm; height: 30mm; right: 34%; }
+  .opener .kicker { margin-top: 0; margin-bottom: 2mm; font-size: 8.5pt; }
+  .opener .part-title { margin-bottom: 2.4mm; }
+  .opener .dek { margin-bottom: 0; }
+  .opener aside.glance { margin-top: 3.6mm; padding-top: 1.6mm; border-top-width: 1pt; border-bottom-width: .5pt; break-inside: avoid; }
+  .opener aside.glance h4 { margin-bottom: .8mm; }
+  .opener aside.glance dt, .opener aside.glance dd { padding-top: .8mm; padding-bottom: .8mm; border-top-width: .4pt; }
+  .opener .byline { margin-top: 3mm; font-size: 8pt; }
+
+  /* 표지: 종이 끝까지(여백 없는 cover 쪽). 폴라로이드·스티커는 종이 끝 5mm 안쪽 */
+  .cover { page: cover; height: 210mm; padding: 8mm 10mm 9mm; overflow: hidden; }
+  .cvb-top { padding-bottom: 1.4mm; font-size: 7.5pt; border-bottom-width: .9pt; }
+  .cvb-en { font-size: 16pt; }
+  .cvb-ja { font-size: 9pt; }
+  .cvb-hero { flex: 1 1 0; min-height: 0; aspect-ratio: auto; margin: 2mm -5mm 0; }
+  figure.cvb-photo { box-shadow: 0 1.2mm 2.6mm rgba(43, 37, 48, .3); }
+  figure.cvb-photo figcaption { font-size: 6.5pt; }
+  .cvb-lines { grid-template-columns: 1fr 1fr; gap: 1.4mm 2.4mm; margin-top: 2.4mm; }
+  .cvb-lines li { padding: .9mm 2.2mm; border-width: .9pt; font-size: 7.6pt; line-height: 1.26; }
+  .cvb-lines .cl-k { font-size: 6.4pt; }
+  .cvb-lines .cl-pg { font-size: 7.4pt; }
+  .cvb-sub { margin-top: 2.6mm; font-size: 10pt; }
+  .cover .web-toc { display: none; }
+
+  /* 판권: 넘치면 겹치지 않고 쪽이 늘어나게 min-height(빌드 경고로 드러난다) */
+  .colophon-page { page: front; min-height: 180.5mm; }
+  .legend { margin-bottom: 3mm; font-size: 8.5pt; }
+  .legend-h { font-size: 7.5pt; margin-bottom: .6mm !important; padding-top: 1.4mm; border-top-width: .7pt; }
+  .legend li { grid-template-columns: 43mm 1fr; column-gap: 3mm; padding: .6mm 0; line-height: 1.32; border-bottom-width: .4pt; }
+  .legend .tag, .legend .verify { padding: 0 1.2mm; }
+  .colophon { font-size: 8.5pt; line-height: 1.4; padding-top: 2.4mm; border-top-width: .7pt; }
+  .co-head { margin-bottom: 1.6mm; }
+  .co-list { gap: .5mm 4mm; }
+  .co-title { font-size: 13pt; }
+  .co-list { margin-bottom: 2mm; }
+  .colophon a.qr .qr-svg { width: max(18mm, calc(var(--qr-mods, 31) * .384mm)); }
+
+  /* 차례: 두 단 */
+  .toc-page { page: front; }
+  .toc-head { padding-top: 5mm; margin-bottom: 4mm; border-bottom-width: .7pt; }
+  .toc-head::before { height: 2.4mm; border-top-width: .7pt; background-size: 6mm 2.4mm; }
+  .toc-list { columns: 2; column-gap: 7mm; font-size: 9.5pt; }
+  .toc-list > li { border-top-width: .4pt; }
+  .toc-entry a, .toc-group-head { padding: 1.6mm 0; grid-template-columns: 8.5mm 1fr; column-gap: 2.6mm; }
+  .toc-pg { font-size: 15pt; }
+  .toc-s, .toc-group-title { font-size: 8pt; line-height: 1.38; }
+  .toc-sub { margin-left: 11.1mm !important; padding-bottom: 1.8mm !important; font-size: 8.5pt; }
+  .toc-sub .toc-entry a { grid-template-columns: 5.5mm 1fr; column-gap: 1.4mm; padding: .5mm 0; }
+  .toc-sub .toc-pg { font-size: 8.5pt; }
+
+  /* 메모 */
+  .memo-page { page: memo; }
+  .memo-page-in { height: 180.5mm; }
+  .memo-head { border-top-width: .7pt; border-bottom-width: .4pt; }
+
+  /* 뒤표지 */
+  .back-cover { page: cover; height: 210mm; padding: 11mm 13mm 12mm; overflow: hidden; background: #fff; }
+  .bc-top { font-size: 7.5pt; padding-bottom: 1.6mm; border-bottom-width: .7pt; }
+  .bc-mark { margin-bottom: 7mm; }
+  .bc-grid { width: 40mm; margin-bottom: 4mm; }
+  .bc-mh { font-size: 24pt; }
+  .bc-title { font-size: 12pt; }
+  .bc-contents { font-size: 9pt; padding: 3mm 0; border-width: .4pt 0; }
+  .bc-cards { font-size: 9.5pt; }
+  .bc-note { font-size: 8.5pt; }
+  .bc-foot { border-top-width: .7pt; }
+}

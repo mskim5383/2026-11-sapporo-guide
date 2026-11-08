@@ -724,9 +724,10 @@ export async function assemble(cfg, state, log) {
     }
   }
 
-  // 바 카드의 밤 표시(ul.nights): 「· 확정」이 붙은 밤은 테두리를 굵게(글자 「확정」이 뜻을 전한다)
+  // 바 카드의 밤 표시(ul.nights): 이 책이 그 밤에 넣은 바(「· 이 책의 일정」, R3 이전 표기 「· 확정」)는 테두리를 굵게.
+  // 뜻은 글자가 전한다(편집장 R3: 「확정」이 예약 확정으로 읽혀 문구를 바꿨다)
   for (const li of document.querySelectorAll('ul.nights > li')) {
-    if (/확정/.test(li.textContent)) li.classList.add('confirmed');
+    if (/이 책의 일정|확정/.test(li.textContent)) li.classList.add('confirmed');
   }
 
   // 긴 장소 카드(글 240자 이상이거나 안에 상자·목록·표. 나고야판 r3 n21 로 300 → 240): 인쇄에서 카드 머리 + dl.facts 뒤로는 쪽 사이에서

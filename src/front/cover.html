@@ -1,43 +1,177 @@
-<!-- 표지(1쪽). 마스트헤드 SAPPORO + 札幌(삿포로), 커버 라인 6개(BRIEF 1장 그대로) + 제목·부제·시리즈·날짜.
-     사진(cover-sapporo)이 없으면 빌드가 figure 를 빼고, CSS(:has)가 바둑판 격자 대체 그래픽(숙소 좌표 北1西7)을 보여 준다.
-     격자는 개념도다: 가로 굵은 선에서 북쪽으로 1조, 세로 굵은 선에서 서쪽으로 7초메인 칸에 숙소 점을 찍었다(기준선 이름은 쓰지 않는다).
-     사진 위에는 글자를 얹지 않는다(판 나눔). 세로 키커만 오른쪽 위 흰 띠 위에 둔다.
-     커버 라인 끝 쪽번호는 빌드 쪽 참조(웹에서는 숨는다). 표지 아래 18mm 안에는 숫자만 있는 글자를 두지 않는다(중철 검사가 폴리오로 읽는다).
-     일본어 옆에는 매번 한글 소리(발행인 지시 2026-11-08). -->
-<section class="front cover" id="top" aria-label="표지">
-  <div class="cover-top"><span>{{series}}</span><span>{{dates}}</span></div>
-  <h1 class="masthead"><span class="mh-en">{{masthead}}</span><span class="mh-ja"><span><span lang="ja">{{mastheadJa}}</span><span class="mh-ko">({{mastheadKo}})</span></span></span></h1>
+<!-- 표지(1쪽, 사용자 선택 시안 B · 2026-11-08): 표지 사진(cover-sapporo) 폴라로이드 위에 제목 스티커 「뽀롱」「뽀롱」「삿뽀롱」,
+     음식 동그라미 스티커, 날짜 말풍선을 붙인 콜라주. 「뽀롱 뽀롱 삿뽀롱」은 표지에만 쓴다(책 제목·판권·웹 제목·뒤표지는 「북쪽의 잔」).
+     일러스트(테레비토 제외 음식·술·눈사람·눈송이)는 모두 직접 그린 SVG 이고 외부 이미지·캐릭터 그림은 없다.
+     커버 라인은 BRIEF 1장(R3 갱신) 그대로, 끝 쪽번호는 빌드 쪽 참조(웹에서는 숨는다).
+     아래 18mm 안에는 숫자만 있는 글자를 두지 않는다(중철 검사가 폴리오로 읽는다). 일본어 옆에는 매번 한글 소리. -->
+<section class="front cover cover-b" id="top" aria-label="표지">
+  <svg class="cv-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- 직접 그린 표지 일러스트(외부 이미지 없음). 선 #2b2530, 둥근 이음 -->
+    <symbol id="cv-flake" viewBox="0 0 40 40">
+      <g fill="none" stroke="#8fbfe6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 3V37M5.3 11.5L34.7 28.5M5.3 28.5L34.7 11.5"/>
+        <path d="M15.5 6.5L20 10.5L24.5 6.5M15.5 33.5L20 29.5L24.5 33.5M5.5 17.5L11 18L13 12.5M34.5 22.5L29 22L27 27.5M5.5 22.5L11 22L13 27.5M34.5 17.5L29 18L27 12.5"/>
+      </g>
+    </symbol>
+    <symbol id="cv-spark" viewBox="0 0 40 40">
+      <path d="M20 2C22 14 26 18 38 20C26 22 22 26 20 38C18 26 14 22 2 20C14 18 18 14 20 2Z" fill="#f4c542"/>
+    </symbol>
+    <symbol id="cv-snowman" viewBox="0 0 100 132">
+      <g stroke="#2b2530" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M24 80L7 64M11 68L4 69M76 80L94 62M89 66L97 65" fill="none" stroke="#7a4b2a" stroke-width="3.6"/>
+        <circle cx="50" cy="94" r="32" fill="#fff"/>
+        <circle cx="50" cy="50" r="22" fill="#fff"/>
+        <path d="M28.5 43C28.5 20 71.5 20 71.5 43Z" fill="#3f86c6"/>
+        <rect x="27" y="38" width="46" height="8" rx="3.5" fill="#f4c542"/>
+        <circle cx="50" cy="20" r="6.5" fill="#fff"/>
+        <path d="M30 68Q50 78 70 68L70 76Q50 86 30 76Z" fill="#c2405f"/>
+        <path d="M57 76L65 99L56 101L51 79Z" fill="#c2405f"/>
+        <path d="M50 56L67 59.5L50 63Z" fill="#ef7d2d" stroke-width="1.6"/>
+        <path d="M43 65Q50 70 57 65" fill="none" stroke-width="2.2"/>
+      </g>
+      <circle cx="43" cy="52" r="2.7" fill="#2b2530"/><circle cx="57" cy="52" r="2.7" fill="#2b2530"/>
+      <circle cx="37" cy="60" r="3.6" fill="#f6a5b5"/><circle cx="63" cy="60" r="3.6" fill="#f6a5b5"/>
+      <circle cx="50" cy="94" r="3.2" fill="#2b2530"/><circle cx="50" cy="108" r="3.2" fill="#2b2530"/>
+    </symbol>
+    <symbol id="cv-tower" viewBox="0 0 70 150">
+      <g fill="none" stroke="#e8663d" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 146L27 62M63 146L43 62" stroke-width="5"/>
+        <path d="M12 128H58M17 104H53M22 82H48" stroke-width="3.2"/>
+        <path d="M12 128L53 104M58 128L17 104M17 104L48 82M53 104L22 82" stroke-width="2.4"/>
+      </g>
+      <g stroke="#2b2530" stroke-width="2.4" stroke-linejoin="round">
+        <rect x="21" y="62" width="28" height="13" rx="2.5" fill="#fff"/>
+        <rect x="24.5" y="65.5" width="9" height="6" rx="1" fill="#2b2530" stroke="none"/>
+        <rect x="36.5" y="65.5" width="9" height="6" rx="1" fill="#2b2530" stroke="none"/>
+        <path d="M27 48L31 18H39L43 48Z" fill="#e8663d"/>
+        <rect x="16" y="46" width="38" height="15" rx="3.5" fill="#fff"/>
+        <path d="M35 18V5" fill="none"/>
+      </g>
+      <path d="M20 53.5H50" stroke="#8fbfe6" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="35" cy="4.5" r="3" fill="#f4c542" stroke="#2b2530" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="cv-wine" viewBox="0 0 70 110">
+      <g stroke="#2b2530" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M14 8H56C58 34 50 50 35 52C20 50 12 34 14 8Z" fill="#f1f6fb"/>
+        <path d="M15.6 26H54.4C53 40 46 49 35 50.4C24 49 17 40 15.6 26Z" fill="#8c2a46" stroke="none"/>
+        <path d="M35 52V92" fill="none"/>
+        <ellipse cx="35" cy="96" rx="18" ry="5" fill="#f1f6fb"/>
+      </g>
+      <path d="M22 13Q19.5 24 23.5 33" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="cv-cocktail" viewBox="0 0 80 112">
+      <g stroke="#2b2530" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M6 14H74L40 52Z" fill="#f1f6fb"/>
+        <path d="M14 21H66L40 50Z" fill="#e9707f" stroke="none"/>
+        <path d="M40 52V94" fill="none"/>
+        <ellipse cx="40" cy="97" rx="17" ry="4.6" fill="#f1f6fb"/>
+        <path d="M60 10Q62 3 70 3" fill="none" stroke-width="2"/>
+        <circle cx="59" cy="12" r="6.5" fill="#c2405f"/>
+      </g>
+    </symbol>
+    <symbol id="cv-sake" viewBox="0 0 122 104">
+      <g stroke="#2b2530" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M34 10H50L48 22C66 36 70 60 64 82C60 96 24 96 20 82C14 60 18 36 36 22Z" fill="#fff6e5"/>
+        <path d="M18.6 60C32 64.5 52 64.5 65.4 60L65.4 69C52 73.5 32 73.5 18.6 69Z" fill="#3f86c6" stroke-width="1.8"/>
+        <rect x="31" y="5" width="22" height="7" rx="3.5" fill="#fff6e5"/>
+        <path d="M78 72H112L106 96H84Z" fill="#fff"/>
+        <ellipse cx="95" cy="72" rx="17" ry="5" fill="#fff"/>
+      </g>
+      <ellipse cx="95" cy="72.6" rx="10" ry="2.8" fill="none" stroke="#3f86c6" stroke-width="2.2"/>
+      <ellipse cx="95" cy="72.8" rx="4.4" ry="1.2" fill="#3f86c6"/>
+    </symbol>
+    <symbol id="cv-ramen" viewBox="0 0 130 100">
+      <g stroke="#2b2530" stroke-linejoin="round" stroke-linecap="round">
+        <ellipse cx="62" cy="47" rx="50" ry="13" fill="#f6c776" stroke-width="2.6"/>
+        <path d="M24 46q6-6 12 0t12 0t12 0t12 0t12 0t12 0M30 53q6-6 12 0t12 0t12 0t12 0t12 0" fill="none" stroke="#fbe9b7" stroke-width="3.6"/>
+        <circle cx="44" cy="40" r="9" fill="#fff" stroke-width="1.8"/>
+        <path d="M44 40m-4.5 0a4.5 4.5 0 1 1 4.5 4.5a2.6 2.6 0 1 1-2.6-2.6" fill="none" stroke="#ef7d9a" stroke-width="2"/>
+        <ellipse cx="73" cy="40" rx="10" ry="7" fill="#fff" stroke-width="1.8"/>
+        <path d="M86 24L100 21L102 41L88 44Z" fill="#1f4a3f" stroke-width="1.8"/>
+        <path d="M74 6L118 44M84 3L124 38" fill="none" stroke="#a0703f" stroke-width="4"/>
+        <path d="M10 49H114C112 79 90 97 62 97C34 97 12 79 10 49Z" fill="#c2405f" stroke-width="2.6"/>
+        <path d="M22 63H102" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="butt"/>
+      </g>
+      <circle cx="73" cy="40" r="4.6" fill="#f4a72c"/>
+      <circle cx="57" cy="50" r="2.4" fill="#6dbb6d"/><circle cx="61" cy="53" r="2.4" fill="#6dbb6d"/><circle cx="53" cy="53" r="2.4" fill="#6dbb6d"/>
+    </symbol>
+    <symbol id="cv-curry" viewBox="0 0 130 100">
+      <g stroke="#2b2530" stroke-linejoin="round" stroke-linecap="round">
+        <ellipse cx="62" cy="44" rx="48" ry="13" fill="#d9622b" stroke-width="2.6"/>
+        <path d="M28 40Q38 28 52 38Q40 46 28 40Z" fill="#4f9a6b" stroke-width="1.6"/>
+        <path d="M57 36L72 29L74 42Z" fill="#ef8a2d" stroke-width="1.6"/>
+        <path d="M64 46Q76 40 84 49Q74 55 64 46Z" fill="#b0632f" stroke-width="1.6"/>
+        <ellipse cx="88" cy="40" rx="9" ry="6.5" fill="#fff" stroke-width="1.6"/>
+        <path d="M100 32L122 9" fill="none" stroke="#c9ced6" stroke-width="5"/>
+        <path d="M12 46H112C112 76 92 96 62 96C32 96 12 76 12 46Z" fill="#2f74b5" stroke-width="2.6"/>
+        <path d="M24 62Q62 72 100 62" fill="none" stroke="#fff" stroke-width="2.6" stroke-dasharray="2 7"/>
+      </g>
+      <circle cx="88" cy="40" r="4" fill="#f4a72c"/>
+      <circle cx="46" cy="47" r="4" fill="#3f8a5a"/><circle cx="51" cy="44.5" r="4" fill="#3f8a5a"/>
+    </symbol>
+    <symbol id="cv-gyoza-one" viewBox="-4 -34 82 48" overflow="visible">
+      <g stroke="#2b2530" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0 0C6-26 54-32 74-6C58 10 16 12 0 0Z" fill="#f5deae"/>
+        <path d="M4 2C20 10 56 8 70-4" fill="none" stroke="#c98a3a" stroke-width="3.4"/>
+        <path d="M22-16q5 6 1 12M34-20q5 7 1 14M46-20q5 7 1 14M58-15q4 6 0 11" fill="none" stroke-width="1.6"/>
+      </g>
+    </symbol>
+    <symbol id="cv-gyoza" viewBox="0 0 130 90">
+      <ellipse cx="65" cy="66" rx="58" ry="16" fill="#fff" stroke="#2b2530" stroke-width="2.4"/>
+      <ellipse cx="65" cy="66" rx="47" ry="11" fill="none" stroke="#8fbfe6" stroke-width="2"/>
+      <use href="#cv-gyoza-one" x="10" y="26" width="64" height="38"/>
+      <use href="#cv-gyoza-one" x="34" y="18" width="64" height="38"/>
+      <use href="#cv-gyoza-one" x="56" y="28" width="64" height="38"/>
+    </symbol>
+    <symbol id="cv-don" viewBox="0 0 130 100">
+      <g stroke="#2b2530" stroke-linejoin="round" stroke-linecap="round">
+        <ellipse cx="65" cy="44" rx="48" ry="14" fill="#fff" stroke-width="2.4"/>
+        <path d="M24 42Q38 26 54 38Q40 48 24 42Z" fill="#f2875a" stroke-width="1.6"/>
+        <path d="M30 37L46 33M30 41L48 38" fill="none" stroke="#ffd6c0" stroke-width="1.8"/>
+        <ellipse cx="58" cy="32" rx="7" ry="4.6" fill="#f6b33d" stroke-width="1.4"/>
+        <ellipse cx="50" cy="29" rx="6" ry="4" fill="#f6b33d" stroke-width="1.4"/>
+        <path d="M90 40H112V47H90Z" fill="#e9505a" stroke-width="1.6"/>
+        <path d="M95 40V47M101 40V47M107 40V47" fill="none" stroke="#fff" stroke-width="1.6"/>
+        <ellipse cx="97" cy="33" rx="10" ry="4.6" fill="#4f9a6b" stroke-width="1.4" transform="rotate(-18 97 33)"/>
+        <path d="M12 46H118C116 76 94 96 65 96C36 96 14 76 12 46Z" fill="#2b2530" stroke-width="2.4"/>
+        <path d="M18 53H112" fill="none" stroke="#c2405f" stroke-width="3"/>
+      </g>
+      <g fill="#ef6f2d" stroke="#b8461a" stroke-width=".8">
+        <circle cx="66" cy="36" r="4"/><circle cx="74" cy="38" r="4"/><circle cx="70" cy="43" r="4"/><circle cx="78" cy="44" r="4"/><circle cx="62" cy="42" r="4"/><circle cx="82" cy="38" r="4"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
 
-  <div class="cover-visual">
-    <figure class="photo cover-photo" data-img="cover-sapporo"><figcaption></figcaption></figure>
-    <div class="cover-fallback">
-      <svg class="cf-grid" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <path class="g-minor" d="M0 40H600M0 80H600M0 120H600M0 160H600M0 240H600M0 280H600M0 320H600M0 360H600M40 0V400M80 0V400M120 0V400M160 0V400M200 0V400M240 0V400M280 0V400M320 0V400M360 0V400M440 0V400M480 0V400M520 0V400M560 0V400"/>
-        <rect class="g-block" x="121" y="161" width="38" height="38"/>
-        <path class="g-axis" d="M0 200H600M400 0V400"/>
-        <circle class="g-ring" cx="140" cy="180" r="27"/>
-        <circle class="g-star" cx="140" cy="180" r="9"/>
-      </svg>
-      <p class="cf-label"><b><span lang="ja">北1西7</span><span class="ck-ko">(기타 1 니시 7)</span></b><span lang="ja">由縁 札幌</span>(유엔 삿포로), 3박의 자리</p>
-    </div>
-    <p class="cover-kicker"><span lang="ja">札幌</span><span class="ck-ko">(삿포로)</span> <span class="ck-dot">·</span> <span lang="ja">新酒</span><span class="ck-ko">(신주)</span></p>
+  <div class="cvb-top"><span>{{series}}</span><span class="cvb-mast"><span class="cvb-en">{{masthead}}</span><span class="cvb-ja"><span lang="ja">{{mastheadJa}}</span>({{mastheadKo}})</span></span></div>
+  <div class="cvb-hero">
+    <figure class="photo cvb-photo" data-img="cover-sapporo"><figcaption></figcaption></figure>
+    <svg class="cvb-over" viewBox="0 0 600 560" preserveAspectRatio="xMidYMid meet" role="img" aria-label="뽀롱 뽀롱 삿뽀롱">
+      <rect x="150" y="10" width="92" height="26" rx="3" fill="#f4c542" opacity=".55" transform="rotate(-8 196 23)"/><rect x="372" y="12" width="92" height="26" rx="3" fill="#f4c542" opacity=".55" transform="rotate(7 418 25)"/>
+      <g transform="rotate(10 540 86)"><circle cx="544" cy="92" r="48" fill="#2b2530" opacity=".2"/><circle cx="540" cy="86" r="48" fill="#fff" stroke="#8c2a46" stroke-width="5"/><use href="#cv-wine" x="504.0" y="50.0" width="72.0" height="72.0"/></g>
+      <g transform="rotate(-8 430 44)"><circle cx="434" cy="50" r="40" fill="#2b2530" opacity=".2"/><circle cx="430" cy="44" r="40" fill="#fff" stroke="#f4c542" stroke-width="5"/><use href="#cv-gyoza" x="398.0" y="12.0" width="64" height="64"/></g>
+      <g transform="rotate(-8 60 186)"><circle cx="64" cy="192" r="48" fill="#2b2530" opacity=".2"/><circle cx="60" cy="186" r="48" fill="#fff" stroke="#3f86c6" stroke-width="5"/><use href="#cv-sake" x="21.0" y="147.0" width="78" height="78"/></g>
+      <use href="#cv-snowman" x="10" y="262" width="92" height="122" transform="rotate(-6 56.0 323.0)"/>
+      <g transform="rotate(-3 214 286)"><path d="M126 258h204a14 14 0 0 1 14 14v30a14 14 0 0 1-14 14h-180l-10 20-12-20h-2a14 14 0 0 1-14-14v-30a14 14 0 0 1 14-14z" fill="#fff" stroke="#2b2530" stroke-width="3" stroke-linejoin="round"/><text x="228" y="296" font-size="25" text-anchor="middle" fill="#2b2530" font-family="'Noto Sans KR', sans-serif" font-weight="700">2026.11.23–11.26</text></g>
+      <g transform="rotate(-6 540 362)"><circle cx="544" cy="368" r="52" fill="#2b2530" opacity=".2"/><circle cx="540" cy="362" r="52" fill="#fff" stroke="#c2405f" stroke-width="5"/><use href="#cv-ramen" x="498.0" y="320.0" width="84" height="84"/></g>
+      <g transform="rotate(8 60 482)"><circle cx="64" cy="488" r="48" fill="#2b2530" opacity=".2"/><circle cx="60" cy="482" r="48" fill="#fff" stroke="#2e7d4f" stroke-width="5"/><use href="#cv-don" x="21.0" y="443.0" width="78" height="78"/></g>
+      <g transform="rotate(6 548 492)"><circle cx="552" cy="498" r="46" fill="#2b2530" opacity=".2"/><circle cx="548" cy="492" r="46" fill="#fff" stroke="#2f74b5" stroke-width="5"/><use href="#cv-curry" x="511.0" y="455.0" width="74" height="74"/></g>
+      <use href="#cv-spark" x="120" y="0" width="30" height="30" transform="rotate(0 135.0 15.0)"/><use href="#cv-spark" x="566" y="196" width="24" height="24" transform="rotate(0 578.0 208.0)"/><use href="#cv-flake" x="20" y="110" width="32" height="32" transform="rotate(0 36.0 126.0)"/><use href="#cv-flake" x="470" y="260" width="26" height="26" transform="rotate(10 483.0 273.0)"/><use href="#cv-flake" x="300" y="524" width="28" height="28" transform="rotate(-8 314.0 538.0)"/>
+      <g transform="rotate(-9 143.0 80.0)"><rect x="47" y="39" width="206" height="100" rx="30" fill="#2b2530" opacity=".22"/><rect x="40" y="30" width="206" height="100" rx="30" fill="#8c2a46" stroke="#fff" stroke-width="10"/><text x="143.0" y="108.08" font-size="78" fill="#fff" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-weight="700" letter-spacing="2">뽀롱</text></g>
+      <g transform="rotate(8 451.0 228.0)"><rect x="355" y="187" width="206" height="100" rx="30" fill="#2b2530" opacity=".22"/><rect x="348" y="178" width="206" height="100" rx="30" fill="#2f74b5" stroke="#fff" stroke-width="10"/><text x="451.0" y="256.08" font-size="78" fill="#fff" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-weight="700" letter-spacing="2">뽀롱</text></g>
+      <g transform="rotate(-4 290.0 408.0)"><rect x="131" y="359" width="332" height="116" rx="34" fill="#2b2530" opacity=".22"/><rect x="124" y="350" width="332" height="116" rx="34" fill="#f4c542" stroke="#fff" stroke-width="10"/><text x="290.0" y="441.12" font-size="92" fill="#2b2530" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-weight="700" letter-spacing="2">삿뽀롱</text></g>
+      <g transform="rotate(-10 484 520)"><circle cx="488" cy="526" r="34" fill="#2b2530" opacity=".2"/><circle cx="484" cy="520" r="34" fill="#fff" stroke="#e9707f" stroke-width="5"/><use href="#cv-cocktail" x="461.0" y="497.0" width="46" height="46"/></g>
+    </svg>
   </div>
-
-  <div class="cover-body">
-    <ol class="cover-lines" aria-label="이번 호에서">
-      <li><span class="cl-t"><span class="cl-k">특집</span><span lang="ja">余市</span>(요이치)에서 <span lang="ja">空知</span>(소라치)까지, 홋카이도 컬트 와인</span><span class="cl-pg pageref-wrap"><span data-pageref-file="11-feature-wine.html"></span></span></li>
+    <ol class="cvb-lines" aria-label="이번 호에서">
+      <li class="cl-feat"><span class="cl-t"><span class="cl-k">특집</span><span lang="ja">余市</span>(요이치)에서 <span lang="ja">空知</span>(소라치)까지, 홋카이도 컬트 와인</span><span class="cl-pg pageref-wrap"><span data-pageref-file="11-feature-wine.html"></span></span></li>
       <li><span class="cl-t"><span lang="ja">新酒</span>(신주)가 나오는 주, 홋카이도 사케 지도</span><span class="cl-pg pageref-wrap"><span data-pageref-file="12-feature-sake.html"></span></span></li>
       <li><span class="cl-t">마셔 볼 것 10, 삿포로에서 만날 확률까지</span><span class="cl-pg pageref-wrap"><span data-pageref-file="13-drink-ten.html"></span></span></li>
       <li><span class="cl-t">한도를 넘겨 산다: 와인·사케 세금 계산과 자진신고</span><span class="cl-pg pageref-wrap"><span data-pageref-file="42-tax.html"></span></span></li>
-      <li><span class="cl-t">줄 서는 시각표, <span lang="ja">木多郎</span>(기타로) 11:15 · <span lang="ja">鍾馗</span>(쇼키) 10:45</span><span class="cl-pg pageref-wrap"><span data-pageref-file="21-table-lunch.html"></span></span></li>
+      <li><span class="cl-t">줄 서는 시각표, <span lang="ja">木多郎</span>(기타로) 11:00 · <span lang="ja">鍾馗</span>(쇼키) 10:45</span><span class="cl-pg pageref-wrap"><span data-pageref-file="21-table-lunch.html"></span></span></li>
       <li><span class="cl-t">밤마다 고르는 바 넷, 보여 주는 일본어 카드</span><span class="cl-pg pageref-wrap"><span data-pageref-file="23-bars.html"></span></span></li>
     </ol>
-    <div class="cover-titles">
-      <p class="cover-title">북쪽의 잔</p>
-      <p class="cover-sub">{{subtitle}}</p>
-    </div>
-  </div>
-
+  <p class="cvb-sub">삿포로 푸드·드링크 가이드북</p>
   <nav class="web-toc web-only" aria-label="차례">
     <p class="web-toc-h">이번 호</p>
     <div data-web-toc></div>

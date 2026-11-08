@@ -407,7 +407,7 @@ ol.steps.compact > li > b { display: inline; padding: 0; font-size: 1em; }
 ol.steps.compact > li > b::after { content: " "; }
 ol.steps.compact > li > p { display: inline; margin: 0; color: var(--ink-2); }
 
-/* 바 카드: 밤 표시(ul.nights). 글자 O/X/? 가 뜻, 색은 보조. 확정 밤은 굵은 테두리 */
+/* 바 카드: 밤 표시(ul.nights). 글자 O/X/? 가 뜻, 색은 보조. 「이 책의 일정」 밤은 굵은 테두리 */
 .place.bar { border-top-color: var(--ink); }
 ul.nights { list-style: none; display: flex; flex-wrap: wrap; gap: .3em .4em; margin: .1em 0 .55em; padding: 0; }
 ul.nights > li {
@@ -773,71 +773,27 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
 
 /* 4. 앞뒤 페이지 ----------------------------------------------------------- */
 
-/* 표지 */
-.cover { position: relative; display: flex; flex-direction: column; background: var(--paper); }
-.cover-top {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 1em;
-  padding-bottom: .5em; border-bottom: 1px solid var(--ink);
-  font-family: var(--sans); font-size: var(--fs-label); font-weight: 700; letter-spacing: .14em; color: var(--ink);
-}
-.masthead { margin: .3em 0 0; line-height: 1; }
-.mh-en {
-  display: block; font-family: var(--serif); font-weight: 600; font-size: min(15.6vw, 116px); white-space: nowrap;
-  line-height: .98; letter-spacing: .1em; color: var(--ink); text-align: center;
-  margin-right: -.1em;
-}
-.mh-ja {
-  display: flex; align-items: center; gap: .9em; margin: .45em 0 0;
-  font-family: var(--serif-ja); font-weight: 600; font-size: 15px; letter-spacing: .5em; color: var(--ink);
-}
-.mh-ja::before, .mh-ja::after { content: ""; flex: 1; height: 1px; background: var(--ink); }
-.mh-ja > span { margin-right: -.5em; }
-.mh-ja .mh-ko { margin-left: .2em; font-family: var(--serif); font-weight: 600; font-size: 1em; letter-spacing: .12em; }
-.cover-visual { position: relative; margin: 1.1em 0 0; }
-.cover-visual figure { margin: 0; }
-.cover-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
-.cover-photo figcaption { margin: .35em 0 0; font-size: var(--fs-cap); line-height: 1.35; color: var(--mut); text-align: right; }
-.cover-photo figcaption .credit { display: inline; margin: 0; }
-.cover-fallback { display: none; }
-.cover-visual:not(:has(figure)) .cover-fallback { display: block; }
-/* 사진이 없을 때: 바둑판 격자 위 숙소 좌표 北1西7(기타 1 니시 7) */
-.cover-fallback { position: relative; min-height: 280px; background: var(--wine-tint); overflow: hidden; }
-.cover-fallback .cf-grid { position: absolute; inset: 0; width: 100%; height: 100%; }
-.cf-grid .g-minor { stroke: #d9c4ca; stroke-width: 1; fill: none; }
-.cf-grid .g-axis { stroke: var(--wine); stroke-width: 2.2; fill: none; }
-.cf-grid .g-block { fill: #fff; }
-.cf-grid .g-star { fill: var(--rice); stroke: var(--wine); stroke-width: 1.6; }
-.cf-grid .g-ring { fill: none; stroke: var(--wine); stroke-width: 1.4; }
-.cf-label {
-  position: absolute; left: 6%; bottom: 7%; margin: 0; padding: .55em .8em .5em; background: #fff; border-left: 3px solid var(--wine);
-  font-family: var(--sans); font-size: 14px; font-weight: 500; line-height: 1.45; color: var(--ink);
-}
-.cf-label b { display: block; font-family: var(--serif-ja); font-weight: 600; font-size: 1.55em; line-height: 1.2; letter-spacing: .04em; color: var(--wine); }
-.cf-label b .ck-ko { font-family: var(--serif); font-weight: 600; font-size: 1em; letter-spacing: 0; }   /* 괄호 소리는 같은 크기 */
-.cover-kicker {
-  position: absolute; right: 0; top: 0; margin: 0; padding: .8em .5em;
-  writing-mode: vertical-rl; background: #fff;
-  font-family: var(--serif-ja); font-weight: 600; font-size: 15px; letter-spacing: .3em; line-height: 1; color: var(--ink);
-}
-.cover-kicker .ck-ko { font-family: var(--serif); font-weight: 600; font-size: .9em; letter-spacing: .04em; }
-.cover-kicker .ck-dot { letter-spacing: 0; }
-.cover-body { display: grid; grid-template-columns: 1fr; gap: 1.2em; margin-top: 1.2em; }
-.cover-lines { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
-.cover-lines li {
-  display: flex; align-items: last baseline; gap: .5em;
-  margin: 0; padding: .48em 0; border-bottom: 1px solid var(--line);
-  font-size: var(--fs-body); font-weight: 500; line-height: 1.4; color: var(--ink);
-}
-.cover-lines .cl-t { min-width: 0; }
-.cover-lines .cl-k { display: block; font-family: var(--sans); font-size: var(--fs-label); font-weight: 700; letter-spacing: .16em; color: var(--wine); }
-.cover-lines li:first-child .cl-t { font-family: var(--serif); --ja: var(--serif-ja); font-weight: 700; font-size: 1.1em; }
-.cover-lines .cl-pg { margin-left: auto; padding-left: .4em; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--wine); white-space: nowrap; }
-.cover-titles { display: flex; flex-direction: column; }
-.cover-title {
-  margin: 0; font-family: var(--serif); font-weight: 700; font-size: clamp(42px, 12vw, 60px);
-  line-height: 1.04; letter-spacing: -.04em; color: var(--ink); word-break: keep-all;
-}
-.cover-sub { margin: .55em 0 0; font-size: var(--fs-body); font-weight: 500; line-height: 1.45; color: var(--ink-2); }
+/* 표지(1쪽): 사진 폴라로이드 위 스티커·말풍선 콜라주(사용자 선택 시안 B). 제목 스티커 「뽀롱 뽀롱 삿뽀롱」은 표지에만.
+   일러스트는 src/front/cover.html 안의 SVG 심벌(직접 그림). 스티커·제목은 SVG(viewBox 600×560)라 웹·인쇄에서 같이 줄고 는다 */
+.cover { position: relative; display: flex; flex-direction: column; background: #fff8ec; }
+.cv-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.cvb-top { display: flex; justify-content: space-between; align-items: center; gap: 1em; padding-bottom: .5em; border-bottom: 2px solid var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .1em; }
+.cvb-mast { display: inline-flex; align-items: baseline; gap: .5em; }
+.cvb-en { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: .26em; color: var(--ink); }
+.cvb-ja { font-family: var(--serif-ja); font-weight: 600; font-size: 13px; letter-spacing: .1em; }
+.cvb-hero { position: relative; margin: .8em 0 0; aspect-ratio: 600 / 560; }
+figure.cvb-photo { position: absolute; left: 13%; right: 13%; top: 6%; bottom: 10%; margin: 0; padding: 2.2% 2.2% 6%; background: #fff; transform: rotate(-2.5deg);
+  box-shadow: 0 6px 16px rgba(43, 37, 48, .28); display: flex; flex-direction: column; }
+figure.cvb-photo img { flex: 1 1 0; min-height: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+figure.cvb-photo figcaption { margin: .3em 0 0; font-size: 11px; text-align: center; color: var(--mut); }
+figure.cvb-photo figcaption .credit { display: inline; }
+.cvb-over { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.cvb-lines { list-style: none; margin: .9em 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: .45em; }
+.cvb-lines li { display: flex; align-items: last baseline; gap: .5em; margin: 0; padding: .35em .7em; border: 2px solid var(--ink); border-radius: 999px; background: #fff; font-size: 14px; font-weight: 500; line-height: 1.35; }
+.cvb-lines .cl-t { min-width: 0; }
+.cvb-lines .cl-k { display: inline-block; margin-right: .4em; padding: 0 .5em; border-radius: 999px; background: var(--wine); color: #fff; font-size: 12px; font-weight: 700; }
+.cvb-lines .cl-pg { margin-left: auto; display: inline-flex; align-items: center; justify-content: center; min-width: 1.9em; height: 1.9em; border-radius: 50%; background: #2f74b5; color: #fff; font-weight: 700; font-size: .9em; }
+.cvb-sub { margin: .8em 0 0; text-align: center; font-weight: 700; font-size: 16px; letter-spacing: .06em; color: var(--wine); }
 
 /* 판권(2쪽): 이 책의 표시(범례) + 판권 */
 .colophon-page { display: flex; flex-direction: column; }
@@ -1004,12 +960,8 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   .opener > figure.photo.full figcaption { padding: 0 16px; }
   .opener aside.glance { padding: .7em 1em .2em; background: #fff; border: 1px solid var(--line); border-top: 2px solid var(--acc); }
 
-  /* 표지(웹: 히어로) */
-  .cover { padding: 22px 0 8px; background: transparent; }
-  .cover-visual { margin-left: -16px; margin-right: -16px; }
-  .cover-photo img { aspect-ratio: 4 / 3; height: auto; }
-  .cover-photo figcaption { padding: 0 16px; }
-  .cover-fallback { aspect-ratio: 4 / 3; min-height: 0; }
+  /* 표지(웹: 히어로). 크림색 바탕을 화면 끝까지 */
+  .cover { margin: 0 -16px; padding: 22px 16px 12px; }
   .cover .web-toc { margin-top: 28px; padding: 18px 18px 10px; border: 1px solid var(--line); border-top: 2px solid var(--wine); background: #fff; }
   .cover .web-toc-h { margin: 0 0 4px; font-size: 13px; font-weight: 700; letter-spacing: .16em; color: var(--mut); }
   .cover .web-dl { margin: 14px 0 0; font-size: 15px; }
@@ -1093,7 +1045,6 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
     dl.dest-list dt { padding-bottom: 0; border-bottom: 0; }
     dl.dest-list dd { padding-top: .1em; }
     .legend li { grid-template-columns: 1fr; }
-    .cf-label { font-size: 13px; }
   }
   @media (min-width: 721px) {
     .topbar-in { flex-wrap: nowrap; }
@@ -1102,8 +1053,7 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
     aside.sidenote { float: right; width: 34%; margin: .3em 0 1em 1.4em; }
     .stats { grid-template-columns: repeat(auto-fit, minmax(9em, 1fr)); }
     .sc-grid, .bottle-grid { grid-template-columns: 1fr 1fr; }
-    .cover-body { grid-template-columns: 1fr 1.3fr; align-items: start; gap: 1.6em; }
-    .cover-body .cover-titles { order: -1; }
+    .cvb-lines { grid-template-columns: 1fr 1fr; }
     /* 반쪽 사진·곁글 뒤에 감아 돌 본문이 없으면 띄우지 않는다. 사진 왼쪽, 캡션 오른쪽 아래 */
     figure.photo.half:not(:has(+ p + p)) {
       float: none; clear: both; width: auto; margin: 1.6em 0;
@@ -1241,6 +1191,7 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   .place-name { break-inside: avoid; }   /* 이름과 독음이 쪽 사이에서 갈리지 않게(시험 빌드: 아카렌가 카드) */
   .place.place-long .place-name { break-after: avoid; }
   .place.place-long ul.nights { break-before: avoid; break-after: avoid; }
+  ul.nights { break-inside: avoid; }   /* 밤 표시는 한 덩어리(R3 tmp: 「11/25 X」만 다음 쪽으로 넘어갔다) */
   .place.place-long .rv-why { break-after: avoid; break-inside: avoid; }
   /* 사실 목록은 행(머리말 + 내용) 사이에서만 쪽을 넘긴다(검수 r3 #10: 「영업」 머리말만 앞 쪽 끝에 남았다) */
   .place dl.facts > .fr { break-inside: avoid; }
@@ -1478,29 +1429,19 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   .opener aside.glance dt, .opener aside.glance dd { padding-top: .8mm; padding-bottom: .8mm; border-top-width: .4pt; }
   .opener .byline { margin-top: 3mm; font-size: 8pt; }
 
-  /* 표지 */
-  .cover { page: cover; height: 210mm; padding: 9mm 11mm 10mm; overflow: hidden; background: #fff; }
-  .cover-top { padding-bottom: 1.6mm; border-bottom-width: .7pt; font-size: 7.5pt; }
-  .masthead { margin-top: 3.4mm; }
-  .mh-en { font-size: 58pt; letter-spacing: .12em; margin-right: -.12em; }
-  .mh-ja { margin-top: 2mm; font-size: 10pt; }
-  .mh-ja::before, .mh-ja::after { height: .5pt; }
-  .cover-visual { flex: 1 1 0; min-height: 0; margin: 4.4mm -6mm 0; }   /* 종이 끝 5mm 안쪽: 가정용 프린터 여백에서 잘리지 않게(나고야판 r3) */
-  .cover-visual figure { height: 100%; display: flex; flex-direction: column; }
-  .cover-photo img { flex: 1 1 0; min-height: 0; height: 100%; }
-  .cover-photo figcaption { flex: none; margin: 1mm 6mm 0; }
-  .cover-fallback { height: 100%; min-height: 0; }
-  .cf-label { left: 6mm; bottom: 6mm; font-size: 8.5pt; padding: 2mm 3mm 1.8mm; border-left-width: .9mm; }
-  .cover-kicker { font-size: 10pt; padding: 3mm 2mm; right: 6mm; }
-  .cover-body { grid-template-columns: 1fr; gap: 3.6mm; margin-top: 4.4mm; flex: none; }
-  .cover-lines { border-top-width: .7pt; }
-  .cover-lines li { padding: 1.15mm 0; font-size: 9pt; line-height: 1.3; border-bottom-width: .4pt; }
-  .cover-lines .cl-k { font-size: 7pt; }
-  .cover-lines li:first-child .cl-t { font-size: 10pt; }
-  .cover-lines .cl-pg { font-size: 9pt; }
-  .cover-titles { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 4mm; }
-  .cover-title { font-size: 30pt; line-height: 1; }
-  .cover-sub { font-size: 8.5pt; margin: 0; text-align: right; line-height: 1.4; }
+  /* 표지: 종이 끝까지(여백 없는 cover 쪽). 폴라로이드·스티커는 종이 끝 5mm 안쪽 */
+  .cover { page: cover; height: 210mm; padding: 8mm 10mm 9mm; overflow: hidden; }
+  .cvb-top { padding-bottom: 1.4mm; font-size: 7.5pt; border-bottom-width: .9pt; }
+  .cvb-en { font-size: 16pt; }
+  .cvb-ja { font-size: 9pt; }
+  .cvb-hero { flex: 1 1 0; min-height: 0; aspect-ratio: auto; margin: 2mm -5mm 0; }
+  figure.cvb-photo { box-shadow: 0 1.2mm 2.6mm rgba(43, 37, 48, .3); }
+  figure.cvb-photo figcaption { font-size: 6.5pt; }
+  .cvb-lines { grid-template-columns: 1fr 1fr; gap: 1.4mm 2.4mm; margin-top: 2.4mm; }
+  .cvb-lines li { padding: .9mm 2.2mm; border-width: .9pt; font-size: 7.6pt; line-height: 1.26; }
+  .cvb-lines .cl-k { font-size: 6.4pt; }
+  .cvb-lines .cl-pg { font-size: 7.4pt; }
+  .cvb-sub { margin-top: 2.6mm; font-size: 10pt; }
   .cover .web-toc { display: none; }
 
   /* 판권: 넘치면 겹치지 않고 쪽이 늘어나게 min-height(빌드 경고로 드러난다) */

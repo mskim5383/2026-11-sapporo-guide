@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" width="1000" height="460" role="img" aria-labelledby="ctp-t ctp-d" font-family="'Noto Sans KR','Noto Sans JP',sans-serif" lang="ko">
+<title id="ctp-t">Nana-Tsu-Mori 가격</title>
+<desc id="ctp-d">Domaine Takahiko Nana-Tsu-Mori Pinot Noir 가격 변화. 2017년 일본 소매 3,700엔, 2026년 2024 빈티지 68,500엔(Bottles Japan, 2차 시장). 해외: 미국 리테일 US$210, K&amp;L 경매 2022 빈티지 입찰 US$410. 2차 시장·해외 리테일 가격이다.</desc>
+<rect width="1000" height="460" fill="#ffffff"/>
+<text x="30" y="40" font-size="28" font-weight="700" fill="#6b1d33">Nana-Tsu-Mori Pinot Noir 한 병 가격</text>
+<text x="230" y="124" font-size="28" font-weight="700" fill="#16191d" text-anchor="end" font-family="'Noto Serif KR','Noto Serif JP',serif">2017년</text>
+<text x="230" y="156" font-size="24" fill="#2b3036" text-anchor="end">일본 소매</text>
+<rect x="250" y="96" width="34.6" height="64" fill="#f6ecee" stroke="#6b1d33" stroke-width="2.5"/>
+<text x="298.6" y="138" font-size="30" font-weight="700" fill="#16191d">3,700엔</text>
+<text x="230" y="234" font-size="28" font-weight="700" fill="#16191d" text-anchor="end" font-family="'Noto Serif KR','Noto Serif JP',serif">2026년</text>
+<text x="230" y="266" font-size="24" fill="#2b3036" text-anchor="end">2024 빈티지</text>
+<rect x="250" y="206" width="640" height="64" fill="#6b1d33" stroke="#6b1d33" stroke-width="2.5"/>
+<text x="876" y="248" font-size="30" font-weight="700" fill="#ffffff" text-anchor="end">68,500엔</text>
+<text x="250" y="362" font-size="24" fill="#2b3036">2026년 값: Bottles Japan(2차 시장). 해외 리테일은</text>
+<text x="250" y="392" font-size="24" font-weight="700" fill="#16191d">미국 US$210, K&amp;L 경매 2022 빈티지 입찰가 US$410</text>
+<text x="250" y="432" font-size="24" fill="#4a5058">2차 시장·해외 리테일 가격이다(검색 요약, 2차). 일본 정가가 아니다.</text>
+<line x1="250" y1="80" x2="250" y2="316" stroke="#16191d" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

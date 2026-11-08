@@ -1,21 +1,21 @@
 {
-  "checkedAt": "2026-11-08T12:25:16.851Z",
+  "checkedAt": "2026-11-08T13:36:13.738Z",
   "rule": "한자·일본어 옆에는 항상 한글 독음(또는 한국식 한자음)",
   "files": {
     "src/parts/01-editor-letter.html": {
-      "total": 6,
+      "total": 7,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/02-overview.html": {
-      "total": 63,
+      "total": 62,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/11-feature-wine.html": {
-      "total": 71,
+      "total": 72,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -33,7 +33,7 @@
       "misses": []
     },
     "src/parts/21-table-lunch.html": {
-      "total": 52,
+      "total": 49,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -45,7 +45,7 @@
       "misses": []
     },
     "src/parts/23-bars.html": {
-      "total": 34,
+      "total": 35,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -57,13 +57,13 @@
       "misses": []
     },
     "src/parts/31-day1.html": {
-      "total": 59,
+      "total": 60,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/32-day2.html": {
-      "total": 67,
+      "total": 50,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -99,7 +99,7 @@
       "misses": []
     },
     "src/parts/44-checklist.html": {
-      "total": 11,
+      "total": 10,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -111,13 +111,13 @@
       "misses": []
     },
     "src/parts/61-show-cards.html": {
-      "total": 81,
+      "total": 88,
       "weak": 0,
       "missing": 0,
       "misses": []
     },
     "src/parts/62-phrases.html": {
-      "total": 19,
+      "total": 17,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -135,7 +135,7 @@
       "misses": []
     },
     "src/front/cover.html": {
-      "total": 10,
+      "total": 5,
       "weak": 0,
       "missing": 0,
       "misses": []
@@ -155,7 +155,7 @@
   },
   "summary": {
     "files": 25,
-    "japaneseRuns": 817,
+    "japaneseRuns": 799,
     "missing": 0
   }
 }
