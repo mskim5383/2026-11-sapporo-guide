@@ -2,7 +2,7 @@
 <title id="cts-t">술 구매 시나리오와 세금</title>
 <desc id="cts-d">술 구매 시나리오별 한국 세금(만원, 추정). A 와인 6 + 사케 4: 구매가 약 50만원, 자진신고 약 15~25만원, 미신고 적발 시 약 23~37만원, 술 무게 약 12.6kg. B 와인 10 + 사케 4: 약 93만원, 신고 26~51만원, 미신고 39~76만원, 19.6kg. C 와인 12 + 사케 6: 약 110만원, 신고 51~63만원, 미신고 76~94만원, 26.4kg.</desc>
 <rect width="1000" height="620" fill="#ffffff"/>
-<text x="30" y="38" font-size="28" font-weight="700" fill="#6b1d33"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">얼마나</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사면</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">얼마</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">만원</tspan>, <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">추정</tspan>)</text>
+<text x="30" y="38" font-size="28" font-weight="700" fill="#6b1d33">얼마나 사면 얼마(만원, 추정)</text>
 <line x1="300" y1="100" x2="300" y2="520" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
 <text x="300" y="88" font-size="24" fill="#4a5058" text-anchor="middle">0</text>
 <line x1="412" y1="100" x2="412" y2="520" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
@@ -17,40 +17,40 @@
 <text x="860" y="88" font-size="24" fill="#4a5058" text-anchor="middle">100</text>
 
 <text x="30" y="160" font-size="40" font-weight="700" fill="#6b1d33" font-family="'Noto Serif KR','Noto Serif JP',serif">A</text>
-<text x="78" y="152" font-size="24" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">와인</tspan> 6 + <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사케</tspan> 4</text>
-<text x="78" y="182" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">술</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">무게</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 12.6kg</text>
-<text x="78" y="212" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 50<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">만원</tspan></text>
+<text x="78" y="152" font-size="24" font-weight="700" fill="#16191d">와인 6 + 사케 4</text>
+<text x="78" y="182" font-size="24" fill="#2b3036">술 무게 약 12.6kg</text>
+<text x="78" y="212" font-size="24" fill="#2b3036">구매가 약 50만원</text>
 <line x1="300" y1="216" x2="580" y2="216" stroke="#2b3036" stroke-width="3" stroke-linecap="round"/>
 <circle cx="580" cy="216" r="6" fill="#2b3036"/>
 <rect x="384" y="134" width="56" height="30" rx="4" fill="#1f4a3f"/>
-<text x="450" y="158" font-size="24" font-weight="700" fill="#1f4a3f" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">신고</tspan> 15~25</text>
+<text x="450" y="158" font-size="24" font-weight="700" fill="#1f4a3f" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">신고 15~25</text>
 <rect x="428.8" y="172" width="78.4" height="30" rx="4" fill="#ffffff" stroke="#b3261e" stroke-width="3"/>
-<text x="517.2" y="196" font-size="24" font-weight="700" fill="#b3261e" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미신고</tspan> 23~37</text>
+<text x="517.2" y="196" font-size="24" font-weight="700" fill="#b3261e" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">미신고 23~37</text>
 <text x="30" y="290" font-size="40" font-weight="700" fill="#6b1d33" font-family="'Noto Serif KR','Noto Serif JP',serif">B</text>
-<text x="78" y="282" font-size="24" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">와인</tspan> 10 + <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사케</tspan> 4</text>
-<text x="78" y="312" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">술</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">무게</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 19.6kg</text>
-<text x="78" y="342" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 93<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">만원</tspan></text>
+<text x="78" y="282" font-size="24" font-weight="700" fill="#16191d">와인 10 + 사케 4</text>
+<text x="78" y="312" font-size="24" fill="#2b3036">술 무게 약 19.6kg</text>
+<text x="78" y="342" font-size="24" fill="#2b3036">구매가 약 93만원</text>
 <line x1="300" y1="346" x2="820.8" y2="346" stroke="#2b3036" stroke-width="3" stroke-linecap="round"/>
 <circle cx="820.8" cy="346" r="6" fill="#2b3036"/>
 <rect x="445.6" y="264" width="140" height="30" rx="4" fill="#1f4a3f"/>
-<text x="595.6" y="288" font-size="24" font-weight="700" fill="#1f4a3f" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">신고</tspan> 26~51</text>
+<text x="595.6" y="288" font-size="24" font-weight="700" fill="#1f4a3f" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">신고 26~51</text>
 <rect x="518.4" y="302" width="207.2" height="30" rx="4" fill="#ffffff" stroke="#b3261e" stroke-width="3"/>
-<text x="735.6" y="326" font-size="24" font-weight="700" fill="#b3261e" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미신고</tspan> 39~76</text>
+<text x="735.6" y="326" font-size="24" font-weight="700" fill="#b3261e" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">미신고 39~76</text>
 <text x="30" y="420" font-size="40" font-weight="700" fill="#6b1d33" font-family="'Noto Serif KR','Noto Serif JP',serif">C</text>
-<text x="78" y="412" font-size="24" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">와인</tspan> 12 + <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사케</tspan> 6</text>
-<text x="78" y="442" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">술</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">무게</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 26.4kg</text>
-<text x="78" y="472" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 110<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">만원</tspan></text>
+<text x="78" y="412" font-size="24" font-weight="700" fill="#16191d">와인 12 + 사케 6</text>
+<text x="78" y="442" font-size="24" fill="#2b3036">술 무게 약 26.4kg</text>
+<text x="78" y="472" font-size="24" fill="#2b3036">구매가 약 110만원</text>
 <line x1="300" y1="476" x2="916" y2="476" stroke="#2b3036" stroke-width="3" stroke-linecap="round"/>
 <circle cx="916" cy="476" r="6" fill="#2b3036"/>
 <rect x="585.6" y="394" width="67.2" height="30" rx="4" fill="#1f4a3f"/>
-<text x="662.8" y="418" font-size="24" font-weight="700" fill="#1f4a3f" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">신고</tspan> 51~63</text>
+<text x="662.8" y="418" font-size="24" font-weight="700" fill="#1f4a3f" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">신고 51~63</text>
 <rect x="725.6" y="432" width="100.8" height="30" rx="4" fill="#ffffff" stroke="#b3261e" stroke-width="3"/>
-<text x="836.4" y="456" font-size="24" font-weight="700" fill="#b3261e" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미신고</tspan> 76~94</text>
+<text x="836.4" y="456" font-size="24" font-weight="700" fill="#b3261e" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">미신고 76~94</text>
 <rect x="30" y="540" width="40" height="24" rx="4" fill="#1f4a3f"/>
-<text x="80" y="560" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">자진신고</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">세액</tspan></text>
+<text x="80" y="560" font-size="24" fill="#16191d">자진신고 세액</text>
 <rect x="260" y="540" width="40" height="24" rx="4" fill="#ffffff" stroke="#b3261e" stroke-width="3"/>
-<text x="310" y="560" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미신고</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">적발</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">시</tspan></text>
+<text x="310" y="560" font-size="24" fill="#16191d">미신고 적발 시</text>
 <line x1="500" y1="552" x2="540" y2="552" stroke="#2b3036" stroke-width="3" stroke-linecap="round"/>
-<text x="550" y="560" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">총</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan></text>
-<text x="30" y="600" font-size="24" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">범위</tspan>: <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">면세</tspan> 4<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">병에</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">어느</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">병이</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">들어가느냐에</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">따라</tspan>. <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">가정</tspan> 1<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">엔</tspan> = 9.3<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">원</tspan>, <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">단가는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">가정값</tspan>.</text>
+<text x="550" y="560" font-size="24" fill="#16191d">총 구매가</text>
+<text x="30" y="600" font-size="24" fill="#4a5058">범위: 면세 4병에 어느 병이 들어가느냐에 따라. 가정 1엔 = 9.3원, 단가는 가정값.</text>
 </svg>

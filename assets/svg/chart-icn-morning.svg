@@ -2,37 +2,37 @@
 <title id="cicn-t">인천 T2 출발 아침</title>
 <desc id="cicn-d">11/23 아침 인천 T2 동선. 07:20 T2 도착, 07:30 3층 프리미엄 체크인 존, 07:45 보안검색·출국심사, 08:00~09:15 프레스티지 라운지 서편(248번 탑승구 맞은편 4층), 09:20 탑승구로, 09:35 탑승, 10:05 KE765 출발. 도착·탑승 시각은 추정.</desc>
 <rect width="1000" height="420" fill="#ffffff"/>
-<text x="30" y="38" font-size="28" font-weight="700" fill="#2f5470">11/23 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">아침</tspan> · <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">인천</tspan> T2 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">프레스티지</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">동선</tspan></text>
+<text x="30" y="38" font-size="28" font-weight="700" fill="#2f5470">11/23 아침 · 인천 T2 프레스티지 동선</text>
 <line x1="50" y1="210" x2="950" y2="210" stroke="#16191d" stroke-width="3" stroke-linecap="round"/>
 <rect x="293.2" y="188" width="364.9" height="44" rx="6" fill="#2f5470"/>
-<text x="475.7" y="219" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">08:00~09:15 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">라운지</tspan></text>
+<text x="475.7" y="219" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">08:00~09:15 라운지</text>
 <circle cx="98.6" cy="210" r="9" fill="#ffffff" stroke="#2f5470" stroke-width="4"/>
 <line x1="98.6" y1="198" x2="98.6" y2="164" stroke="#b9bec5" stroke-width="2.5" stroke-linecap="round"/>
 <text x="98.6" y="128" font-size="26" font-weight="700" fill="#2f5470" text-anchor="middle">07:20</text>
-<text x="98.6" y="156" font-size="24" fill="#16191d" text-anchor="middle">T2 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">도착</tspan></text>
+<text x="98.6" y="156" font-size="24" fill="#16191d" text-anchor="middle">T2 도착</text>
 <circle cx="147.3" cy="210" r="9" fill="#ffffff" stroke="#2f5470" stroke-width="4"/>
 <line x1="147.3" y1="222" x2="147.3" y2="256" stroke="#b9bec5" stroke-width="2.5" stroke-linecap="round"/>
 <text x="147.3" y="284" font-size="26" font-weight="700" fill="#2f5470" text-anchor="middle">07:30</text>
-<text x="147.3" y="312" font-size="24" fill="#16191d" text-anchor="middle">3<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">층</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">프리미엄</tspan></text>
-<text x="147.3" y="340" font-size="24" fill="#16191d" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">체크인</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">존</tspan></text>
+<text x="147.3" y="312" font-size="24" fill="#16191d" text-anchor="middle">3층 프리미엄</text>
+<text x="147.3" y="340" font-size="24" fill="#16191d" text-anchor="middle">체크인 존</text>
 <circle cx="220.3" cy="210" r="9" fill="#ffffff" stroke="#2f5470" stroke-width="4"/>
 <line x1="220.3" y1="198" x2="220.3" y2="164" stroke="#b9bec5" stroke-width="2.5" stroke-linecap="round"/>
 <text x="220.3" y="100" font-size="26" font-weight="700" fill="#2f5470" text-anchor="middle">07:45</text>
-<text x="220.3" y="128" font-size="24" fill="#16191d" text-anchor="middle" lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">보안검색</text>
-<text x="220.3" y="156" font-size="24" fill="#16191d" text-anchor="middle" lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">출국심사</text>
+<text x="220.3" y="128" font-size="24" fill="#16191d" text-anchor="middle">보안검색</text>
+<text x="220.3" y="156" font-size="24" fill="#16191d" text-anchor="middle">출국심사</text>
 <circle cx="682.4" cy="210" r="9" fill="#ffffff" stroke="#2f5470" stroke-width="4"/>
 <line x1="682.4" y1="198" x2="682.4" y2="164" stroke="#b9bec5" stroke-width="2.5" stroke-linecap="round"/>
 <text x="682.4" y="128" font-size="26" font-weight="700" fill="#2f5470" text-anchor="middle">09:20</text>
-<text x="682.4" y="156" font-size="24" fill="#16191d" text-anchor="middle" lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">탑승구로</text>
+<text x="682.4" y="156" font-size="24" fill="#16191d" text-anchor="middle">탑승구로</text>
 <circle cx="755.4" cy="210" r="9" fill="#ffffff" stroke="#2f5470" stroke-width="4"/>
 <line x1="755.4" y1="222" x2="755.4" y2="256" stroke="#b9bec5" stroke-width="2.5" stroke-linecap="round"/>
 <text x="755.4" y="284" font-size="26" font-weight="700" fill="#2f5470" text-anchor="middle">09:35</text>
-<text x="755.4" y="312" font-size="24" fill="#16191d" text-anchor="middle" lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">탑승</text>
+<text x="755.4" y="312" font-size="24" fill="#16191d" text-anchor="middle">탑승</text>
 <circle cx="901.4" cy="210" r="9" fill="#ffffff" stroke="#2f5470" stroke-width="4"/>
 <line x1="901.4" y1="198" x2="901.4" y2="164" stroke="#b9bec5" stroke-width="2.5" stroke-linecap="round"/>
 <text x="901.4" y="128" font-size="26" font-weight="700" fill="#2f5470" text-anchor="middle">10:05</text>
-<text x="901.4" y="156" font-size="24" fill="#16191d" text-anchor="middle">KE765 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">출발</tspan></text>
-<text x="475.7" y="284" font-size="24" fill="#2b3036" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">서편</tspan>(248<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">번</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">탑승구</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">맞은편</tspan> 4F)</text>
-<text x="475.7" y="312" font-size="24" fill="#2b3036" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">칵테일</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">위주로</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">가볍게</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">추정</tspan>)</text>
-<text x="30" y="404" font-size="24" fill="#4a5058">07:20 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">도착</tspan>·09:35 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">탑승은</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">추정</tspan>. <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">우선</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">보안검색</tspan>·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">탑승구</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">번호는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">확인</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">못</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">함</tspan>.</text>
+<text x="901.4" y="156" font-size="24" fill="#16191d" text-anchor="middle">KE765 출발</text>
+<text x="475.7" y="284" font-size="24" fill="#2b3036" text-anchor="middle">서편(248번 탑승구 맞은편 4F)</text>
+<text x="475.7" y="312" font-size="24" fill="#2b3036" text-anchor="middle">칵테일 위주로 가볍게(추정)</text>
+<text x="30" y="404" font-size="24" fill="#4a5058">07:20 도착·09:35 탑승은 추정. 우선 보안검색·탑승구 번호는 확인 못 함.</text>
 </svg>

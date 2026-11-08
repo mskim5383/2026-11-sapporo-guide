@@ -81,3 +81,11 @@
 
 - 51 크레디트의 지도 줄은 SVG `desc` 의 「바탕 © OpenStreetMap contributors」를 보고 「지도 바탕 © OpenStreetMap contributors (ODbL)」로 썼다. `assets/svg/_sources.md` 가 생기면 맞춰 보겠다. OSM 밖의 바탕 자료를 쓰면 알려 달라.
 - (실용 데스크, 20:40) `map-subway` 1000×720·`chart-jo-chome` 1000×520 실물 확인, 감사합니다. 43 은 그래도 3쪽이라 편집장 판단을 요청해 두었다(component-requests). `chart-jo-chome` 의 「大通公園(오도리 공원)이 北·南 경계」 표시는 지도 작가 쪽 근거를 `assets/svg/_sources.md` 에 남겨 주세요(실용 데스크는 공식 문장을 찾지 못했다). 42 `chart-tax-rate` 도 인쇄 web-only 로 바꿨다.
+
+## 편집장 판정 · 2026-11-08 (R1)
+- **`sorachi`·`chitosetsuru` 없음 승인.** 원고에서 figure 를 지운다(W-02·W-34), 경고 0 이 목표.
+- **`yoichi-vineyard`**: `仁木`(니키) 2018-11 사진이고 흐려서 **11 오프너에서 뺀다**(타이포그래피 오프너). 웹 전용 half 로 「산지」 절에, 캡션 「余市(요이치)와 맞닿은 仁木(니키)의 늦가을 밭(2018년 11월).」(W-01).
+- `pinot-noir` 「Pinot Noir 송이. 프랑스 셰르(Cher), 10월.」, `wine-shelf` 「와인 선반의 한 예(삿포로, 2018년 10월).」, `susukino-night` 캡션에 「3월」: **사진 에디터 권고대로.**
+- 새 ID **`takasago-snow`**(12, 웹 전용, 우선 3) 허용. 사진 에디터가 manifest·51 에 넣고, 와인·사케 기자가 12 「따뜻해진 겨울과 양조장」 옆에 `photo half web-only` 로.
+- 아직 원고에 없는 `ramen`·`gyoza`·`tanukikoji`·`tv-tower`·`akarenga`·`ario-sapporo`: 상한 안에 들면 넣는다. 우선은 `akarenga`(32 카드 옆 half) 하나, 나머지는 쓰지 않아도 된다(51 표에서 빌드가 지운다).
+- 지도 작가 앞: M-01~M-07(fix-plan). `chart-jo-chome` 의 「大通公園(오도리 공원) = 北·南 경계」 표시는 `_sources.md` 에 근거가 없으면 이름 라벨만 남긴다.

@@ -1,58 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720" role="img" aria-labelledby="csm-t csm-d" font-family="'Noto Sans KR','Noto Sans JP',sans-serif" lang="ko">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650" role="img" aria-labelledby="csm-t csm-d" font-family="'Noto Sans KR','Noto Sans JP',sans-serif" lang="ko">
 <title id="csm-t">홋카이도 주미</title>
 <desc id="csm-d">홋카이도 주미 연표. 吟風(긴푸) 2000 우량품종, 대립·저단백, 国稀(구니마레)·金滴(긴테키)·北の勝(기타노카쓰)·男山(오토코야마)·五稜(고료). 彗星(스이세이) 2006 우량품종, 단백질이 낮아 담려, 내냉성, 三千櫻(미치자쿠라)·五稜·二世古(니세코)·国士無双(고쿠시무소). きたしずく(기타시즈쿠) 2012 품종 등록·2014-02 우량품종, 교배 雄町(오마치)/ほしのゆめ(호시노유메)//吟風(긴푸), 千歳鶴(지토세쓰루) 사케 뮤지엄 한정 생주·北の勝·三千櫻. 北冴(기타사에) 시험 품종, 上川大雪(가미카와 다이세쓰) 2025-03. 공통 과제: 천립중이 가볍고 단백질이 높다.</desc>
-<rect width="1000" height="720" fill="#ffffff"/>
-<line x1="40" y1="52" x2="960" y2="52" stroke="#b9bec5" stroke-width="3" stroke-linecap="round"/>
-<circle cx="80" cy="52" r="10" fill="#1f4a3f" stroke="#fff" stroke-width="3"/>
-<text x="98" y="38" font-size="24" font-weight="700" fill="#1f4a3f">2000</text>
-<circle cx="330" cy="52" r="10" fill="#1f4a3f" stroke="#fff" stroke-width="3"/>
-<text x="348" y="38" font-size="24" font-weight="700" fill="#1f4a3f">2006</text>
-<circle cx="580" cy="52" r="10" fill="#1f4a3f" stroke="#fff" stroke-width="3"/>
-<text x="598" y="38" font-size="24" font-weight="700" fill="#1f4a3f">2012 · 2014</text>
-<circle cx="850" cy="52" r="10" fill="#1f4a3f" stroke="#fff" stroke-width="3"/>
-<text x="868" y="38" font-size="24" font-weight="700" fill="#1f4a3f"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">시험</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">품종</tspan></text>
-<rect x="30" y="82" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
-<circle cx="70" cy="124" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="70" cy="124" r="9" fill="#1f4a3f"/>
-<text x="104" y="132" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">吟風</text>
-<text x="180" y="132" font-size="26" font-weight="700" fill="#1f4a3f">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">긴푸</tspan>)</text>
-<text x="50" y="170" font-size="24" font-weight="700" fill="#16191d">2000 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">우량품종</tspan></text>
-<text x="50" y="202" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">대립</tspan>·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">저단백</tspan>. <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">도산</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">쌀</tspan></text>
-<text x="50" y="230" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">니혼슈가</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">퍼진</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">계기</tspan></text>
-<text x="50" y="264" font-size="24" font-weight="700" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">쓰는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">곳</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">예</tspan></text>
-<text x="50" y="292" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">国稀</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구니마레</tspan>)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">金滴</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">긴테키</tspan>)</text>
-<text x="50" y="320" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北の勝</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기타노카쓰</tspan>)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">男山</tspan></text>
-<text x="50" y="348" font-size="24" fill="#2b3036">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">오토코야마</tspan>)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">五稜</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">고료</tspan>)</text>
-<rect x="515" y="82" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
-<circle cx="555" cy="124" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="555" cy="124" r="9" fill="#1f4a3f"/>
-<text x="589" y="132" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">彗星</text>
-<text x="665" y="132" font-size="26" font-weight="700" fill="#1f4a3f">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">스이세이</tspan>)</text>
-<text x="535" y="170" font-size="24" font-weight="700" fill="#16191d">2006 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">우량품종</tspan></text>
-<text x="535" y="202" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">단백질이</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">낮아</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">담려</tspan>.</text>
-<text x="535" y="230" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">내냉성</tspan>, <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">대립</tspan>·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">다수확</tspan></text>
-<text x="535" y="264" font-size="24" font-weight="700" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">쓰는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">곳</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">예</tspan></text>
-<text x="535" y="292" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">三千櫻</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미치자쿠라</tspan>)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">五稜</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">고료</tspan>)</text>
-<text x="535" y="320" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">二世古</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">니세코</tspan>)</text>
-<text x="535" y="348" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">国士無双</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">고쿠시무소</tspan>)</text>
-<rect x="30" y="388" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
-<circle cx="70" cy="430" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="70" cy="430" r="9" fill="#1f4a3f"/>
-<text x="104" y="438" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">きたしずく</text>
-<text x="276" y="438" font-size="26" font-weight="700" fill="#1f4a3f">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기타시즈쿠</tspan>)</text>
-<text x="50" y="476" font-size="24" font-weight="700" fill="#16191d">2012 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">등록</tspan> · 2014-02 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">우량품종</tspan></text>
-<text x="50" y="508" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">雄町</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">오마치</tspan>)/<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">ほしのゆめ</tspan></text>
-<text x="50" y="536" font-size="24" fill="#16191d">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">호시노유메</tspan>)//<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">吟風</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">긴푸</tspan>)</text>
-<text x="50" y="570" font-size="24" font-weight="700" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">쓰는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">곳</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">예</tspan></text>
-<text x="50" y="598" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">千歳鶴</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">지토세쓰루</tspan>) <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">뮤지엄</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">한정</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">생주</tspan></text>
-<text x="50" y="626" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北の勝</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기타노카쓰</tspan>)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">三千櫻</tspan></text>
-<text x="50" y="654" font-size="24" fill="#2b3036">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미치자쿠라</tspan>)</text>
-<rect x="515" y="388" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
-<circle cx="555" cy="430" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="555" cy="430" r="9" fill="#1f4a3f"/>
-<text x="589" y="438" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">北冴</text>
-<text x="665" y="438" font-size="26" font-weight="700" fill="#1f4a3f">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기타사에</tspan>)</text>
-<text x="535" y="476" font-size="24" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">시험</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">품종</tspan></text>
-<text x="535" y="508" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">차세대</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">후보</tspan></text>
-<text x="535" y="542" font-size="24" font-weight="700" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">쓰는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">곳</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">예</tspan></text>
-<text x="535" y="570" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">上川大雪</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">가미카와</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">다이세쓰</tspan>)</text>
-<text x="535" y="598" font-size="24" fill="#2b3036">2025-03 「<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北海道産</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北冴</tspan>」</text>
-<text x="535" y="626" font-size="24" fill="#2b3036">(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">홋카이도산</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기타사에</tspan>)</text>
-<text x="30" y="708" font-size="24" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">공통</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">과제</tspan>: <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">천립중이</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">가볍고</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">단백질이</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">높다는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">점이</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">지적된다</tspan>.</text>
+<rect width="1000" height="650" fill="#ffffff"/>
+<rect x="30" y="12" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
+<circle cx="70" cy="54" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="70" cy="54" r="9" fill="#1f4a3f"/>
+<text x="104" y="62" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">吟風</text>
+<text x="180" y="62" font-size="26" font-weight="700" fill="#1f4a3f">(긴푸)</text>
+<text x="50" y="100" font-size="24" font-weight="700" fill="#16191d">2000 우량품종</text>
+<text x="50" y="132" font-size="24" fill="#16191d">대립·저단백. 도산 쌀</text>
+<text x="50" y="160" font-size="24" fill="#16191d">니혼슈가 퍼진 계기</text>
+<text x="50" y="194" font-size="24" font-weight="700" fill="#4a5058">쓰는 곳 예</text>
+<text x="50" y="222" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">国稀</tspan>(구니마레)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">金滴</tspan>(긴테키)</text>
+<text x="50" y="250" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北の勝</tspan>(기타노카쓰)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">男山</tspan></text>
+<text x="50" y="278" font-size="24" fill="#2b3036">(오토코야마)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">五稜</tspan>(고료)</text>
+<rect x="515" y="12" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
+<circle cx="555" cy="54" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="555" cy="54" r="9" fill="#1f4a3f"/>
+<text x="589" y="62" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">彗星</text>
+<text x="665" y="62" font-size="26" font-weight="700" fill="#1f4a3f">(스이세이)</text>
+<text x="535" y="100" font-size="24" font-weight="700" fill="#16191d">2006 우량품종</text>
+<text x="535" y="132" font-size="24" fill="#16191d">단백질이 낮아 담려.</text>
+<text x="535" y="160" font-size="24" fill="#16191d">내냉성, 대립·다수확</text>
+<text x="535" y="194" font-size="24" font-weight="700" fill="#4a5058">쓰는 곳 예</text>
+<text x="535" y="222" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">三千櫻</tspan>(미치자쿠라)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">五稜</tspan>(고료)</text>
+<text x="535" y="250" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">二世古</tspan>(니세코)</text>
+<text x="535" y="278" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">国士無双</tspan>(고쿠시무소)</text>
+<rect x="30" y="318" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
+<circle cx="70" cy="360" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="70" cy="360" r="9" fill="#1f4a3f"/>
+<text x="104" y="368" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">きたしずく</text>
+<text x="276" y="368" font-size="26" font-weight="700" fill="#1f4a3f">(기타시즈쿠)</text>
+<text x="50" y="406" font-size="24" font-weight="700" fill="#16191d">2012 등록 · 2014-02 우량품종</text>
+<text x="50" y="438" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">雄町</tspan>(오마치)/<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">ほしのゆめ</tspan></text>
+<text x="50" y="466" font-size="24" fill="#16191d">(호시노유메)//<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">吟風</tspan>(긴푸)</text>
+<text x="50" y="500" font-size="24" font-weight="700" fill="#4a5058">쓰는 곳 예</text>
+<text x="50" y="528" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">千歳鶴</tspan>(지토세쓰루) 뮤지엄 한정 생주</text>
+<text x="50" y="556" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北の勝</tspan>(기타노카쓰)·<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">三千櫻</tspan></text>
+<text x="50" y="584" font-size="24" fill="#2b3036">(미치자쿠라)</text>
+<rect x="515" y="318" width="455" height="290" rx="6" fill="#ffffff" stroke="#1f4a3f" stroke-width="2.5"/>
+<circle cx="555" cy="360" r="20" fill="none" stroke="#1f4a3f" stroke-width="3"/><circle cx="555" cy="360" r="9" fill="#1f4a3f"/>
+<text x="589" y="368" font-size="32" font-weight="700" fill="#1f4a3f" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">北冴</text>
+<text x="665" y="368" font-size="26" font-weight="700" fill="#1f4a3f">(기타사에)</text>
+<text x="535" y="406" font-size="24" font-weight="700" fill="#16191d">시험 품종</text>
+<text x="535" y="438" font-size="24" fill="#16191d">차세대 후보</text>
+<text x="535" y="472" font-size="24" font-weight="700" fill="#4a5058">쓰는 곳 예</text>
+<text x="535" y="500" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">上川大雪</tspan>(가미카와 다이세쓰)</text>
+<text x="535" y="528" font-size="24" fill="#2b3036">2025-03 「<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北海道産</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">北冴</tspan>」</text>
+<text x="535" y="556" font-size="24" fill="#2b3036">(홋카이도산 기타사에)</text>
+<text x="30" y="638" font-size="24" fill="#4a5058">공통 과제: 천립중이 가볍고 단백질이 높다는 점이 지적된다.</text>
 </svg>
