@@ -99,9 +99,10 @@ const TAB_Y_LOW = 128;
 
 const DEFAULT_SERIF_KINDS = ['letter', 'feature', 'review'];
 
-// 특집 오프너 대체 띠의 큰 숫자(사진이 없을 때만). 원고 id → [숫자, 한 줄 설명]. 값은 BRIEF 1장·2-11 그대로.
+// 특집 오프너 대체 띠의 큰 숫자(사진이 없을 때만). 원고 id → [숫자, 한 줄 설명, 판형]. 값은 BRIEF 1장·2-11 그대로.
+// 'cover' = 이번 호 커버 스토리(11). 사진 없이 가므로(편집장 지시 A-02) 특집 오프너 판형(인쇄 74mm)의 타이포그래피 오프너로 키운다.
 const OPENER_FIGURES = {
-  'feat-wine': ['1991', 'Bruce Gutlove 가 야생효모 발효를 들여온 해'],
+  'feat-wine': ['1991', 'Bruce Gutlove 가 야생효모 발효를 들여온 해', 'cover'],
   'feat-sake': ['17', '홋카이도 주조 조합의 니혼슈 양조장 수'],
 };
 
@@ -483,11 +484,12 @@ export async function assemble(cfg, state, log) {
     const m = k0.match(/^DAY\s*(\d+)$/i);
     const fig = OPENER_FIGURES[head.closest('section.part')?.id || ''];
     const art = document.createElement('div');
-    art.className = 'opener-art' + (m ? ' oa-day' : ' oa-feature');
+    const cover = !m && fig?.[2] === 'cover';
+    art.className = 'opener-art' + (m ? ' oa-day' : ' oa-feature') + (cover ? ' oa-cover' : '');
     art.setAttribute('aria-hidden', 'true');
     art.innerHTML = '<div class="oa-plate">' + (m
       ? `<span class="oa-label">DAY</span><span class="oa-num">${escapeHtml(m[1])}</span>` + (k1 ? `<span class="oa-sub">${escapeHtml(k1)}</span>` : '')
-      : `<span class="oa-label">${escapeHtml(k0)}</span><span class="oa-word">${escapeHtml(k1 || k0)}</span>`) + '</div>' +
+      : `<span class="oa-label">${cover ? 'COVER STORY · ' : ''}${escapeHtml(k0)}</span><span class="oa-word">${escapeHtml(k1 || k0)}</span>`) + '</div>' +
       (!m && fig ? `<div class="oa-fig"><b>${escapeHtml(fig[0])}</b><small>${escapeHtml(fig[1])}</small></div>` : '');
     head.insertBefore(art, head.firstChild);
     head.classList.add('no-photo');

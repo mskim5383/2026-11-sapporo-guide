@@ -228,6 +228,19 @@ h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; text-wrap: balance
 .oa-fig { display: flex; flex-direction: column; align-items: flex-end; text-align: right; max-width: 13em; padding: .4em .7em .35em; background: #fff; }
 .oa-fig b { font-family: var(--serif); font-weight: 700; font-size: 64px; line-height: .9; letter-spacing: -.03em; color: var(--acc); font-variant-numeric: lining-nums; }
 .oa-fig small { margin-top: .45em; font-family: var(--sans); font-size: 13px; font-weight: 500; line-height: 1.35; color: var(--ink-2); }
+/* 커버 스토리(11, 사진 없음): 특집 오프너 판형의 타이포그래피 오프너. 격자 위 큰 흰 판에 「HOKKAIDO / WINE」,
+   오른쪽 아래 숫자 하나(1991). 아래 포도색 굵은 괘선 */
+.opener-art.oa-cover {
+  display: block; min-height: 300px; padding: 18px;
+  border-top: 2px solid var(--ink); border-bottom: 4px solid var(--wine);
+}
+.oa-cover .oa-plate { display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; width: 100%; height: 100%; min-height: 264px; padding: 16px 18px 14px; border-left-width: 4px; }
+.oa-cover .oa-label { letter-spacing: .28em; }
+.oa-cover .oa-word { padding: .35em 0 0; font-size: clamp(34px, 9.6vw, 56px); font-weight: 700; line-height: .95; letter-spacing: .03em;
+  max-width: 5.6em; overflow-wrap: normal; word-break: keep-all; }
+.oa-cover .oa-fig { position: absolute; right: 36px; bottom: 32px; max-width: 12em; padding: 0; background: transparent; }
+.oa-cover .oa-fig b { font-size: clamp(48px, 13vw, 76px); }
+
 /* 사케 특집: 스기다마 동심원(장식, 흰 판 뒤) */
 .oa-plate, .oa-fig { position: relative; z-index: 1; }
 .part#feat-sake .opener-art::after {
@@ -550,6 +563,16 @@ aside.box.tip  { background: #fff; border-color: var(--spruce-line); border-top:
 aside.box.tip h4::before  { content: "요령"; background: var(--spruce); }
 aside.box.note { background: var(--tint); }
 .k-serif aside.box { font-family: var(--sans); --ja: var(--sans-ja); }
+/* 상자 안 표(12 「라벨 읽기」 4열 등): 흰 바탕 위 가는 괘선, 첫 열 원어는 굵게, 소리 칸(.pron)은 얼음색 */
+aside.box .table-wrap { margin: .5em 0 .6em; background: #fff; }
+aside.box table.data { font-size: calc(var(--fs-table) * .96); border-top-width: 1px; }
+aside.box table.data th { font-size: var(--fs-label); letter-spacing: .04em; color: var(--ink-2); white-space: normal; }
+aside.box table.data td:first-child { font-weight: 700; white-space: nowrap; }
+aside.box table.data td:first-child .ja { font-size: 1.06em; }
+aside.box table.data .pron { color: var(--ice); font-weight: 500; white-space: nowrap; }
+aside.box table.data tbody tr:nth-child(even) td { background: var(--tint); }
+aside.box.tip table.data tbody tr:nth-child(even) td { background: var(--spruce-tint); }
+aside.box > p:last-child { font-size: var(--fs-small); color: var(--ink-2); }
 
 aside.sidenote {
   margin: 1.2em 0; padding: .1em 0 .1em .9em;
@@ -674,6 +697,8 @@ dl.fill dd { margin: 0; min-height: 2.4em; border-bottom: 1px solid var(--mut); 
 .show-card .sc-pron { margin: 0 0 .15em; padding-top: .45em; border-top: 1px dotted var(--mut); font-size: var(--fs-card-pron); font-weight: 500; line-height: 1.45; color: var(--ice); }
 .show-card .sc-ko { margin: 0; font-size: var(--fs-card-ko); line-height: 1.5; color: var(--ink-2); }
 .show-card .sc-ja .blank { min-width: 3.2em; }
+/* 합친 카드(문장 둘, 둘째 문장 p.sc-ja 에 옛 id): 둘째 문장 앞에 가는 괘선 */
+.show-card > .sc-ko + .sc-ja { margin-top: .65em; padding-top: .6em; border-top: 1px solid var(--ink); }
 .sc-ja.ja-list { word-break: keep-all; line-break: strict; }   /* ・ 뒤에서만 줄바꿈 */
 /* 짧은 카드 묶음(빌드가 dest-list 없는 카드가 잇달아 오면 감싼다): 인쇄·넓은 화면에서 2단 */
 .sc-grid { display: grid; grid-template-columns: 1fr; gap: 0 1em; }
@@ -1036,6 +1061,8 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
     .oa-fig { flex-direction: row; align-items: baseline; gap: .6em; max-width: none; text-align: left; }
     .oa-fig b { font-size: 40px; }
     .oa-fig small { margin-top: 0; }
+    .oa-cover .oa-fig { flex-direction: column; align-items: flex-end; text-align: right; right: 28px; bottom: 26px; max-width: 10em; }
+    .oa-cover .oa-fig small { margin-top: .3em; }
     .part#feat-sake .opener-art::after { right: 50%; width: 120px; height: 120px; }
     .brand-t { display: none; }
     .topbar-in { position: relative; padding: 6px 12px; gap: 6px; }
@@ -1072,15 +1099,12 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
     .cover-body { grid-template-columns: 1fr 1.3fr; align-items: start; gap: 1.6em; }
     .cover-body .cover-titles { order: -1; }
     /* 반쪽 사진·곁글 뒤에 감아 돌 본문이 없으면 띄우지 않는다. 사진 왼쪽, 캡션 오른쪽 아래 */
-    figure.photo.half:is(
-        :has(+ :is(h2, .place, aside.box, aside.sidenote, figure, .table-wrap, ol.timeline, ol.steps, blockquote.pull, dl.phrases, ul.check, .stats, .memo-lines, .producer, .bottle-grid, .bottle)),
-        :not(:has(~ :not(.memo-lines)))) {
+    figure.photo.half:not(:has(+ p + p)) {
       float: none; clear: both; width: auto; margin: 1.6em 0;
       display: grid; grid-template-columns: 58% 1fr; column-gap: 1.2em; align-items: end;
     }
-    aside.sidenote:is(
-        :has(+ :is(h2, .part-head, .place, aside.box, figure, .table-wrap, ol.timeline, ol.steps, dl.phrases, .stats, .producer, .bottle-grid)),
-        :not(:has(~ :not(.memo-lines)))) {
+    /* 곁글은 뒤에 문단이 둘 이상 이어질 때만 띄운다(감아 돌 본문이 짧으면 곁글만 쪽 끝에 남는다) */
+    aside.sidenote:not(:has(+ p + p)) {
       float: none; clear: both; width: auto; margin: 1.4em 0;
     }
   }
@@ -1290,20 +1314,14 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   figure.photo.full img { max-height: 100mm; }
   figure.photo.half { float: right; width: 46%; margin: 1mm 0 3mm 4mm; }
   figure.photo.half img { max-height: 70mm; object-fit: cover; }
-  /* 반쪽 사진 뒤에 감아 돌 본문이 없으면(다음이 제목·카드·상자·표 등, 또는 원고 끝) 사진은 왼쪽 반, 캡션은 오른쪽 아래.
-     (원고 끝 = 뒤에 인쇄 패스 앵커 말고는 형제가 없음. :last-child 는 패스와 최종본 배치가 달라진다) */
-  figure.photo.half:is(
-      :has(+ :is(h2, .place, aside.box, figure, .table-wrap, ol.timeline, ol.steps, blockquote.pull, dl.phrases, ul.check, .stats, .memo-lines, .producer, .bottle-grid, .bottle)),
-      :not(:has(~ :not(.pdf-anchor))):not(aside.sidenote + *)) {
+  /* 반쪽 사진은 뒤에 문단이 둘 이상 이어질 때만 오른쪽에 띄운다. 그 밖(제목·카드·상자·표, 짧은 한 문단, 원고 끝)에는
+     사진은 왼쪽 반, 캡션은 오른쪽 아래(띄운 사진이 쪽 끝에 안 들어가 사진만 다음 쪽으로 넘어가지 않게) */
+  figure.photo.half:not(:has(+ p + p)):not(aside.sidenote + *) {
     float: none; clear: both; width: auto; margin: 4mm 0;
     display: grid; grid-template-columns: 52% 1fr; column-gap: 4mm; align-items: end;
   }
-  figure.photo.half:is(
-      :has(+ :is(h2, .place, aside.box, figure, .table-wrap, ol.timeline, ol.steps, blockquote.pull, dl.phrases, ul.check, .stats, .memo-lines, .producer, .bottle-grid, .bottle)),
-      :not(:has(~ :not(.pdf-anchor))):not(aside.sidenote + *)) img { max-height: 50mm; }
-  figure.photo.half:is(
-      :has(+ :is(h2, .place, aside.box, figure, .table-wrap, ol.timeline, ol.steps, blockquote.pull, dl.phrases, ul.check, .stats, .memo-lines, .producer, .bottle-grid, .bottle)),
-      :not(:has(~ :not(.pdf-anchor))):not(aside.sidenote + *)) figcaption { margin: 0; padding-top: 1.6mm; border-top: .6pt solid var(--ink); }
+  figure.photo.half:not(:has(+ p + p)):not(aside.sidenote + *) img { max-height: 50mm; }
+  figure.photo.half:not(:has(+ p + p)):not(aside.sidenote + *) figcaption { margin: 0; padding-top: 1.6mm; border-top: .6pt solid var(--ink); }
   aside.sidenote + figure.photo.half:not(:has(~ :not(.pdf-anchor))) { float: none; width: 62%; margin: 4mm 0 0; }
   figure.map .fig-svg, figure.chart .fig-svg { max-height: 125mm; }
   figure.map.short .fig-svg, figure.chart.short .fig-svg { max-height: 100mm; }
@@ -1311,8 +1329,9 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   figure.map { padding: 2mm; border-width: .5pt; }
   figure.chart { padding-top: 2mm; border-top-width: .6pt; }
   aside.sidenote { float: right; clear: right; width: 38mm; margin: 1mm 0 3mm 4mm; padding: 1.4mm 0 0; border-left: 0; border-top: 1pt solid var(--rice); }
-  aside.sidenote:has(+ :is(h2, .part-head, .place, aside.box, figure.map, figure.chart, .table-wrap, ol.timeline, ol.steps, dl.phrases, .stats, .producer, .bottle-grid)),
-  aside.sidenote:not(:has(~ :not(.pdf-anchor))) {
+  /* 곁글은 뒤에 문단이 둘 이상 이어질 때만 바깥쪽에 띄운다. R1 검수 빌드에서 24 끝 곁글이 짧은 한 문단 옆에 떠 있다가
+     쪽 끝에 안 들어가 곁글만 다음 쪽으로 넘어갔다(24 가 한 쪽 늘었다). 그 밖에는 판면 폭, 왼쪽 술쌀색 괘선 */
+  aside.sidenote:not(:has(+ p + p)) {
     float: none; clear: both; width: auto; margin: 3mm 0 3.5mm; padding: .4mm 0 .4mm 3mm; border-top: 0; border-left: 1pt solid var(--rice);
   }
   .table-wrap { overflow: visible; margin: 3mm 0 3.5mm; }
@@ -1331,8 +1350,10 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   .part[data-kind="credits"] table.data td:nth-child(n+3) { white-space: nowrap; }
   .part[data-kind="credits"] .table-wrap { margin: 2mm 0 2.5mm; }
   .part[data-kind="credits"] > p { font-size: 8.5pt; line-height: 1.5; }
-  aside.box .table-wrap { margin: 1.5mm 0 2mm; }
-  aside.box table.data th, aside.box table.data td { padding: .8mm 1.4mm; }
+  aside.box .table-wrap { margin: 1.5mm 0 1.8mm; }
+  aside.box table.data th, aside.box table.data td { padding: .75mm 1.4mm; }
+  aside.box table.data { font-size: 8.5pt; line-height: 1.32; }
+  aside.box > p:last-child { font-size: 8.5pt; line-height: 1.45; }
   table.data td.nw { white-space: nowrap; }
   table.data tr.group { break-after: avoid; }
   table.data tbody.grp { break-inside: avoid; }
@@ -1376,15 +1397,16 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   .show-card.call .sc-when { break-after: avoid; }
   /* 짧은 카드 묶음: 2단 행 격자. (2단 다단 column 도 시험했으나 Chrome 인쇄가 쪽마다 단을 반쯤만 채워 더 길어졌다) */
   .sc-grid { grid-template-columns: 1fr 1fr; column-gap: 2.6mm; }
-  .sc-grid > .show-card { margin-bottom: 2.6mm; }
+  .sc-grid > .show-card { margin-bottom: 2.2mm; }
   /* 택시 목적지 카드는 한 쪽을 넘을 수 있다: 목록 칸 사이에서만 쪽을 넘기고 주소 한 칸은 가르지 않는다.
      (카드 전체에 avoid 가 걸린 채 한 쪽을 넘으면 Chrome 이 안쪽 avoid 까지 무시해 주소 가운데서 갈랐다) */
   .show-card.dest { padding-bottom: 1.4mm; break-inside: auto; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .show-card.dest > .sc-when, .show-card.dest > .sc-ja, .show-card.dest > .sc-pron { break-after: avoid; }
   .show-card .sc-when { margin-bottom: 1.2mm; padding: .2mm 1.6mm 0; }
-  .show-card .sc-ja { margin-bottom: 1mm; line-height: 1.34; }
-  .show-card .sc-pron { padding-top: 1mm; border-top-width: .6pt; line-height: 1.38; }
-  .show-card .sc-ko { line-height: 1.42; }
+  .show-card .sc-ja { margin-bottom: .9mm; line-height: 1.3; }
+  .show-card .sc-pron { padding-top: .9mm; border-top-width: .6pt; line-height: 1.32; margin-bottom: .3mm; }
+  .show-card .sc-ko { line-height: 1.36; }
+  .show-card > .sc-ko + .sc-ja { margin-top: 1.6mm; padding-top: 1.5mm; border-top-width: .6pt; }
   ol.call-lines > li { padding: 1.6mm 0 1.4mm 6mm; border-top-width: .4pt; }
   ol.call-lines > li::before { width: 4mm; height: 4mm; top: 2.1mm; }
   ol.call-lines > li:first-child { padding-top: .3mm; }
@@ -1398,7 +1420,7 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
   dl.dest-list dd { font-size: 15pt; line-height: 1.28; break-inside: avoid; }
   dl.dest-list dt { break-inside: avoid; break-after: avoid; }
   dl.dest-list dd .blank.wide { height: 7mm; }
-  .part[data-kind="cards"] h2 { margin-top: .7em; }
+  .part[data-kind="cards"] h2 { margin-top: .6em; margin-bottom: .4em; }
 
   /* ---- 오프너: 사진(Day 62mm·특집 78mm, 판면 폭) + 키커·제목·dek + 「한눈에」 뒤로 본문이 같은 쪽에서 이어진다.
      러닝헤드·여백 탭은 다른 쪽과 같다. 「한눈에」는 쪽 사이에서 가르지 않는다. ---- */
@@ -1414,6 +1436,13 @@ ul.check > li.done::before { background: var(--ice); border-color: var(--ice); b
     background-size: 5mm 5mm, auto; border-top-width: .7pt; border-bottom-width: .7pt; break-after: avoid;
   }
   .opener-art.oa-feature { height: 40mm; }
+  .opener-art.oa-cover { display: block; height: 74mm; min-height: 0; padding: 4mm; border-top-width: 1pt; border-bottom-width: 1.6mm; }
+  .oa-cover .oa-plate { display: flex; height: 100%; min-height: 0; padding: 4mm 5mm 3.4mm; border-left-width: 1.2mm; }
+  .oa-cover .oa-label { font-size: 8pt; }
+  .oa-cover .oa-word { font-size: 40pt; line-height: .94; padding: 3mm 0 0; }
+  .oa-cover .oa-fig { right: 9mm; bottom: 7.4mm; max-width: 50mm; padding: 0; }
+  .oa-cover .oa-fig b { font-size: 46pt; }
+  .oa-cover .oa-fig small { font-size: 8pt; margin-top: 1.4mm; }
   .oa-plate { display: flex; align-items: baseline; gap: 0 2.2mm; border-left-width: 1mm; padding: 1.4mm 3.6mm .6mm 2.6mm; }
   .oa-label { font-size: 8.5pt; letter-spacing: .3em; }
   .oa-num { font-size: 36pt; line-height: .9; }
