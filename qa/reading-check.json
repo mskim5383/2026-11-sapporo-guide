@@ -1,0 +1,149 @@
+{
+  "checkedAt": "2026-11-08T11:34:52.235Z",
+  "rule": "한자·일본어 옆에는 항상 한글 독음(또는 한국식 한자음)",
+  "files": {
+    "src/parts/02-overview.html": {
+      "total": 74,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/11-feature-wine.html": {
+      "total": 67,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/12-feature-sake.html": {
+      "total": 73,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/13-drink-ten.html": {
+      "total": 46,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/21-table-lunch.html": {
+      "total": 51,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/22-table-dinner.html": {
+      "total": 66,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/23-bars.html": {
+      "total": 36,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/24-bottles.html": {
+      "total": 45,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/31-day1.html": {
+      "total": 73,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/32-day2.html": {
+      "total": 75,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/33-day3.html": {
+      "total": 52,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/34-day4.html": {
+      "total": 10,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/41-prestige.html": {
+      "total": 6,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/42-tax.html": {
+      "total": 5,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/43-transport.html": {
+      "total": 39,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/44-checklist.html": {
+      "total": 10,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/61-show-cards.html": {
+      "total": 106,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/parts/62-phrases.html": {
+      "total": 25,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/front/back-cover.html": {
+      "total": 0,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/front/colophon.html": {
+      "total": 4,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/front/cover.html": {
+      "total": 10,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/front/memo-page.html": {
+      "total": 0,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    },
+    "src/front/toc.html": {
+      "total": 0,
+      "weak": 0,
+      "missing": 0,
+      "misses": []
+    }
+  },
+  "summary": {
+    "files": 23,
+    "japaneseRuns": 873,
+    "missing": 0
+  }
+}

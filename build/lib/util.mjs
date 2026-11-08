@@ -149,7 +149,7 @@ export function isMain(metaUrl) {
 export function outputNames(book = {}) {
   return {
     html: book.output?.html || 'index.html',
-    pdf: book.output?.pdf || 'nagoya-guide-a5.pdf',
-    booklet: book.output?.booklet || 'nagoya-guide-booklet-a4.pdf',
+    pdf: book.output?.pdf || 'sapporo-guide-a5.pdf',
+    booklet: book.output?.booklet || 'sapporo-guide-booklet-a4.pdf',
   };
 }

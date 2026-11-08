@@ -41,7 +41,7 @@ function hasReadingNear(el) {
 function paired(s, i, j) {
   const after = s.slice(j);
   // 1) 바로 뒤 괄호 안 한글
-  const m1 = after.match(/^[\s]*[(（]([^)）]*)[)）]/);
+  const m1 = after.match(/^[\s！!？?」』]*[(（]([^)）]*)[)）]/);
   if (m1 && HANGUL.test(m1[1])) return true;
   // 1b) 원어 여러 개가 띄어쓰기로 이어진 뒤 한 괄호로 함께 읽은 경우(例: 岐阜県 羽島市(기후현 하시마시))
   const m1b = after.match(/^[\s·・0-9０-９A-Za-z\-\u3040-\u30ff\u3400-\u9fff々ー]*[(（]([^)）]*)[)）]/);
@@ -64,9 +64,25 @@ function paired(s, i, j) {
   return false;
 }
 
-function leafBlocks(root) {
-  const all = [...root.querySelectorAll(BLOCK)];
-  return all.filter(el => !el.querySelector(BLOCK));
+// 문맥 단위: 가장 가까운 블록 요소. 그 안의 "자기 글자"(더 안쪽 블록에 속하지 않은 글자)만 검사하되,
+// 짝 판정은 블록 전체 글자에서 한다. 그래서 span.dish 처럼 블록이 아닌 요소 안 일본어도 빠지지 않는다.
+const CTX = 'p,li,td,th,dd,dt,h1,h2,h3,h4,h5,h6,figcaption,blockquote,caption,summary,div,section,aside,header,footer,figure,dl,ol,ul,table,tr,body';
+
+function ownRanges(el) {
+  // el.textContent 안에서 el 이 가장 가까운 CTX 인 글자 구간들
+  const ranges = [];
+  let off = 0;
+  (function walk(n, own) {
+    for (const c of n.childNodes) {
+      if (c.nodeType === 3) {
+        if (own) ranges.push([off, off + c.data.length, c.parentElement]);
+        off += c.data.length;
+      } else if (c.nodeType === 1) {
+        walk(c, own && !(c.matches && c.matches(CTX)));
+      }
+    }
+  })(el, true);
+  return ranges;
 }
 
 function checkFile(file) {
@@ -76,16 +92,21 @@ function checkFile(file) {
   const misses = [];
   let total = 0, weak = 0;
   const seen = new Set();
-  for (const el of leafBlocks(document.body)) {
-    const s = el.textContent.replace(/\s+/g, ' ');
+  const ctxEls = [document.body, ...document.body.querySelectorAll(CTX)];
+  for (const el of ctxEls) {
+    const ranges = ownRanges(el);
+    if (!ranges.length) continue;
+    const s = el.textContent;
+    JA.lastIndex = 0;
     if (!JA.test(s)) { JA.lastIndex = 0; continue; }
     JA.lastIndex = 0;
-    const near = hasReadingNear(el);
-    if (near === 'skip') continue;
     let m;
     while ((m = JA.exec(s))) {
+      const r = ranges.find(([a, b]) => m.index >= a && m.index < b);
+      if (!r) continue; // 더 안쪽 블록의 글자: 그 블록에서 검사한다
       total++;
-      if (near === true) continue;
+      const near = hasReadingNear(r[2] || el);
+      if (near === 'skip' || near === true) continue;
       const p = paired(s, m.index, m.index + m[0].length);
       if (p === true) continue;
       if (p === 'weak') {
@@ -93,7 +114,8 @@ function checkFile(file) {
         weak++;
         if (args.includes('--loose')) continue;
       }
-      const ctx = s.slice(Math.max(0, m.index - 12), Math.min(s.length, m.index + m[0].length + 14));
+      const flat = s.replace(/\s+/g, ' ');
+      const ctx = s.slice(Math.max(0, m.index - 12), Math.min(s.length, m.index + m[0].length + 14)).replace(/\s+/g, ' ');
       const key = m[0] + '|' + ctx;
       if (seen.has(key)) continue;
       seen.add(key);

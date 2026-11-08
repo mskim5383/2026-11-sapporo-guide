@@ -1,42 +1,45 @@
-<!-- 표지(1쪽). 마스트헤드 NAGOYA + 커버 라인 6개(BRIEF 1장 그대로) + 제목·부제·시리즈·날짜.
-     사진(cover-castle)이 없으면 빌드가 figure 를 빼고, CSS(:has)가 金鯱 대체 그래픽을 보여 준다.
-     사진 위에는 글자를 얹지 않는다(판 나눔). 세로 키커만 사진 오른쪽 위 흰 띠 위에 둔다.
-     일본어 옆에는 매번 한글 소리(발행인 지시 2026-11-08): 제호 아래 名古屋(나고야), 키커, 커버 라인의 大甚(다이진). -->
+<!-- 표지(1쪽). 마스트헤드 SAPPORO + 札幌(삿포로), 커버 라인 6개(BRIEF 1장 그대로) + 제목·부제·시리즈·날짜.
+     사진(cover-sapporo)이 없으면 빌드가 figure 를 빼고, CSS(:has)가 바둑판 격자 대체 그래픽(숙소 좌표 北1西7)을 보여 준다.
+     격자는 개념도다: 가로 굵은 선에서 북쪽으로 1조, 세로 굵은 선에서 서쪽으로 7초메인 칸에 숙소 점을 찍었다(기준선 이름은 쓰지 않는다).
+     사진 위에는 글자를 얹지 않는다(판 나눔). 세로 키커만 오른쪽 위 흰 띠 위에 둔다.
+     커버 라인 끝 쪽번호는 빌드 쪽 참조(웹에서는 숨는다). 표지 아래 18mm 안에는 숫자만 있는 글자를 두지 않는다(중철 검사가 폴리오로 읽는다).
+     일본어 옆에는 매번 한글 소리(발행인 지시 2026-11-08). -->
 <section class="front cover" id="top" aria-label="표지">
   <div class="cover-top"><span>{{series}}</span><span>{{dates}}</span></div>
-  <h1 class="masthead"><span class="mh-en">{{masthead}}</span><span class="mh-ja"><span><span lang="ja">名古屋</span><span class="mh-ko">(나고야)</span></span></span></h1>
+  <h1 class="masthead"><span class="mh-en">{{masthead}}</span><span class="mh-ja"><span><span lang="ja">{{mastheadJa}}</span><span class="mh-ko">({{mastheadKo}})</span></span></span></h1>
 
   <div class="cover-visual">
-    <figure class="photo cover-photo" data-img="cover-castle"><figcaption></figcaption></figure>
+    <figure class="photo cover-photo" data-img="cover-sapporo"><figcaption></figcaption></figure>
     <div class="cover-fallback">
-      <svg class="shachi" viewBox="0 0 100 100" role="img" aria-label="긴샤치(金鯱) 그림">
-        <path class="sh-body" d="M60 41L73 36L66 47Z M66 55L78 52L69 61Z M56 27L66 20L60 32Z"/>
-        <path class="sh-body" d="M14 84C14 76 20 69 27 66C31 57 33 46 38 34C40 28 42 24 44 20L26 6L47 12L52 0L58 13L74 4L58 23C61 33 66 45 68 58C70 69 67 81 59 89C52 95 40 96 31 93C25 91 19 89 14 84Z"/>
-        <path class="sh-body" d="M38 74L24 80L36 82Z"/>
-        <circle class="sh-eye" cx="27" cy="74" r="2.6"/>
-        <path class="sh-line" d="M15 84q8 3 14 0M46 40q6 2 12 -1M44 50q8 2 16 -1M43 60q9 2 18 -1"/>
+      <svg class="cf-grid" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <path class="g-minor" d="M0 40H600M0 80H600M0 120H600M0 160H600M0 240H600M0 280H600M0 320H600M0 360H600M40 0V400M80 0V400M120 0V400M160 0V400M200 0V400M240 0V400M280 0V400M320 0V400M360 0V400M440 0V400M480 0V400M520 0V400M560 0V400"/>
+        <rect class="g-block" x="121" y="161" width="38" height="38"/>
+        <path class="g-axis" d="M0 200H600M400 0V400"/>
+        <circle class="g-ring" cx="140" cy="180" r="27"/>
+        <circle class="g-star" cx="140" cy="180" r="9"/>
       </svg>
+      <p class="cf-label"><b><span lang="ja">北1西7</span><span class="ck-ko">(기타 1 니시 7)</span></b><span lang="ja">由縁 札幌</span>(유엔 삿포로), 3박의 자리</p>
     </div>
-    <p class="cover-kicker"><span lang="ja">名古屋</span><span class="ck-ko">(나고야)</span> <span class="ck-dot">·</span> <span lang="ja">城下町</span><span class="ck-ko">(조카마치)</span></p>
+    <p class="cover-kicker"><span lang="ja">札幌</span><span class="ck-ko">(삿포로)</span> <span class="ck-dot">·</span> <span lang="ja">新酒</span><span class="ck-ko">(신주)</span></p>
   </div>
 
   <div class="cover-body">
+    <ol class="cover-lines" aria-label="이번 호에서">
+      <li><span class="cl-t"><span class="cl-k">특집</span><span lang="ja">余市</span>(요이치)에서 <span lang="ja">空知</span>(소라치)까지, 홋카이도 컬트 와인</span><span class="cl-pg pageref-wrap"><span data-pageref-file="11-feature-wine.html"></span></span></li>
+      <li><span class="cl-t"><span lang="ja">新酒</span>(신주)가 나오는 주, 홋카이도 사케 지도</span><span class="cl-pg pageref-wrap"><span data-pageref-file="12-feature-sake.html"></span></span></li>
+      <li><span class="cl-t">마셔 볼 것 10, 삿포로에서 만날 확률까지</span><span class="cl-pg pageref-wrap"><span data-pageref-file="13-drink-ten.html"></span></span></li>
+      <li><span class="cl-t">한도를 넘겨 산다: 와인·사케 세금 계산과 자진신고</span><span class="cl-pg pageref-wrap"><span data-pageref-file="42-tax.html"></span></span></li>
+      <li><span class="cl-t">줄 서는 시각표, <span lang="ja">木多郎</span>(기타로) 11:15 · <span lang="ja">鍾馗</span>(쇼키) 10:45</span><span class="cl-pg pageref-wrap"><span data-pageref-file="21-table-lunch.html"></span></span></li>
+      <li><span class="cl-t">밤마다 고르는 바 넷, 보여 주는 일본어 카드</span><span class="cl-pg pageref-wrap"><span data-pageref-file="23-bars.html"></span></span></li>
+    </ol>
     <div class="cover-titles">
-      <p class="cover-title">성 아래<br>닷새</p>
+      <p class="cover-title">북쪽의 잔</p>
       <p class="cover-sub">{{subtitle}}</p>
     </div>
-    <ol class="cover-lines" aria-label="이번 호에서">
-      <li><span class="cl-k">특집</span>성 아래 마을, 나고야</li>
-      <li>11/29, 16:05에 나서야 17:00 장어에 닿는다</li>
-      <li>진열대에서 고르는 백 년 이자카야 <span lang="ja">大甚</span>(다이진)</li>
-      <li>가금류 알러지, 누가 무엇을 먹을 수 있나</li>
-      <li>보여 주기만 하면 되는 일본어 카드</li>
-      <li>새 면세 환급, 공항에서 할 순서</li>
-    </ol>
   </div>
 
   <nav class="web-toc web-only" aria-label="차례">
-    <p class="web-toc-h">차례</p>
+    <p class="web-toc-h">이번 호</p>
     <div data-web-toc></div>
     <p class="web-dl"><a href="{{pdf}}">A5 PDF 내려받기</a> · <a href="{{booklet}}">A4 중철 인쇄용 PDF</a></p>
   </nav>

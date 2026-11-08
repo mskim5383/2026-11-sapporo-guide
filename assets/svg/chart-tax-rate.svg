@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" role="img" aria-labelledby="ctr-t ctr-d" font-family="'Noto Sans KR','Noto Sans JP',sans-serif" lang="ko">
+<title id="ctr-t">술 세금 구성</title>
+<desc id="ctr-d">구매가 100 에 붙는 한국 세금(와인 기준, 추정). 관세 15, 주세 34.5, 교육세 3.45, 부가세 15.3, 합 약 68.2. 자진신고하면 관세 30% 경감으로 약 63.7, 미신고 적발 시 가산세 40% 로 약 95.5. 사케는 와인과 같다고 가정(추정).</desc>
+<rect width="1000" height="620" fill="#ffffff"/>
+<text x="30" y="38" font-size="28" font-weight="700" fill="#6b1d33"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan> 100 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">에</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">붙는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">한국</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">세금</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">와인</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기준</tspan>, <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">추정</tspan>)</text>
+<text x="182" y="134" font-size="26" font-weight="700" fill="#16191d" text-anchor="end" lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">세목별</text>
+<rect x="200" y="92" width="300" height="64" fill="#f4f6f8" stroke="#b9bec5" stroke-width="2"/>
+<text x="350" y="134" font-size="24" fill="#2b3036" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan> 100</text>
+<rect x="500" y="92" width="45" height="64" fill="#6b1d33"/>
+<rect x="545" y="92" width="103.5" height="64" fill="#8d3a52"/>
+<text x="596.8" y="120" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle" lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">주세</text>
+<text x="596.8" y="148" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">34.5</text>
+<rect x="648.5" y="92" width="10.4" height="64" fill="#b06b7f"/>
+<rect x="658.9" y="92" width="45.9" height="64" fill="#c995a4"/>
+<text x="718.8" y="136" font-size="28" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 68.2</text>
+<text x="182" y="332" font-size="26" font-weight="700" fill="#16191d" text-anchor="end" lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">자진신고</text>
+<rect x="200" y="290" width="300" height="64" fill="#f4f6f8" stroke="#b9bec5" stroke-width="2"/>
+<text x="350" y="332" font-size="24" fill="#2b3036" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan> 100</text>
+<rect x="500" y="290" width="191.1" height="64" fill="#1f4a3f"/>
+<text x="595.5" y="318" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">관세</tspan> 30% <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">경감</tspan></text>
+<text x="595.5" y="346" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">63.7</text>
+<text x="705.1" y="334" font-size="28" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 63.7</text>
+<text x="182" y="456" font-size="26" font-weight="700" fill="#16191d" text-anchor="end"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미신고</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">적발</tspan></text>
+<rect x="200" y="414" width="300" height="64" fill="#f4f6f8" stroke="#b9bec5" stroke-width="2"/>
+<text x="350" y="456" font-size="24" fill="#2b3036" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">구매가</tspan> 100</text>
+<rect x="500" y="414" width="286.5" height="64" fill="#b3261e"/>
+<text x="643.2" y="442" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">가산세</tspan> 40%</text>
+<text x="643.2" y="470" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">95.5</text>
+<text x="800.5" y="458" font-size="28" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">약</tspan> 95.5</text>
+<rect x="200" y="180" width="24" height="24" fill="#6b1d33"/>
+<text x="232" y="200" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">관세</tspan> 15</text>
+<rect x="341.1" y="180" width="24" height="24" fill="#8d3a52"/>
+<text x="373.1" y="200" font-size="24" font-weight="700" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">주세</tspan> 34.5</text>
+<rect x="508.6" y="180" width="24" height="24" fill="#b06b7f"/>
+<text x="540.6" y="200" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">교육세</tspan> 3.45</text>
+<rect x="700.2" y="180" width="24" height="24" fill="#c995a4"/>
+<text x="732.2" y="200" font-size="24" fill="#16191d"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">부가세</tspan> 15.3</text>
+<text x="200" y="236" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">순서대로</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">붙고</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">앞</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">세금이</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">다음</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">세금의</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기준에</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">들어간다</tspan></text>
+<text x="30" y="548" font-size="24" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">관세</tspan> 15% → <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">주세</tspan> 30%(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">과세가격</tspan>+<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">관세</tspan>) → <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">교육세</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">주세의</tspan> 10%) → <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">부가세</tspan> 10%</text>
+<text x="30" y="580" font-size="24" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">법령</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">원문을</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">확인하지</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">못한</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">추정</tspan>. <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사케는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">와인과</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">같다고</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">가정</tspan>. <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">미신고</tspan> = 68.2 × 1.4</text>
+</svg>

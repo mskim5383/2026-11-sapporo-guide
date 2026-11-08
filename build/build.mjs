@@ -224,6 +224,18 @@ export async function build(args = parseArgs()) {
       const pageText = (pdfPages[p - 1]?.text || '').replace(/\s+/g, '');
       if (!pageText.includes(title)) log.warn(`${id}: 제목 "${title}…" 이 ${p}쪽에서 안 보입니다`);
     }
+    // 쪽 참조 대조(나고야판 R3): 원고 안 요소를 가리키는 쪽 참조마다, 찍힌 쪽번호의 쪽에 대상의 앞 글자가 실제로 있는지 최종 PDF 로 본다.
+    const flat = (t) => t.replace(/\s+/g, '');
+    const refCheck = [];
+    for (const id of res.info.refTargets || []) {
+      const p = state.pages[id];
+      const lead = flat(res.info.refLead?.[id] || '');
+      if (!p || !lead) continue;
+      const ok = flat(pdfPages[p - 1]?.text || '').includes(lead);
+      const foundOn = ok ? [p] : pdfPages.filter((pg) => flat(pg.text).includes(lead)).map((pg) => pg.num);
+      refCheck.push({ id, page: p, lead, ok, ...(ok ? {} : { foundOn }) });
+      if (!ok) log.warn(`쪽 참조 #${id}: ${p}쪽으로 찍혔는데 그 쪽에 「${lead}」가 없습니다(있는 쪽: ${foundOn.join(', ') || '없음'})`);
+    }
     const max = book.pages?.max || 72;
     const target = book.pages?.target || 64;
     if (n > max) log.warn(`총 ${n}쪽이 최대 ${max}쪽을 넘습니다`);
@@ -232,6 +244,8 @@ export async function build(args = parseArgs()) {
     const pick = (keep) => Object.fromEntries(Object.entries(state.pages).filter(([id]) => keep(refSet.has(id))));
     report.pages = { total: n, target, max, start: pick((r) => !r), refs: pick((r) => r), fillersBeforeRecto: state.fillers, endFillers: state.endFillers };
     report.memoLines = (res.info.memo || []).map((m) => ({ file: m.file, asked: m.asked, printed: m.lines, ...(m.trailing ? { tailMemo: true } : {}), ...(m.dropped ? { dropped: true } : {}) }));
+    report.refCheck = refCheck;
+    console.log(`쪽 참조 대조: ${refCheck.filter((r) => r.ok).length}/${refCheck.length} 맞음`);
     if (res.info.creditsDropped) console.log(`크레디트: 책에 안 실린 사진 ${res.info.creditsDropped}행을 뺐습니다`);
   } finally {
     await browser.close();

@@ -1,21 +1,21 @@
-<!-- 뒤표지(인쇄 전용). 웹판 QR, 책의 구성 한 줄, 카드 쪽 안내(쪽번호는 빌드 쪽 참조), 비매품. -->
+<!-- 뒤표지(인쇄 전용, 64쪽). 웹판 QR, 책의 구성 한 줄, 보여 주는 카드·짧은 말 쪽 안내(쪽번호는 빌드 쪽 참조), 비매품.
+     아래 18mm 안에는 숫자만 있는 글자를 두지 않는다(중철 검사가 폴리오로 읽는다). -->
 <section class="front back-cover print-only" id="back-cover" aria-label="뒤표지">
   <div class="bc-top"><span>{{series}}</span><span>{{dates}}</span></div>
   <div class="bc-mark">
-    <svg class="shachi" viewBox="0 0 100 100" aria-hidden="true">
-      <path class="sh-body" d="M60 41L73 36L66 47Z M66 55L78 52L69 61Z M56 27L66 20L60 32Z"/>
-      <path class="sh-body" d="M14 84C14 76 20 69 27 66C31 57 33 46 38 34C40 28 42 24 44 20L26 6L47 12L52 0L58 13L74 4L58 23C61 33 66 45 68 58C70 69 67 81 59 89C52 95 40 96 31 93C25 91 19 89 14 84Z"/>
-      <path class="sh-body" d="M38 74L24 80L36 82Z"/>
-      <circle class="sh-eye" cx="27" cy="74" r="2.6"/>
-      <path class="sh-line" d="M15 84q8 3 14 0M46 40q6 2 12 -1M44 50q8 2 16 -1M43 60q9 2 18 -1"/>
+    <svg class="bc-grid" viewBox="0 0 120 120" aria-hidden="true">
+      <path d="M0 20H120M0 40H120M0 80H120M0 100H120M20 0V120M40 0V120M60 0V120M100 0V120" fill="none" stroke="#d5d8dc" stroke-width="1.2"/>
+      <path d="M0 60H120M80 0V120" fill="none" stroke="#6b1d33" stroke-width="2.2"/>
+      <rect x="21" y="41" width="18" height="18" fill="#f6ecee"/>
+      <circle cx="30" cy="50" r="4.4" fill="#c9a227" stroke="#6b1d33" stroke-width="1.2"/>
     </svg>
     <p class="bc-mh">{{masthead}}</p>
     <p class="bc-title">{{title}}</p>
   </div>
-  <p class="bc-contents">닷새 한눈에 · 날짜별 일정 · 특집과 읽을거리 · 먹고 마시기 · 실용 정보 · 보여 주는 일본어</p>
+  <p class="bc-contents">나흘 한눈에 · 특집 홋카이도의 술 · 가게 · Day 1~4 · 실용 · 보여 주는 일본어</p>
   <p class="bc-cards">
-    <span><i>카드</i>알러지 카드<span class="pageref-wrap"> <span data-pageref-file="71-allergy-card.html"></span>쪽</span></span>
-    <span><i>카드</i>보여 주는 카드<span class="pageref-wrap"> <span data-pageref-file="72-show-cards.html"></span>쪽</span></span>
+    <span><i>카드</i>보여 주는 카드<span class="pageref-wrap"> <span data-pageref-file="61-show-cards.html"></span>쪽</span></span>
+    <span><i>카드</i>짧은 말<span class="pageref-wrap"> <span data-pageref-file="62-phrases.html"></span>쪽</span></span>
   </p>
   <div class="bc-foot">
     <a class="qr" data-qr="{{webUrl}}" data-label="웹판에서 읽기"></a>

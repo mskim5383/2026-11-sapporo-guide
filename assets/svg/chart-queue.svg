@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" role="img" aria-labelledby="cq-t cq-d" font-family="'Noto Sans KR','Noto Sans JP',sans-serif" lang="ko">
+<title id="cq-t">줄 서는 시각표</title>
+<desc id="cq-d">줄 서는 시각표(리뷰 기준). 木多郎(기타로) 11/24: 11:15 도착 목표, 11:30 개점, 12:30 품절 사례, 14:00 마감. 鍾馗(쇼키) 11/25: 10:45 줄, 11:00 개점, 11:50 대기 없음 사례, 14:00경 대기 없음. さえら(사에라) 11/23: 10:00 개점 때 10명 안팎, 14:30 줄 없음 사례, 15:00 우리, L.O. 17:00.</desc>
+<rect width="1000" height="560" fill="#ffffff"/>
+<text x="30" y="38" font-size="28" font-weight="700" fill="#2f5470"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">줄</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">서는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">시각표</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">리뷰</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기준</tspan>)</text>
+<line x1="244.4" y1="70" x2="244.4" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="244.4" y="500" font-size="24" fill="#4a5058" text-anchor="middle">10<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">시</tspan></text>
+<line x1="333.3" y1="70" x2="333.3" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="333.3" y="500" font-size="24" fill="#4a5058" text-anchor="middle">11</text>
+<line x1="422.1" y1="70" x2="422.1" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="422.1" y="500" font-size="24" fill="#4a5058" text-anchor="middle">12</text>
+<line x1="511" y1="70" x2="511" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="511" y="500" font-size="24" fill="#4a5058" text-anchor="middle">13</text>
+<line x1="599.8" y1="70" x2="599.8" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="599.8" y="500" font-size="24" fill="#4a5058" text-anchor="middle">14</text>
+<line x1="688.7" y1="70" x2="688.7" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="688.7" y="500" font-size="24" fill="#4a5058" text-anchor="middle">15</text>
+<line x1="777.5" y1="70" x2="777.5" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="777.5" y="500" font-size="24" fill="#4a5058" text-anchor="middle">16</text>
+<line x1="866.3" y1="70" x2="866.3" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="866.3" y="500" font-size="24" fill="#4a5058" text-anchor="middle">17</text>
+<line x1="955.2" y1="70" x2="955.2" y2="470" stroke="#d5d8dc" stroke-width="1.5" stroke-linecap="round"/>
+<text x="955.2" y="500" font-size="24" fill="#4a5058" text-anchor="middle">18<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">시</tspan></text>
+
+<text x="30" y="148" font-size="28" font-weight="700" fill="#16191d" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">木多郎</text>
+<text x="30" y="178" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">기타로</tspan> · 11/24</text>
+<rect x="377.7" y="136" width="222.1" height="28" rx="4" fill="#eaf0f5" stroke="#2f5470" stroke-width="2"/>
+<circle cx="355.5" cy="150" r="8" fill="#6b1d33" stroke="#fff" stroke-width="2.5"/>
+<text x="355.5" y="124" font-size="24" font-weight="700" fill="#6b1d33" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">11:15 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">도착</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">목표</tspan></text>
+<circle cx="466.5" cy="150" r="8" fill="#16191d" stroke="#fff" stroke-width="2.5"/>
+<text x="466.5" y="194" font-size="24" fill="#16191d" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">12:30 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">품절</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사례</tspan></text>
+<circle cx="599.8" cy="150" r="8" fill="#16191d" stroke="#fff" stroke-width="2.5"/>
+<text x="599.8" y="124" font-size="24" fill="#16191d" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">14:00 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">마감</tspan></text>
+<text x="30" y="278" font-size="28" font-weight="700" fill="#16191d" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">鍾馗</text>
+<text x="30" y="308" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">쇼키</tspan> · 11/25</text>
+<rect x="333.3" y="266" width="399.8" height="28" rx="4" fill="#eaf0f5" stroke="#2f5470" stroke-width="2"/>
+<circle cx="311.1" cy="280" r="8" fill="#6b1d33" stroke="#fff" stroke-width="2.5"/>
+<text x="311.1" y="254" font-size="24" font-weight="700" fill="#6b1d33" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">10:45 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">줄</tspan></text>
+<circle cx="407.3" cy="280" r="8" fill="#16191d" stroke="#fff" stroke-width="2.5"/>
+<text x="407.3" y="324" font-size="24" fill="#16191d" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">11:50 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">대기</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">없음</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사례</tspan></text>
+<circle cx="599.8" cy="280" r="8" fill="#16191d" stroke="#fff" stroke-width="2.5"/>
+<text x="599.8" y="254" font-size="24" fill="#16191d" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">14:00<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">경</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">대기</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">없음</tspan></text>
+<text x="30" y="408" font-size="28" font-weight="700" fill="#16191d" lang="ja" font-family="'Noto Serif JP','Noto Serif KR',serif">さえら</text>
+<text x="30" y="438" font-size="24" fill="#2b3036"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사에라</tspan> · 11/23</text>
+<rect x="244.4" y="396" width="621.9" height="28" rx="4" fill="#eaf0f5" stroke="#2f5470" stroke-width="2"/>
+<circle cx="244.4" cy="410" r="8" fill="#16191d" stroke="#fff" stroke-width="2.5"/>
+<text x="244.4" y="384" font-size="24" fill="#16191d" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">개점</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">때</tspan> 10<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">명</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">안팎</tspan></text>
+<circle cx="644.2" cy="410" r="8" fill="#16191d" stroke="#fff" stroke-width="2.5"/>
+<text x="644.2" y="454" font-size="24" fill="#16191d" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">14:30 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">줄</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">없음</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사례</tspan></text>
+<circle cx="688.7" cy="410" r="8" fill="#6b1d33" stroke="#fff" stroke-width="2.5"/>
+<text x="688.7" y="384" font-size="24" font-weight="700" fill="#6b1d33" text-anchor="middle" stroke="#ffffff" stroke-width="6.7" stroke-linejoin="round" paint-order="stroke">15:00 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">우리</tspan></text>
+<text x="30" y="548" font-size="24" fill="#4a5058"><tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">하늘색</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">띠</tspan> = <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">영업</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">さえら</tspan>(<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사에라</tspan>)<tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">는</tspan> L.O. 17:00 <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">까지</tspan>). <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">사례는</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">리뷰</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">연월이</tspan> <tspan lang="ja" font-family="'Noto Sans JP','Noto Sans KR',sans-serif">다르다</tspan>.</text>
+</svg>

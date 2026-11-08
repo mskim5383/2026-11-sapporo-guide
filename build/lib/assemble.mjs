@@ -13,23 +13,27 @@ const MAPS = 'https://maps.google.com/?q=';
 const mapsUrl = (q) => MAPS + encodeURIComponent(q.trim()).replace(/%20/g, '+');
 
 // BRIEF 4장 컴포넌트 규약에 있는 클래스. 이 밖의 클래스는 경고만 한다.
-// (지난 호의 일기 diary·diary-entry·diary-time, 태그 beer 는 이번 호 규약에서 빠졌다)
+// 삿포로판(04) 갱신: 리뷰·바·생산자·병 카드·확률·좌표 배지·시킬 것·전화 카드를 더하고,
+// 나고야판 전용(가금류 알러지 eat·fowl-*, 잘라 쓰는 카드 cut-*·cc-*)은 뺐다(BRIEF 3-8 A-1, 4-17).
 const KNOWN_CLASSES = new Set([
   'part', 'part-head', 'kicker', 'part-title', 'dek', 'lede', 'byline', 'pull', 'box', 'tip', 'warn', 'star', 'alt',
-  'note', 'sidenote', 'timeline', 't', 'what', 'sub', 'fixed', 'eat', 'place',
-  'place-name', 'reading', 'facts', 'tags', 'tag', 'open', 'closed', 'cash', 'card', 'rsv',
-  'fowl-ok', 'fowl-no', 'fowl-ask', 'qr', 'photo',
+  'note', 'sidenote', 'timeline', 't', 'what', 'sub', 'fixed', 'dish', 'place',
+  'place-name', 'reading', 'facts', 'tags', 'tag', 'open', 'closed', 'cash', 'card', 'rsv', 'queue', 'taxfree',
+  'qr', 'photo',
   'wide', 'half', 'full', 'map', 'chart', 'data', 'o', 'x', 'q', 'na', 'hl', 'phrases', 'ja', 'pron', 'check', 'verify', 'memo-lines',
   'web-only', 'print-only',
-  // 잡지형 머리: 오프너(사진 + 「한눈에」), 숫자 강조, 하우투 단계
-  'opener', 'glance', 'stats', 'stat', 'stat-n', 'stat-l', 'steps',
+  // 잡지형 머리: 오프너(사진 + 「한눈에」), 숫자 강조, 하우투 단계(리뷰 카드 안은 compact)
+  'opener', 'glance', 'stats', 'stat', 'stat-n', 'stat-l', 'steps', 'compact',
+  // 리뷰 카드(가게), 바 카드와 밤 표시, 좌표 배지
+  'review', 'rv-why', 'menu', 'price', 'bar', 'nights', 'grid',
+  // 생산자 프로필, 병 카드, 만날 확률
+  'producer', 'pr-meta', 'bottle', 'b-no', 'b-name', 'b-maker', 'b-spec', 'b-note', 'odds',
   // 손으로 적는 칸
   'fill', 'blank',
-  // 독음(발행인 지시 2026-11-08): 알러지 카드 발음 줄, 의도적으로 원문만 두는 곳(독음 검사 제외)
-  'cc-pron', 'no-reading',
-  // 보여 주는 카드, 잘라 쓰는 알러지 카드
-  'show-card', 'dest', 'sc-when', 'sc-ja', 'sc-pron', 'sc-ko', 'dest-list',
-  'cut-sheet', 'cut-card', 'cc-head', 'cc-ja', 'cc-ko',
+  // 독음(발행인 지시 2026-11-08): 의도적으로 원문만 두는 곳(독음 검사 제외)
+  'no-reading',
+  // 보여 주는 카드, 전화 카드(줄마다 일본어·발음·뜻)
+  'show-card', 'dest', 'sc-when', 'sc-ja', 'sc-pron', 'sc-ko', 'dest-list', 'call', 'call-lines',
   // 조판 힌트(아트 디렉터): 지도 높이 상한 낮추기, 쪽 사이에서 가르지 않기, 이 앞에서 쪽 나누기
   'short', 'shorter', 'keep', 'break-before',
   // 쪽 참조 괄호: 쪽번호가 비면 빌드가 통째로 지우고, 웹에서는 숨긴다
@@ -50,16 +54,32 @@ const RUN_MAX = 34;
 
 // 차례·러닝헤드·웹 목차에 쓰는 원고 제목(data-toc·data-run·book.json 묶음 이름)의 일본어 옆에 한글 소리를 붙인다
 // (발행인 지시 2026-11-08: 한자·일본어 옆에는 매번 한글 소리). 원어 바로 뒤에 이미 괄호 한글이 있으면 그대로 둔다.
-// 표기는 BRIEF 6장 표를 따른다. 여기에 없는 일본어가 제목에 나오면 빌드가 경고한다(여기에 더하거나 원고 data-toc 에 괄호 독음).
+// 표기는 BRIEF 2-14 독음 통일표를 따른다(삿포로판). 원고는 data-toc·data-run 에 괄호 독음을 직접 붙이므로
+// 이 표는 안전망이다. 여기에 없는 일본어가 제목에 나오면 빌드가 경고한다(여기에 더하거나 원고 data-toc 에 괄호 독음).
+// 키는 가나·한자가 이어진 한 덩어리(JA_WORD) 그대로다(예: 「木多郎 澄川本店」은 木多郎 / 澄川本店 두 덩어리).
 const READINGS = {
-  '名古屋': '나고야', '名古屋城': '나고야성', '城下町': '조카마치', '栄': '사카에', '伏見': '후시미', '大須': '오스',
-  '大須観音': '오스칸논', '大須商店街': '오스 상점가', '上前津': '가미마에즈', '鶴舞': '쓰루마이', '金山': '가나야마',
-  '久屋大通': '히사야오도리', '矢場町': '야바초', '大曽根': '오조네', '千種': '지쿠사', '熱田': '아쓰타',
-  '熱田神宮': '아쓰타 신궁', '白鳥庭園': '시라토리 정원', '松坂屋': '마쓰자카야', '本丸御殿': '혼마루고텐', '金鯱': '긴샤치',
-  '徳川美術館': '도쿠가와 미술관', '徳川園': '도쿠가와엔', '大甚': '다이진', '海の日': '우미노히', '矢場とん': '야바톤',
-  'うな富士': '우나후지', '高山': '다카야마', '飛騨': '히다', '白川郷': '시라카와고', '三町': '산마치',
-  '合掌造り': '갓쇼즈쿠리', 'ひつまぶし': '히쓰마부시', '味噌カツ': '미소카쓰', '手羽先': '데바사키',
-  'きしめん': '기시멘', '天むす': '텐무스', '名鉄': '메이테쓰', '清須': '기요스', '尾張': '오와리',
+  // 지명·역·노선
+  '札幌': '삿포로', '北海道': '홋카이도', '新千歳': '신치토세', '新千歳空港': '신치토세 공항', '大通': '오도리',
+  '大通公園': '오도리 공원', 'すすきの': '스스키노', '狸小路': '다누키코지', '中島公園': '나카지마 공원',
+  '澄川': '스미카와', '苗穂': '나에보', '赤れんが庁舎': '아카렌가 청사', '登別': '노보리베쓰', '市電': '시전',
+  '勤労感謝の日': '근로감사의 날',
+  // 숙소·식당·바
+  '由縁': '유엔', '夏下冬上': '가카토조', 'さえら': '사에라', '木多郎': '기타로', '鍾馗': '쇼키', '麺': '멘', '本店': '본점',
+  'すしどんぶり': '스시돈부리', '餃子製造所': '교자 세이조쇼', '魚菜': '교사이', '鷄灯': '게이토',
+  'もろはく': '모로하쿠', 'ばんなちゅ': '반나추', 'かま田': '가마타', '吉翔': '깃쇼', 'まる田': '마루타',
+  // 술 가게·볼거리
+  '丸市桜本商店': '마루이치 사쿠라모토 상점', '桜本': '사쿠라모토', 'いとう': '이토', 'フジヰ': '후지이',
+  '千歳鶴': '지토세쓰루', 'ミュンヘン': '뮌헨', 'クリスマス市': '크리스마스 이치', 'アカチャンホンポ': '아카찬혼포',
+  'ロイヤルラウンジ': '로열 라운지', 'そらくうはん': '소라쿠한',
+  // 와인
+  '余市': '요이치', '余市町': '요이치초', '登': '노보리', '仁木': '니키', '空知': '소라치', '岩見沢': '이와미자와', '三笠': '미카사',
+  '函館': '하코다테', '十勝': '도카치', '富良野': '후라노', '曽我貴彦': '소가 다카히코', '登醸造': '노보리 양조',
+  // 사케
+  '酒米': '주미', '精米歩合': '정미보합', '新酒': '신주', '生酒': '생주', '原酒': '원주', '純米': '순미',
+  '吟醸': '음양', '大吟醸': '대음양', '純米吟醸': '순미음양', '純米大吟醸': '순미대음양', 'ひやおろし': '히야오로시',
+  'しぼりたて': '시보리타테', '杉玉': '스기다마', '吟風': '긴푸', '彗星': '스이세이', 'きたしずく': '기타시즈쿠',
+  // 메뉴
+  'スープカレー': '수프카레', '海鮮丼': '가이센동', '餃子': '교자',
 };
 const JA_WORD = /[\u3005\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]+/g;
 function withReadings(text, missing) {
@@ -77,7 +97,17 @@ const TAB_Y0 = 8;
 const TAB_STEP = 22;
 const TAB_Y_LOW = 128;
 
-const DEFAULT_SERIF_KINDS = ['letter', 'feature', 'further'];
+const DEFAULT_SERIF_KINDS = ['letter', 'feature', 'review'];
+
+// 특집 오프너 대체 띠의 큰 숫자(사진이 없을 때만). 원고 id → [숫자, 한 줄 설명]. 값은 BRIEF 1장·2-11 그대로.
+const OPENER_FIGURES = {
+  'feat-wine': ['1991', 'Bruce Gutlove 가 야생효모 발효를 들여온 해'],
+  'feat-sake': ['17', '홋카이도 주조 조합의 니혼슈 양조장 수'],
+};
+
+// 쪽 바깥 여백 탭 색(인쇄): Day(D1~D4)는 style.css 기본(청회색), 「가게」는 포도색, 「카드」는 먹.
+const TAB_BG = { cards: '#16191d' };
+const TAB_BG_OTHER = '#6b1d33';
 
 /** assets/img/manifest.json 을 id → entry 맵으로. 여러 모양을 받아 준다. */
 export function loadManifest(assetsDir, log) {
@@ -190,6 +220,9 @@ function qrAttrs(el, q) {
 function shortUrl(u) {
   try {
     const x = new URL(u);
+    // 48자 이하면 줄이지 않는다(뒤표지·판권 웹판 주소가 「…」로 잘렸다, 나고야판 r3 n22)
+    const full = (x.host.replace(/^www\./, '') + x.pathname + x.search).replace(/\/$/, '/');
+    if (full.length <= 48) return full;
     const p = x.pathname.length > 18 ? x.pathname.slice(0, 16) + '…' : x.pathname;
     return x.host.replace(/^www\./, '') + (p === '/' ? '' : p);
   } catch { return u; }
@@ -201,6 +234,31 @@ function splitToc(s) {
 }
 
 function textOf(el) { return (el?.textContent || '').replace(/\s+/g, ' ').trim(); }
+
+// 요소 안 첫 글자(공백 아닌 글자)가 든 텍스트 노드. QR 타일·지도 SVG·앵커·확률 막대 안 글자는 건너뛴다.
+const SKIP_TEXT = '.place-qr, a.qr, .pdf-anchor, .pdf-anchor-ref, .odds-bar, .leader, svg, svg-slot, script, style';
+function firstTextNode(el) {
+  for (const n of el.childNodes) {
+    if (n.nodeType === 3) { if (n.textContent.trim()) return n; continue; }
+    if (n.nodeType !== 1 || n.matches(SKIP_TEXT)) continue;
+    const r = firstTextNode(n);
+    if (r) return r;
+  }
+  return null;
+}
+/** 쪽 참조 검사용: 요소의 앞 글자 몇 개(공백 없이). 최종 PDF 의 그 쪽 글자에 들어 있어야 한다 */
+function leadText(el, n = 10) {
+  let out = '';
+  const walk = (node) => {
+    for (const c of node.childNodes) {
+      if (out.length >= n) return;
+      if (c.nodeType === 3) out += c.textContent.replace(/\s+/g, '');
+      else if (c.nodeType === 1 && !c.matches(SKIP_TEXT)) walk(c);
+    }
+  };
+  walk(el);
+  return out.slice(0, n);
+}
 
 function applyVars(html, vars) {
   return html.replace(/{{\s*([\w.]+)\s*}}/g, (m, k) => (k in vars ? escapeHtml(vars[k]) : m));
@@ -363,9 +421,11 @@ export async function assemble(cfg, state, log) {
     const e = manifest.get(tr.getAttribute('data-img'));
     const url = e && (e.licenseUrl || e.license_url);
     const cell = tr.lastElementChild;
-    if (!url || !cell || !/creativecommons\.org/.test(url)) continue;
+    if (!url || !cell) continue;
     const name = textOf(cell);
     if (!name || name !== String(e.license || '').trim()) continue;
+    // CC 가 아닌 것(Public domain 등)도 목록에 이름과 근거 주소를 올린다(나고야판 r3 n22)
+    if (!/creativecommons\.org/.test(url) && !/public\s*domain|^PD\b/i.test(name)) continue;
     if (!cell.querySelector('a')) cell.innerHTML = `<a href="${escapeHtml(url)}" rel="license noopener" target="_blank">${escapeHtml(name)}</a>`;
     const table = tr.closest('table');
     if (!licTables.has(table)) licTables.set(table, new Map());
@@ -413,19 +473,22 @@ export async function assemble(cfg, state, log) {
     }
   }
 
-  // --- 오프너(Day·특집 머리, 인쇄 1쪽) ----------------------------------------------------
-  // 사진이 빠졌으면(manifest 에 없음) 대체 그래픽을 넣는다: 금색 띠 + 큰 Day 숫자 + 石垣 무늬(style.css).
-  // 키커 「DAY 2 · 11.29 SUN」 → DAY / 2 / 11.29 SUN, 「특집 · CASTLE TOWN」 → 특집 / CASTLE TOWN.
+  // --- 오프너(Day·특집 머리) --------------------------------------------------------------
+  // 사진이 빠졌으면(manifest 에 없음) 타이포그래피 대체 띠를 넣는다: 가는 바둑판 격자 + 큰 키커(style.css).
+  // 키커 「DAY 2 · 11.24 TUE」 → DAY / 2 / 11.24 TUE, 「특집 · HOKKAIDO WINE」 → 특집 / HOKKAIDO WINE.
+  // 특집은 숫자 하나를 크게 둔다(BRIEF 7장 「산지 좌표나 연도 같은 숫자 하나」, 값은 BRIEF 1장·2-11).
   for (const head of document.querySelectorAll('header.part-head.opener')) {
     if (head.querySelector('figure.photo')) continue;
     const [k0, k1] = splitToc(textOf(head.querySelector('.kicker')));
     const m = k0.match(/^DAY\s*(\d+)$/i);
+    const fig = OPENER_FIGURES[head.closest('section.part')?.id || ''];
     const art = document.createElement('div');
-    art.className = 'opener-art';
+    art.className = 'opener-art' + (m ? ' oa-day' : ' oa-feature');
     art.setAttribute('aria-hidden', 'true');
     art.innerHTML = '<div class="oa-plate">' + (m
       ? `<span class="oa-label">DAY</span><span class="oa-num">${escapeHtml(m[1])}</span>` + (k1 ? `<span class="oa-sub">${escapeHtml(k1)}</span>` : '')
-      : `<span class="oa-label">${escapeHtml(k0)}</span><span class="oa-word">${escapeHtml(k1 || k0)}</span>`) + '</div>';
+      : `<span class="oa-label">${escapeHtml(k0)}</span><span class="oa-word">${escapeHtml(k1 || k0)}</span>`) + '</div>' +
+      (!m && fig ? `<div class="oa-fig"><b>${escapeHtml(fig[0])}</b><small>${escapeHtml(fig[1])}</small></div>` : '');
     head.insertBefore(art, head.firstChild);
     head.classList.add('no-photo');
   }
@@ -581,7 +644,7 @@ export async function assemble(cfg, state, log) {
   }
 
   // 보여 주는 카드: 목적지·날짜 목록(dl.dest-list)이 없는 카드가 잇달아 오면 묶어 2단으로 놓는다(인쇄·넓은 화면).
-  // 한 장씩 쌓으면 쪽 끝마다 빈자리가 남아 72가 배정 4쪽을 크게 넘었다(실용 데스크 요청 5).
+  // 한 장씩 쌓으면 쪽 끝마다 빈자리가 남는다(나고야판 실용 데스크 요청 5). 전화 카드(show-card.call)는 줄이 많아 1단.
   for (const sec of document.querySelectorAll('section.part')) {
     let run = [];
     const flush = () => {
@@ -594,7 +657,7 @@ export async function assemble(cfg, state, log) {
       run = [];
     };
     for (const el of [...sec.children]) {
-      if (el.matches('div.show-card') && !el.querySelector('dl.dest-list')) run.push(el);
+      if (el.matches('div.show-card') && !el.querySelector('dl.dest-list') && !el.classList.contains('call')) run.push(el);
       else flush();
     }
     flush();
@@ -605,11 +668,73 @@ export async function assemble(cfg, state, log) {
     if ((t.match(/[・·]/g) || []).length >= 3 && !/[。？]/.test(t)) p.classList.add('ja-list');
   }
 
-  // 긴 장소 카드(글 300자 이상이거나 안에 상자·목록·표): 인쇄에서 카드 머리 + dl.facts 뒤로는 쪽 사이에서
+  // 병 카드(div.bottle)가 잇달아 오면 묶어 2단 격자로(인쇄·넓은 화면, BRIEF 7장). 쪽 사이에서는 카드 단위로 넘어간다.
+  for (const sec of document.querySelectorAll('section.part')) {
+    let run = [];
+    const flush = () => {
+      if (run.length >= 2) {
+        const wrap = document.createElement('div');
+        wrap.className = 'bottle-grid';
+        run[0].parentNode.insertBefore(wrap, run[0]);
+        for (const c of run) wrap.appendChild(c);
+      }
+      run = [];
+    };
+    for (const el of [...sec.children]) {
+      if (el.matches('div.bottle')) run.push(el);
+      else flush();
+    }
+    flush();
+  }
+
+  // 만날 확률(p.odds[data-odds] 0~4): 네 칸 막대를 글자 앞에 붙인다. 뜻은 <b> 글자가 전하고 막대는 보조다.
+  for (const p of document.querySelectorAll('p.odds')) {
+    const raw = p.getAttribute('data-odds');
+    const n = /^[0-4]$/.test(String(raw).trim()) ? Number(raw) : NaN;
+    if (!Number.isFinite(n)) { log.warn(`${p.closest('section.part')?.getAttribute('data-file') || '?'}: p.odds 의 data-odds 가 0~4 가 아닙니다("${raw ?? ''}")`); continue; }
+    p.setAttribute('data-odds', String(n));
+    const bar = document.createElement('span');
+    bar.className = 'odds-bar';
+    bar.setAttribute('aria-hidden', 'true');
+    bar.innerHTML = [0, 1, 2, 3].map((i) => `<i${i < n ? ' class="on"' : ''}></i>`).join('');
+    p.insertBefore(bar, p.firstChild);
+  }
+
+  // 리뷰 카드 메뉴(dl.menu): 와인 리스트처럼 「이름 ……… 가격」 한 줄로. dd 안의 span.price 를 dt 끝으로 옮기고
+  // 사이에 점선 리더를 둔다(웹·인쇄 공통). 가격이 없는 메뉴는 이름만.
+  for (const dl of document.querySelectorAll('dl.menu')) {
+    for (const dt of [...dl.children].filter((c) => c.tagName === 'DT')) {
+      const dd = dt.nextElementSibling && dt.nextElementSibling.tagName === 'DD' ? dt.nextElementSibling : null;
+      const price = dd ? dd.querySelector('.price') : null;
+      const name = document.createElement('span');
+      name.className = 'mn';
+      while (dt.firstChild) name.appendChild(dt.firstChild);
+      dt.appendChild(name);
+      if (!price) continue;
+      const lead = document.createElement('span');
+      lead.className = 'leader';
+      lead.setAttribute('aria-hidden', 'true');
+      dt.appendChild(lead);
+      dt.appendChild(price);
+      dt.classList.add('has-price');
+      if (dd.firstChild && dd.firstChild.nodeType === 3) dd.firstChild.textContent = dd.firstChild.textContent.replace(/^\s+/, '');
+      if (!textOf(dd)) dd.classList.add('empty');
+    }
+  }
+
+  // 바 카드의 밤 표시(ul.nights): 「· 확정」이 붙은 밤은 테두리를 굵게(글자 「확정」이 뜻을 전한다)
+  for (const li of document.querySelectorAll('ul.nights > li')) {
+    if (/확정/.test(li.textContent)) li.classList.add('confirmed');
+  }
+
+  // 긴 장소 카드(글 240자 이상이거나 안에 상자·목록·표. 나고야판 r3 n21 로 300 → 240): 인쇄에서 카드 머리 + dl.facts 뒤로는 쪽 사이에서
   // 나뉠 수 있게 place-long 을 붙인다. 짧은 카드는 통째로 넘긴다(A-02: 반쪽 넘는 카드가 통째로 밀려 빈자리가 남았다).
   for (const pl of document.querySelectorAll('div.place')) {
     const n = textOf(pl).length;
-    if (n >= 300 || pl.querySelector('aside, ul, ol, table')) pl.classList.add('place-long');
+    // 바 카드의 밤 표시(ul.nights)는 짧은 한 줄이라 긴 카드로 치지 않는다(시험 빌드: 짧은 바 카드가 쪽 사이에서 갈렸다)
+    const inner = [...pl.querySelectorAll('aside, ul, ol, table, dl.menu')].filter((x) => !x.classList.contains('nights'));
+    // 리뷰 카드(가게)는 길이와 상관없이 머리 + WHY 뒤에서 쪽을 넘길 수 있다(와인·사케 기자 요청 2: 24 카드가 통째로 넘어가 0.4쪽이 비었다)
+    if (n >= 240 || inner.length || pl.classList.contains('review')) pl.classList.add('place-long');
   }
 
   // 시간표 시각 「08:40~09:10」: 좁은 시각 칸에서 물결 뒤에서만 줄을 바꾼다
@@ -656,14 +781,14 @@ export async function assemble(cfg, state, log) {
   };
   const printToc = tocModel.map((g) => {
     const items = g.items.map((it) => `<li class="toc-entry"><a href="#${it.id}"><span class="toc-pg" data-pg-for="${it.id}">${pg(it.id)}</span>` +
-      `<span class="toc-txt"><span class="toc-t">${escapeHtml(it.t)}</span>` +
-      (it.s ? ` <span class="toc-s">${escapeHtml(it.s)}</span>` : '') + '</span></a></li>').join('');
+      `<span class="toc-txt"><span class="toc-t">${langJa(it.t)}</span>` +
+      (it.s ? ` <span class="toc-s">${langJa(it.s)}</span>` : '') + '</span></a></li>').join('');
     // 묶음(읽을거리·먹고 마시기·실용·보여 주는 일본어): 묶음 머리에 첫 쪽번호를 크게, 원고는 아래에 「제목 쪽」으로 잇는다
     if (g.cfg.label && g.items.length > 1) {
       const first = g.items[0].id;
       return `<li class="toc-group"><a class="toc-group-head" href="#${first}"><span class="toc-pg">${pg(first)}</span>` +
-        `<span class="toc-txt"><span class="toc-group-label">${escapeHtml(withReadings(g.cfg.label, noReading))}</span>` +
-        (g.cfg.title ? `<span class="toc-group-title">${escapeHtml(withReadings(g.cfg.title, noReading))}</span>` : '') +
+        `<span class="toc-txt"><span class="toc-group-label">${langJa(withReadings(g.cfg.label, noReading))}</span>` +
+        (g.cfg.title ? `<span class="toc-group-title">${langJa(withReadings(g.cfg.title, noReading))}</span>` : '') +
         `</span></a><ol class="toc-sub">${items}</ol></li>`;
     }
     return items;
@@ -673,9 +798,9 @@ export async function assemble(cfg, state, log) {
   const webToc = tocModel.map((g) => {
     const items = g.items.filter((it) => !it.printOnly);
     if (!items.length) return '';
-    const lis = items.map((it) => `<li><a href="#${it.id}">${escapeHtml(it.t)}${it.s ? `<small>${escapeHtml(it.s)}</small>` : ''}</a></li>`).join('');
+    const lis = items.map((it) => `<li><a href="#${it.id}">${langJa(it.t)}${it.s ? `<small>${langJa(it.s)}</small>` : ''}</a></li>`).join('');
     if (g.cfg.label && items.length > 1) {
-      return `<li class="wtoc-group"><span class="wtoc-label">${escapeHtml(withReadings(g.cfg.label, noReading))}${g.cfg.title ? ` <small>${escapeHtml(withReadings(g.cfg.title, noReading))}</small>` : ''}</span><ol>${lis}</ol></li>`;
+      return `<li class="wtoc-group"><span class="wtoc-label">${langJa(withReadings(g.cfg.label, noReading))}${g.cfg.title ? ` <small>${langJa(withReadings(g.cfg.title, noReading))}</small>` : ''}</span><ol>${lis}</ol></li>`;
     }
     return lis;
   }).join('');
@@ -687,10 +812,10 @@ export async function assemble(cfg, state, log) {
     // book.json "navTo": 칩이 가리킬 원고 파일(예: 일정). 없으면 묶음의 첫 원고
     const want = g.cfg.navTo ? parts.find((s) => s.getAttribute('data-file') === g.cfg.navTo)?.id : null;
     const first = g.items.find((it) => !it.printOnly && (!want || it.id === want)) || g.items.find((it) => !it.printOnly);
-    if (nav && first && !chips.some((c) => c.nav === nav)) chips.push({ nav, id: first.id, title: g.cfg.label });
+    if (nav && first && !chips.some((c) => c.nav === nav)) chips.push({ nav, id: first.id, title: g.cfg.label, cards: g.group === 'cards' });
   }
   for (const root of document.querySelectorAll('[data-day-nav]')) {
-    root.innerHTML = chips.map((c) => `<a class="chip" href="#${c.id}" title="${escapeHtml(c.title || '')}">${escapeHtml(c.nav)}</a>`).join('');
+    root.innerHTML = chips.map((c) => `<a class="chip${c.cards ? ' chip-cards' : ''}" href="#${c.id}" title="${escapeHtml(c.title || '')}">${escapeHtml(c.nav)}</a>`).join('');
   }
 
   // 쪽 참조: <span data-pageref="id"> 또는 data-pageref-file="90-credits.html"
@@ -714,6 +839,10 @@ export async function assemble(cfg, state, log) {
     else el.closest('.pageref-wrap')?.remove();
   }
 
+  // 쪽 참조 대상의 앞 글자(빌드 끝에 최종 PDF 의 그 쪽과 대조한다)
+  const refLead = {};
+  for (const id of refTargets) refLead[id] = leadText(document.getElementById(id));
+
   // --- 러닝헤드: 원고마다 이름 붙은 페이지(@page) ------------------------------------------
   const rules = [];
   const runOf = (s) => {
@@ -733,14 +862,15 @@ export async function assemble(cfg, state, log) {
     const label = entry.tab ?? (/^D\d+$/.test(entry.nav || '') ? entry.nav : entry.group === 'cards' ? (entry.nav || '카드') : null);
     if (!label) continue;
     const i = tabs.size;
-    tabs.set(entry.group, { label, y: i < 5 ? TAB_Y0 + i * TAB_STEP : TAB_Y_LOW + (i - 5) * TAB_STEP, day: /^D\d+$/.test(label) });
+    const day = /^D\d+$/.test(label);
+    tabs.set(entry.group, { label, y: i < 5 ? TAB_Y0 + i * TAB_STEP : TAB_Y_LOW + (i - 5) * TAB_STEP, day, bg: day ? null : (TAB_BG[entry.group] || TAB_BG_OTHER) });
   }
   // 탭 글자: 두 글자 한글(「카드」)은 세로로 쌓는다(탭 폭 6mm)
   const tabContent = (t) => (/^[\uac00-\ud7a3]{2,3}$/.test(t.label) ? `"${[...t.label].join('\\A ')}"` : cssString(t.label));
   const tabRule = (t, side) => {
     if (!t) return '';
     const box = side === 'left' ? '@left-top' : '@right-top';
-    return `${box}{content:${tabContent(t)};margin-top:${t.y}mm${t.day ? '' : ';background:var(--tab-alt-bg,#285c50);color:#fff'}}`;
+    return `${box}{content:${tabContent(t)};margin-top:${t.y}mm${t.bg ? `;background:${t.bg};color:#fff` : ''}}`;
   };
   parts.forEach((s, i) => {
     const g = groups.get(s.getAttribute('data-group')) || {};
@@ -792,17 +922,17 @@ export async function assemble(cfg, state, log) {
       const sec = el.closest('section.part');
       clipChecks.push({ k: ck++, file: sec?.getAttribute('data-file') || '', what: `잘라 쓰는 카드 ${[...sec.querySelectorAll('.cut-card')].indexOf(el) + 1}번째` });
     }
-    // 쪽 참조 대상 요소: 요소 맨 앞에 앵커를 심는다. 표·목록은 첫 칸·첫 항목 안에(그 밖에 두면 HTML 이 깨진다).
+    // 쪽 참조 대상 요소: 대상의 첫 글자 바로 앞에 폭·높이 0 인 인라인 앵커를 심는다(첫 줄과 같이 움직인다).
+    // 나고야판 r3 수정: 예전에는 대상 맨 앞에 블록 앵커(높이 3pt)를 넣었는데, 제목·긴 장소 카드는 그 앵커와 첫 줄 사이에서
+    // 쪽이 나뉠 수 있어 앵커만 앞 쪽 끝에 남았다(1쪽 앞으로 찍힘).
     for (const id of refTargets) {
       const t = document.getElementById(id);
-      const host = t.matches('table') ? (t.querySelector('th, td') || t)
-        : t.matches('ul, ol') ? (t.querySelector('li') || t)
-          : t.matches('dl') ? (t.querySelector('dt, dd') || t) : t;
       const span = document.createElement('span');
-      span.className = 'pdf-anchor';
       span.setAttribute('aria-hidden', 'true');
       span.textContent = `ZZA[${id}]ZZ`;
-      host.insertBefore(span, host.firstChild);
+      const tn = firstTextNode(t);
+      if (tn) { span.className = 'pdf-anchor-ref'; tn.parentNode.insertBefore(span, tn); }
+      else { span.className = 'pdf-anchor'; t.insertBefore(span, t.firstChild); }
     }
   }
   // 앵커 순서(문서 순서): 원고와 쪽 참조 대상. 인쇄 패스가 이 순서로 장 시작 메모의 밀림을 더한다.
@@ -825,6 +955,7 @@ export async function assemble(cfg, state, log) {
     creditsDropped,
     memo: memoInfo,
     svgCount: svgN,
+    refLead,
     qr: qrList,
     clipChecks,
     pageRules: rules.join('\n'),
